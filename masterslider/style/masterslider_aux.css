@@ -1,0 +1,118 @@
+#slider-containter { width: 810px;
+	height: 335px;
+	margin: 0 auto 15px;
+}
+.ms-slide { overflow: hidden ;
+} 
+
+.p {font-size: 14px;
+	color: #FFFFFF;
+}
+.ms-slide .slide-picture {
+	position: absolute;
+	z-index: 3}
+.ms-slide .slide-text-container {
+	position: absolute;
+	z-index: 3;
+	width: 100%;
+	top: 85px;
+	overflow: hidden;
+	max-height: 172px;
+	font-size: 14px;
+	line-height: 18px;
+}
+.ms-slide .slide-text {
+	margin: 0 40px;
+	text-align: center;
+	color: #FFFFFF }
+.ms-slide .slide-text h1 {
+	font-size: 17px;
+	text-transform: uppercase;
+	padding-bottom: 0px;
+}
+.ms-slide .slide-text p.description { font-size: 14px;
+	line-height: 18px;
+}
+.ms-slide .slide-text-signature{
+	position: absolute;
+	z-index: 3;
+	width: 100%;
+	bottom: 50px;
+	overflow: hidden;
+	text-align: center;
+	font-family:'EmPrintBold';
+	font-size: 16px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
+.ms-slide .slide-like-button { position: absolute;
+	z-index: 3;
+	bottom: 10px;
+	right: 10px;
+}
+.ms-slide .slide-hover{
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+}
+.ms-slide.prev-slide .slide-hover {
+	background-color: #7f111c;
+	transition: background-color 3s;
+	opacity: 0.59;
+}
+.ms-slide.next-slide .slide-hover {
+	background-color: #1c4db0;
+	transition: background-color 3s;
+	opacity: 0.59;
+}
+.ms-slide.curr-slide .slide-hover {
+	background-color: #0057a3;
+	-webkit-transition: background-color 3s ease, opacity .3s ease;
+	-moz-transition: background-color 3s ease, opacity .3s ease;
+	-o-transition: background-color 3s ease, opacity .3s ease;
+	transition: background-color 3s ease, opacity .3s ease;
+	opacity: 0.59;
+}
+.ms-slide.prev-slide .slide-like-button  {
+	display: none;
+}
+.ms-slide.next-slide .slide-like-button  {
+	display: none;
+}
+.ms-slide.curr-slide .slide-like-button  {
+	display: block;
+}
+
+.ms-slide.curr-slide:hover .slide-hover {
+	background-color: #0057a3;
+	opacity: 0;
+}
+.ms-slide.curr-slide:hover .slide-text h1 {
+	display: none;
+}
+.ms-slide.curr-slide:hover .slide-text p.description {
+	display: none;
+}
+
+/* custom arrows */
+.ms-skin-default .ms-nav-next { 
+	background: url("../../images/slider-arrows-sprite.jpg") repeat scroll -40px 0 transparent !important;
+	height: 109px !important;
+	margin: 0 !important;
+	width: 40px !important;
+	right: -40px !important;
+	top: 113px !important}
+.ms-skin-default .ms-nav-prev {
+	background: url("../../images/slider-arrows-sprite.jpg") repeat scroll 0 0 transparent !important;
+	height: 109px !important;
+	margin: 0 !important;
+	width: 40px !important;
+	left: -40px !important;
+	top: 113px !important;
+}
+.ms-slide-bgcont img{
+	width: 100%!important;
+	height: 100%!important;
+	margin: 0!important;
+}

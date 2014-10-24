@@ -1,0 +1,22 @@
+
+@font-face {
+  font-family: 'EmPrint';
+  src: url('fonts/EMprint-Regular.eot?#iefix') format('embedded-opentype'),  url('fonts/EMprint-Regular.woff') format('woff'), url('fonts/EMprint-Regular.ttf')  format('truetype'), url('fonts/EMprint-Regular.svg#EMprint-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EmPrintBold';
+  src: url('fonts/EMprint-Bold.eot?#iefix') format('embedded-opentype'),  url('fonts/EMprint-Bold.woff') format('woff'), url('fonts/EMprint-Bold.ttf')  format('truetype'), url('fonts/EMprint-Bold.svg#EMprint-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EmPrintSemi';
+  src: url('fonts/EMprint-Semibold.eot?#iefix') format('embedded-opentype'),  url('fonts/EMprint-Semibold.woff') format('woff'), url('fonts/EMprint-Semibold.ttf')  format('truetype'), url('fonts/EMprint-Semibold.svg#EMprint-Semibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
