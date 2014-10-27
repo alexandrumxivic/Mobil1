@@ -212,12 +212,16 @@ var $container = $('.image-performance-wrap');
 
 		if(target.is(':last-child')){
 			targetParent.css('top', -(targetParent.height() - target.height()) + targetParent.parent().height() - target.height())
+			target.parents('.scroller').find('.js-scroller-prev').removeClass('disabled').siblings('.js-scroller-next').addClass('disabled');
 		} else {
 			var customHeight;
 			if(parseInt(targetParent.css('top')) + target.height() < targetParent.parent().height()){
 				customHeight = 0;
 			} else {
-				customHeight = parseInt(targetParent.css('top')) + target.height()
+				customHeight = parseInt(targetParent.css('top')) + target.height();
+				if(parseInt(targetParent.css('top')) + target.height() == targetParent.parent().height()){
+					target.parents('.scroller').find('.js-scroller-next').addClass('disabled');
+				}
 			}
 			targetParent.css('top', customHeight)
 		}
@@ -228,7 +232,8 @@ var $container = $('.image-performance-wrap');
 		var targetParent = target.parents('.scroller--content');
 
 		if(target.is(':first-child')){
-			targetParent.css('top', 0)
+			targetParent.css('top', 0);
+			target.parents('.scroller').find('.js-scroller-next').removeClass('disabled').siblings('.js-scroller-prev').addClass('disabled');
 		} else {
 			var customHeight;
 			
@@ -236,8 +241,18 @@ var $container = $('.image-performance-wrap');
 				customHeight = 0;
 			} else {
 				customHeight = parseInt(targetParent.css('top')) - target.height();
+				if(target.is(':last-child')){
+					target.parents('.scroller').find('.js-scroller-next').addClass('disabled').siblings('.js-scroller-prev').removeClass('disabled');
+				}
 			}
 				targetParent.css('top', customHeight)
 		}
+	})
+
+
+// Code for the toggling of the category filtering for the image gallery
+
+	$('.image-categories .toggle').bind('click', function(){
+		$(this).parent().toggleClass('active');
 	})
 })

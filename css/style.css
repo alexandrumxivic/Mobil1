@@ -849,3 +849,86 @@ footer a + a{
 	max-height: 202px;
 	overflow: hidden;
 }
+.image-categories{
+	position: absolute;
+	z-index: 2;
+	top: -20px;
+	left: 20px;
+	color: #fff;
+	background: #d21428;
+	line-height: 40px;
+}
+.image-categories .toggle{
+	cursor: pointer;
+}
+.image-categories .icon-categs{
+	display: inline-block;
+	vertical-align: top;
+	width: 40px;
+	font-size: 17px;
+	line-height: 40px;
+	text-align: center;
+	background: #ba0d1d;
+}
+.image-categories .label{
+	display: inline-block;
+	vertical-align: top;
+	height: 40px;
+	padding: 0 10px;
+	font-size: 11px;
+	font-family: 'EmPrintBold';
+}
+.image-categories-list{
+	position: absolute;
+	top: 0px;
+	left: 40px;
+	display:inline-block;
+	vertical-align: top;
+	width: 140px;
+	margin: 0;
+	padding: 10px 0;
+	line-height: 30px;
+	background: #d21428;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: opacity .3s ease, visibility .3s ease, top .3s ease;
+	-moz-transition: opacity .3s ease, visibility .3s ease, top .3s ease;
+	-o-transition: opacity .3s ease, visibility .3s ease, top .3s ease;
+	transition: opacity .3s ease, visibility .3s ease, top .3s ease;
+}
+.image-categories.active .image-categories-list{
+	visibility: visible;
+	opacity: 1;
+	top: -10px;
+}
+.image-categories-list li{
+	display: block;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+}
+.image-categories-list label{
+	font-size: 14px;
+	cursor: pointer;
+}
+.image-categories-list label:before{
+	display: inline-block;
+	vertical-align: middle;
+	width: 14px;
+	height: 15px;
+	margin-bottom: 4px;
+	margin-right: 10px;
+	background: url('../assets/radio.png') no-repeat top left;
+	content: "";
+}
+.image-categories-list input:checked + label:before{
+	background: url('../assets/radioselected.png') no-repeat top left;
+}
+.image-categories-list input[type="radio"]{
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 30px;
+	opacity: 0;
+}
