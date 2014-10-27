@@ -31,6 +31,7 @@ $(document).ready(function(){
 
 				linkedSibling.find('.active').removeClass('active');
 				linkedSibling.find('*[data-index="'+ targetIndex +'"]').addClass('active');
+				linkedSibling.find('.active').trigger('activeElementChangedNext')
 			}
 
 			target.removeClass('active transition exit-left');
@@ -67,8 +68,8 @@ $(document).ready(function(){
 				}
 
 				linkedSibling.find('.active').removeClass('active');
-								console.log(targetIndex)
 				linkedSibling.find('*[data-index="'+ targetIndex +'"]').addClass('active');
+				linkedSibling.find('.active').trigger('activeElementChangedPrev');
 			}
 
 			target.removeClass('active transition exit-right');
@@ -201,5 +202,42 @@ var $container = $('.image-performance-wrap');
 
 	$('.js-close-overlay').bind('click', function(){
 		$(this).parents('.overlay').removeClass('active')
+	})
+
+
+// Listening to see if the scroller needs to update its position to display currently active element
+	$(window).bind('activeElementChangedPrev', function(e){
+		var target = $(e.target);
+		var targetParent = target.parents('.scroller--content');
+
+		if(target.is(':last-child')){
+			targetParent.css('top', -(targetParent.height() - target.height()) + targetParent.parent().height() - target.height())
+		} else {
+			var customHeight;
+			if(parseInt(targetParent.css('top')) + target.height() < targetParent.parent().height()){
+				customHeight = 0;
+			} else {
+				customHeight = parseInt(targetParent.css('top')) + target.height()
+			}
+			targetParent.css('top', customHeight)
+		}
+	})
+
+	$(window).bind('activeElementChangedNext', function(e){
+		var target = $(e.target);
+		var targetParent = target.parents('.scroller--content');
+
+		if(target.is(':first-child')){
+			targetParent.css('top', 0)
+		} else {
+			var customHeight;
+			
+			if(parseInt(target.attr('data-index'))*target.height() <= targetParent.parent().height()){
+				customHeight = 0;
+			} else {
+				customHeight = parseInt(targetParent.css('top')) - target.height();
+			}
+				targetParent.css('top', customHeight)
+		}
 	})
 })
