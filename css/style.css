@@ -321,6 +321,13 @@ p{
 	display: block;
 	position: relative;
 	margin-top: 15px;
+	font-size: 23px;
+	line-height: 23px;
+}
+.deco-line .icon-photos,
+.deco-line .icon-videos{
+	vertical-align: middle;
+	line-height: 23px;
 }
 .deco-line:before,
 .deco-line:after{
