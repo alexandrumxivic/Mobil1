@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1, user-scalable=no">
+	<title>Mobile 1</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/shame.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts.css">
+	<link rel="stylesheet" href="http://i.icomoon.io/public/temp/6560e91f85/UntitledProject2/style.css">
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script> -->
+	<script type="text/javascript" src="js/masonry.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<!-- MasterSlider files-->
+    <link rel="stylesheet" href="masterslider/style/masterslider.css"/>
+    <link rel="stylesheet" href="masterslider/style/masterslider_aux.css"/>
+    <link rel="stylesheet" href="masterslider/skins/default/style.css" />
+    <script src="masterslider/masterslider.js"></script>
+</head>
+<body>
+
+<main class="restricted">
+	<section class="top-area">
+		<h2 class="top-area--title">
+			<img src="assets/logo.png"> Performance Story
+		</h2>
+
+		<div class="landing-intro top-module" style="display:none">
+			<div class="landing-msg">
+				<h3>Our normal is anything but</h3>
+
+				<span class="emph">What's yours?</span>
+
+				<p>
+					Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1™ synthetic motor oil or some other great Mobil 1 gear.
+				</p>
+
+				<div class="rect-btn blue js-show-submit">Share your story</div>
+
+				<div class="rect-btn js-show-stories">View Stories</div>
+			</div>
+
+			<div class="landing-stories-wrap sg">
+				<div class="arrow-btn sg-prev">
+					<span class=" icon-arrow-left"></span>
+				</div>
+				
+				<ul class="landing-stories sg-content">
+					<li class="story-box landing-story sg-item active" data-index="1">
+						<div class="pic">
+							<img src="assets/landingStory.jpg">
+						</div>
+						
+						<div class="author">
+							<div class="author--pic">
+								<img src="assets/landingStoryAuthor.jpg">
+							</div>
+
+							<span class="author--name">John R.</span>
+						</div>
+
+						<div class="content">
+							<span class="content--title">My Story:</span>
+							
+							<p class="content--text">
+								"Battling through another cold winter in upstate NY, Mobil 1 has…"
+							</p>
+						</div>
+					</li>
+
+					<li class="story-box landing-story sg-item" data-index="2">
+						<div class="pic">
+							<img src="assets/landingStory2.jpg">
+						</div>
+						
+						<div class="author">
+							<div class="author--pic">
+								<img src="assets/landingStoryAuthor.jpg">
+							</div>
+
+							<span class="author--name">John R.</span>
+						</div>
+
+						<div class="content">
+							<span class="content--title">My Story:</span>
+							
+							<p class="content--text">
+								"Battling through another cold winter in upstate NY, Mobil 1 has…"
+							</p>
+						</div>
+					</li>
+
+					<li class="story-box landing-story sg-item" data-index="3">
+						<div class="pic">
+							<img src="assets/landingStory3.jpg">
+						</div>
+						
+						<div class="author">
+							<div class="author--pic">
+								<img src="assets/landingStoryAuthor.jpg">
+							</div>
+
+							<span class="author--name">John R.</span>
+						</div>
+
+						<div class="content">
+							<span class="content--title">My Story:</span>
+							
+							<p class="content--text">
+								"Battling through another cold winter in upstate NY, Mobil 1 has…"
+							</p>
+						</div>
+					</li>
+				</ul>
+				
+				<div class="arrow-btn sg-next">
+					<span class="icon-arrow-right"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="submit-story-wrap top-module" style="display:none">
+			<h3>Our normal is anything but</h3>
+
+			<span class="emph">So you can keep your engine running like new.</span>
+
+			<p>
+				Tell us your favorite story made possible by Mobil 1 to join the Our Normal sweepstakes. You’ll get a custom Story Card to share and be entered for a chance at great prizes!
+			</p>
+
+			<form class="submit-story">
+				<div class="row first">
+					<input type="text" placeholder="First Name">
+
+					<input type="text" placeholder="Last Name">
+				</div>
+
+				<div class="row second">
+					<input type="email" placeholder="Email">
+
+					<input type="tel" placeholder="Phone Number">
+				</div>
+
+				<div class="row third">
+					<textarea placeholder="Your story"></textarea>
+
+					<div class="story-pic">
+						<div class="rect-btn blue">
+							Upload image<br/>
+							<span class="lowercase">(optional)</span>
+						</div>
+						<input type="file">
+					</div>
+				</div>
+
+				<div class="row fourth">
+					<input type="number" placeholder="Year (optional)">
+
+					<input type="number" placeholder="Mileage (optional)">
+				</div>
+				
+				<div class="row">
+					<div class="custom-check">
+						<input type="checkbox" id="agree-rules" class="custom-check--input">
+
+						<label for="agree-rules">
+							I agree to the official rules
+						</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="custom-check">
+						<input type="checkbox" id="agree-age" class="custom-check--input">
+
+						<label for="agree-age">
+							I am 18 years of age or older
+						</label>
+					</div>
+				</div>
+
+				<div class="rect-btn js-top-default">Go Back</div>
+
+				<input type="submit" class="rect-btn blue" placeholder="Submit">
+			</form>
+		</div>
+
+		<div class="view-stories-wrap top-module" style="display:none">
+			<div class="landing-msg">
+				<h3>Our normal is anything but</h3>
+
+				<p class="emph">So you can keep your engine running like new.</p>
+			</div>
+
+			<div id="slider-containter">
+				<!-- masterslider -->
+				<div class="master-slider ms-skin-default" id="masterslider">
+					<!-- new slide -->
+					<div class="ms-slide">
+						<!-- slide background -->
+						<img src="images/stories/1.jpg" data-src="images/stories/1.jpg" alt="lorem ipsum dolor sit"/>
+						 
+						<!-- slide profile picture -->
+						<div class="slide-picture">
+							<img src="images/stories/11.jpg" data-src="images/stories/11.jpg" alt="lorem ipsum dolor sit"/>
+						</div>
+						 
+						<!-- slide text layer -->
+						<div class="slide-text-container">
+							<div class="slide-text">
+								<h1>Here is our title</h1>
+								<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum congue arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit interdum ipsum eget scelerisque. Etiam tempor lacinia elit quis viverra. Aliquam orci arcu, dapibus non dui eget, sollicitudin fermentum ipsum. Praesent quis mattis ipsum. </p>
+							</div>
+						</div>
+						
+						<!-- slide text signature -->
+						<div class="slide-text-signature">- John R.</div>
+						
+						<!-- like button -->
+						<div class="slide-like-button">
+							<a class="like-button" href="#" title="Like">
+								<img src="images/btn-like.jpg" alt="Like" />
+							</a>
+						</div>
+						
+						<!-- slide color overlay picture -->
+						<div class="slide-hover"><!-- --></div>
+					</div>
+					<!-- end of slide -->
+					
+					<!-- new slide -->
+					<div class="ms-slide">
+						<!-- slide background -->
+						<img src="images/stories/2.jpg" data-src="images/stories/2.jpg" alt="lorem ipsum dolor sit"/>
+						 
+						<!-- slide profile picture -->
+						<div class="slide-picture">
+							<img src="images/stories/22.jpg" data-src="images/stories/22.jpg" alt="lorem ipsum dolor sit"/>
+						</div>
+						 
+						<!-- slide text layer -->
+						<div class="slide-text-container">
+							<div class="slide-text">
+								<h1>Here is our title</h1>
+								<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum congue arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit interdum ipsum eget scelerisque. Etiam tempor lacinia elit quis viverra. Aliquam orci arcu, dapibus non dui eget, sollicitudin fermentum ipsum. Praesent quis mattis ipsum. </p>
+							</div>
+						</div>
+						
+						<!-- slide text signature -->
+						<div class="slide-text-signature">- John R.</div>
+						
+						<!-- like button -->
+						<div class="slide-like-button">
+							<a class="like-button" href="#" title="Like">
+								<img src="images/btn-like.jpg" alt="Like" />
+							</a>
+						</div>
+						
+						<!-- slide color overlay picture -->
+						<div class="slide-hover"><!-- --></div>
+					</div>
+					<!-- end of slide -->
+					
+					<!-- new slide -->
+					<div class="ms-slide">
+						<!-- slide background -->
+						<img src="images/stories/3.jpg" data-src="images/stories/3.jpg" alt="lorem ipsum dolor sit"/>
+						 
+						<!-- slide profile picture -->
+						<div class="slide-picture">
+							<img src="images/stories/33.jpg" data-src="images/stories/33.jpg" alt="lorem ipsum dolor sit"/>
+						</div>
+						 
+						<!-- slide text layer -->
+						<div class="slide-text-container">
+							<div class="slide-text">
+								<h1>Here is our title</h1>
+								<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum congue arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit interdum ipsum eget scelerisque. Etiam tempor lacinia elit quis viverra. Aliquam orci arcu, dapibus non dui eget, sollicitudin fermentum ipsum. Praesent quis mattis ipsum. </p>
+								
+							</div>
+						</div>
+						
+						<!-- slide text signature -->
+						<div class="slide-text-signature">- John R.</div>
+						
+						<!-- like button -->
+						<div class="slide-like-button">
+							<a class="like-button" href="#" title="Like">
+								<img src="images/btn-like.jpg" alt="Like" />
+							</a>
+						</div>
+						
+						<!-- slide color overlay picture -->
+						<div class="slide-hover"><!-- --></div>
+					</div>
+					<!-- end of slide -->
+					
+					<!-- new slide -->
+					<div class="ms-slide">
+						<!-- slide background -->
+						<img src="images/stories/4.jpg" data-src="images/stories/4.jpg" alt="lorem ipsum dolor sit"/>
+						 
+						<!-- slide profile picture -->
+						<div class="slide-picture">
+							<img src="images/stories/44.jpg" data-src="images/stories/44.jpg" alt="lorem ipsum dolor sit"/>
+						</div>
+						 
+						<!-- slide text layer -->
+						<div class="slide-text-container">
+							<div class="slide-text">
+								<h1>Here is our title</h1>
+								<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum congue arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit interdum ipsum eget scelerisque. Etiam tempor lacinia elit quis viverra. Aliquam orci arcu, dapibus non dui eget, sollicitudin fermentum ipsum. Praesent quis mattis ipsum. </p>
+								
+							</div>
+						</div>
+						
+						<!-- slide text signature -->
+						<div class="slide-text-signature">- John R.</div>
+						
+						<!-- like button -->
+						<div class="slide-like-button">
+							<a class="like-button" href="#" title="Like">
+								<img src="images/btn-like.jpg" alt="Like" />
+							</a>
+						</div>
+						
+						<!-- slide color overlay picture -->
+						<div class="slide-hover"><!-- --></div>
+					</div>
+					<!-- end of slide -->
+					
+					<!-- new slide -->
+					<div class="ms-slide">
+						<!-- slide background -->
+						<img src="images/stories/5.jpg" data-src="images/stories/5.jpg" alt="lorem ipsum dolor sit"/>
+						 
+						<!-- slide profile picture -->
+						<div class="slide-picture">
+							<img src="images/stories/55.jpg" data-src="images/stories/55.jpg" alt="lorem ipsum dolor sit"/>
+						</div>
+						 
+						<!-- slide text layer -->
+						<div class="slide-text-container">
+							<div class="slide-text">
+								<h1>Here is our title</h1>
+								<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum congue arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit interdum ipsum eget scelerisque. Etiam tempor lacinia elit quis viverra. Aliquam orci arcu, dapibus non dui eget, sollicitudin fermentum ipsum. Praesent quis mattis ipsum. </p>
+								
+							</div>
+						</div>
+						
+						<!-- slide text signature -->
+						<div class="slide-text-signature">- John R.</div>
+						
+						<!-- like button -->
+						<div class="slide-like-button">
+							<a class="like-button" href="#" title="Like">
+								<img src="images/btn-like.jpg" alt="Like" />
+							</a>
+						</div>
+						
+						<!-- slide color overlay picture -->
+						<div class="slide-hover"><!-- --></div>
+					</div>
+					<!-- end of slide -->
+					
+					<!-- new slide -->
+					<div class="ms-slide">
+						<!-- slide background -->
+						<img src="images/stories/6.jpg" data-src="images/stories/6.jpg" alt="lorem ipsum dolor sit"/>
+						 
+						<!-- slide profile picture -->
+						<div class="slide-picture">
+							<img src="images/stories/66.jpg" data-src="images/stories/66.jpg" alt="lorem ipsum dolor sit"/>
+						</div>
+						 
+						<!-- slide text layer -->
+						<div class="slide-text-container">
+							<div class="slide-text">
+								<h1>Here is our title</h1>
+								<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum congue arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit interdum ipsum eget scelerisque. Etiam tempor lacinia elit quis viverra. Aliquam orci arcu, dapibus non dui eget, sollicitudin fermentum ipsum. Praesent quis mattis ipsum. </p>
+								
+							</div>
+						</div>
+						
+						<!-- slide text signature -->
+						<div class="slide-text-signature">- John R.</div>
+						
+						<!-- like button -->
+						<div class="slide-like-button">
+							<a class="like-button" href="#" title="Like">
+								<img src="images/btn-like.jpg" alt="Like" />
+							</a>
+						</div>
+						
+						<!-- slide color overlay picture -->
+						<div class="slide-hover"><!-- --></div>
+					</div>
+					<!-- end of slide -->
+					
+				</div>
+				<!-- end of masterslider -->
+			</div>
+
+			<div class="rect-btn js-show-submit">Submit your story</div>
+		</div>
+
+		<div class="thank-msg-wrap top-module" style="display:block">
+			<div class="thank-msg">
+				<h3 class="large">
+					<span class="emph">Thanks</span> for telling us your story
+				</h3>
+				
+				<div class="uppercase">
+					Now <b>share it</b> with the rest of your friends!
+				</div>
+
+				<div class="rect-btn red">Share</div>
+
+				<div class="rect-btn js-show-stories">View other stories</div>
+			</div>
+
+			<div class="story-preview story-box">
+
+				<div class="pic">
+					<img src="assets/landingStory.jpg">
+				</div>
+				
+				<div class="author">
+					<div class="author--pic">
+						<img src="assets/landingStoryAuthor.jpg">
+					</div>
+				</div>
+
+				<span class="author--name">- John R.</span>
+
+				<div class="content">
+					<span class="content--title">My Performance Story:</span>
+					
+					<p class="content--text">
+						“ Battling through another cold winter in upstate New York. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="media-section images">
+			<div class="media-section--cover">
+				<div class="container">
+					<h3>Performance Pictures</h3>
+
+					<div class="deco-line">
+						<span class="icon-images"></span>
+					</div>
+
+					<p>
+						Check out Mobil 1 in action with our Normal photos and more.
+					</p>
+
+					<div class="rect-btn js-expand-section">Explore</div>
+				</div>
+			</div>
+
+			<div class="media-section--content">
+				<div class="close-btn js-restore-default">
+					<span class="icon-close"></span>
+				</div>
+
+				<div class="image-categories">
+					<div class="toggle">
+						<span class="icon-categs"></span>
+						<span class="label">Filter Images</span>
+					</div>
+
+					<ul class="image-categories-list">
+						<li>
+							<input id="categ1" type="radio" name="image-category" value="cat1">
+							
+							<label for="categ1">Category 1</label>
+						</li>
+
+						<li>
+							<input id="categ2" type="radio" name="image-category" value="cat1">
+							
+							<label for="categ2">Category 2</label>
+						</li>
+
+						<li>
+							<input id="categ3" type="radio" name="image-category" value="cat1">
+							
+							<label for="categ3">Category 3</label>
+						</li>
+					</ul>
+				</div>
+
+				<div class="scroll-visible-area">
+					<div class="scrollable">
+						<ul class="image-performance-wrap linked-container">
+							<li class="image-performance" data-index="1">
+								<img src="assets/mason1.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="2">
+								<img src="assets/mason2.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="3">
+								<img src="assets/mason3.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="4">
+								<img src="assets/mason4.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="5">
+								<img src="assets/mason1.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="6">
+								<img src="assets/mason2.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="7">
+								<img src="assets/mason3.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="8">
+								<img src="assets/mason4.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="9">
+								<img src="assets/mason1.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="10">
+								<img src="assets/mason2.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="11">
+								<img src="assets/mason3.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+
+							<li class="image-performance" data-index="12">
+								<img src="assets/mason4.jpg">
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+									<div class="center">view</div>
+								</div>
+							</li>
+						</ul>
+
+						<div class="image-performance-scroll js-scroll-images-next">view more</div>
+					</div>
+
+					<div class="overlayed-image-gallery linked-container overlay sg">
+						<div class="arrow-btn small sg-prev">
+							<span class="icon-arrow-left"></span>
+						</div>
+						
+						<ul class="overlayed-images sg-content linked-control">
+							<li class="sg-item" data-index="1">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="2">
+								<div class="pic">
+									<img src="assets/masonL1.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="3">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="4">
+								<div class="pic">
+									<img src="assets/masonL1.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="5">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="6">
+								<div class="pic">
+									<img src="assets/masonL1.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="7">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="8">
+								<div class="pic">
+									<img src="assets/masonL1.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="9">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="10">
+								<div class="pic">
+									<img src="assets/masonL1.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="11">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+
+							<li class="sg-item" data-index="12">
+								<div class="pic">
+									<img src="assets/masonL1.jpg">
+								</div>
+
+								<div class="hover-content">
+									Excepteur sint occaecat cupidatat non proident, lorem ipsum.
+								</div>
+							</li>
+						</ul>
+
+						<div class="arrow-btn small sg-next">
+							<span class="icon-arrow-right"></span>
+						</div>
+
+						<div>
+							<div class="rect-btn js-close-overlay">Back</div>
+
+							<div class="rect-btn js-switch-section">Video gallery</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="media-section videos">
+			<div class="media-section--cover">
+				<div class="container">
+					<h3>Performance Videos</h3>
+
+					<div class="deco-line">
+						<span class="icon-videos"></span>
+					</div>
+
+					<p>
+						Watch now for more on how Mobil 1 keeps your engine running like new.
+					</p>
+
+					<div class="rect-btn js-expand-section">Explore</div>
+				</div>
+			</div>
+
+			<div class="media-section--content">
+				<div class="close-btn js-restore-default">
+					<span class="icon-close"></span>
+				</div>
+
+				<div class="video-gallery-container linked-container">
+					<h3>Performance Videos</h3>
+
+					<p>
+						Watch now for more on how Mobil 1 keeps your engine running like new.
+					</p>
+
+					<div class="video-performances-wrap sg">
+						<div class="arrow-btn small sg-prev">
+							<span class="icon-arrow-left"></span>
+						</div>
+						
+						<ul class="video-stories sg-content linked-control">
+							<li class="story-box video-story sg-item active" data-index="1">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+							</li>
+
+							<li class="story-box video-story sg-item" data-index="2">
+								<div class="pic">
+									<img src="assets/mason1.jpg">
+								</div>
+							</li>
+
+							<li class="story-box video-story sg-item" data-index="3">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+							</li>
+
+							<li class="story-box video-story sg-item" data-index="4">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+							</li>
+
+							<li class="story-box video-story sg-item" data-index="5">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+							</li>
+
+							<li class="story-box video-story sg-item" data-index="6">
+								<div class="pic">
+									<img src="assets/video.jpg">
+								</div>
+							</li>
+						</ul>
+
+						<div class="arrow-btn small sg-next">
+							<span class="icon-arrow-right"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="scroller horizontal video-scroller linked-container">
+					<div class="arrow-btn js-scroller-prev disabled">
+						<span class="icon-arrow-up"></span>
+					</div>
+					<div class="scroller--content-mask">
+						<ul class="scroller--content linked-control">
+							<li class="scroller--item active" data-index="1">
+								<img src="assets/verticalScrollThumb.jpg">
+							</li>
+
+							<li class="scroller--item" data-index="2">
+								<img src="assets/verticalScrollThumb.jpg">
+							</li>
+
+							<li class="scroller--item" data-index="3">
+								<img src="assets/verticalScrollThumb.jpg">
+							</li>
+
+							<li class="scroller--item" data-index="4">
+								<img src="assets/verticalScrollThumb.jpg">
+							</li>
+
+							<li class="scroller--item" data-index="5">
+								<img src="assets/verticalScrollThumb.jpg">
+							</li>
+
+							<li class="scroller--item" data-index="6">
+								<img src="assets/verticalScrollThumb.jpg">
+							</li>
+						</ul>
+					</div>
+					<div class="arrow-btn js-scroller-next">
+						<span class="icon-arrow-down"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+<footer>
+	<a href="#">Terms</a>
+
+	<a href="#">Conditions</a>
+</footer>
+</body>
+<script type="text/javascript">		
+	    var slider = new MasterSlider();
+	    slider.setup('masterslider' , {
+			hideLayers: false,
+            fullwidth: false,
+            width: 250,
+            height: 250,
+            space:142,
+            autoHeight:false,
+			layout: "partialview",
+			view: "wave",
+			loop: true,
+			speed: 25
+            // more slider options goes here...
+	    });
+	    // adds Arrows navigation control to the slider.
+		slider.control('arrows' , {autohide:false});
+		
+		// add event handlers
+		$(document).ready(function(){
+			slider.api.addEventListener(MSSliderEvent.CHANGE_START, function(){ isChangeInProgress=true; onSliderMovementStart("change start")});
+			slider.api.view.addEventListener(MSViewEvents.SWIPE_START,function(){ isSwipeInProgress=true; onSliderMovementStart("swipe start")});
+			
+			onSliderMovementStart("init start");
+		});
+		
+		function onSliderMovementStart(event) {
+			var currentSlideLoc = slider.api.view.currentSlideLoc;
+			var currentSlide = slider.api.view.slides[currentSlideLoc].$element;
+			var nextSlide = currentSlideLoc == slider.api.view.slidesCount-1 ? slider.api.view.slides[0].$element : slider.api.view.slides[currentSlideLoc+1].$element;
+			var prevSlide = currentSlideLoc == 0 ? slider.api.view.slides[slider.api.view.slidesCount-1].$element : slider.api.view.slides[currentSlideLoc-1].$element;
+			$(".prev-slide").removeClass("prev-slide");
+			$(".next-slide").removeClass("next-slide");
+			$(".curr-slide").removeClass("curr-slide");
+			
+			prevSlide.toggleClass("prev-slide");
+			nextSlide.toggleClass("next-slide");
+			currentSlide.toggleClass("curr-slide");
+			
+			return;
+		}
+	</script>
+</html>
