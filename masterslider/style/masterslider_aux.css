@@ -2,15 +2,27 @@
 	height: 335px;
 	margin: 0 auto 15px;
 }
-.ms-slide { overflow: hidden ;
+.ms-slide {
+	overflow: hidden ;
 } 
-
+.ms-slide:after{
+	position: absolute;
+	z-index: 4;
+	top: 8px;
+	right: 5px;
+	width: 84px;
+	height: 18px;
+	background: url('../../assets/logo.png') no-repeat top left;
+	background-size: cover;
+	content:"";
+}
 .p {font-size: 14px;
 	color: #FFFFFF;
 }
 .ms-slide .slide-picture {
 	position: absolute;
-	z-index: 3}
+	z-index: 3;
+}
 .ms-slide .slide-text-container {
 	position: absolute;
 	z-index: 3;
@@ -45,7 +57,8 @@
 	text-transform: uppercase;
 	color: #FFFFFF;
 }
-.ms-slide .slide-like-button { position: absolute;
+.ms-slide .slide-like-button {
+	position: absolute;
 	z-index: 3;
 	bottom: 10px;
 	right: 10px;

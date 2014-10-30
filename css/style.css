@@ -340,6 +340,8 @@ p{
 }
 .media-section--cover p{
 	margin: 17px 0 22px;
+	font-family: 'EmPrintBold';
+	font-size: 17px;
 }
 .images .media-section--cover{
 	background: url('../assets/mediaCoverImages.jpg') no-repeat top left;
@@ -813,6 +815,17 @@ footer a + a{
 	margin-left: 65px;
 	overflow: hidden;
 }
+.story-preview:after{
+	position: absolute;
+	z-index: 4;
+	top: 8px;
+	right: 5px;
+	width: 105px;
+	height: 22px;
+	background: url('../assets/logo.png') no-repeat top left;
+	background-size: cover;
+	content:"";
+}
 .story-preview .pic,
 .story-preview .pic img{
 	min-width: 100%;
@@ -832,6 +845,7 @@ footer a + a{
 	left: 0;
 	right: 0;
 	bottom: 60px;
+	font-family:'EmPrintBold';
 	font-size: 20px;
 	text-align: center;
 	text-transform: uppercase;
