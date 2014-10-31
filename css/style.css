@@ -568,17 +568,47 @@ footer a + a{
 .submit-story input:focus,
 .submit-story textarea:focus{
 	border-color: #0068b0;
+	outline: none;
 }
-.submit-story input + input{
+.submit-story input.error + label,
+.submit-story textarea.error + label{
+	display: inline-block;
+	vertical-align: middle;
+	height: 20px;
+	line-height: 20px;
+	position: absolute;
+	top: -10px;
+	left: 15px;
+	padding: 0 5px;
+	background: black;
+	font-size: 12px;
+}
+.submit-story input.error,
+.submit-story textarea.error{
+	border-color: #eb2036;
+}
+.submit-story .cell + .cell{
 	margin-left: 7px;
 }
-.submit-story .row.first input{
+.submit-story .cell{
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+}
+.submit-story .cell input{
+	display: block;
+	width: 100%;
+}
+.submit-story .row.first .cell{
 	width: 203px;
 }
-.submit-story .row.second input{
-	width: 257px
+.submit-story .row.second .cell{
+	width: 257px;
 }
-.submit-story .row.fourth input{
+.submit-story .row.third .cell{
+	width: 418px;	
+}
+.submit-story .row.fourth .cell{
 	width: 160px;
 }
 .submit-story textarea{
@@ -618,16 +648,20 @@ footer a + a{
 .custom-check input.custom-check--input{
 	display: inline-block;
 	vertical-align: middle;
-	width: 0;
-	height: 0;
+	width:20px;
+	height: 20px;
 	padding: 0;
 	border: none;
-	margin-right: -4px;
+	margin-right: -24px;
 }
 .custom-check label{
 	font-family:'EmPrintSemi';
 	line-height: 23px;
 	cursor: pointer;
+	-webkit-transition: color .3s ease;
+	-moz-transition: color .3s ease;
+	-o-transition: color .3s ease;
+	transition: color .3s ease;
 }
 .custom-check label:before{
 	display: inline-block;
@@ -642,8 +676,23 @@ footer a + a{
 	-o-transition: background .3s ease;
 	transition: background .3s ease;
 }
-.custom-check input:checked + label:before{
+.custom-check input:checked ~ label:before{
 	background: #0068b0;
+}
+.custom-check label.error:before{
+	display: none;
+}
+.custom-check label.error + label{
+	color: red;
+}
+.custom-check input:checked ~label:not(.error){
+	color: #fff;
+}
+.custom-check input:checked ~label:not(.error):after{
+	display: none;
+}
+.custom-check label.error + label:after{
+	content:"(We need you to consent)";
 }
 .image-performance-wrap{
 	width: 810px;

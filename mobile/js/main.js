@@ -278,4 +278,27 @@ $(window).bind('activeElementChangedNext', function(e){
 	$('.image-categories .toggle').bind('click', function(){
 		$(this).parent().toggleClass('active');
 	})
+
+
+
+
+// Validating the submit story form
+	$('.submit-story input[type="submit"]').bind('click', function(){
+		$('.submit-story').validate({
+			rules: {
+				first_name:"required",
+				last_name:"required",
+				email:"required",
+				phone:"required",
+				story:"required",
+				agree_age:"required",
+				agree_rules:"required"
+			},
+			messages: {
+				story: " Tell us your story in a few lines",
+				agree_age: " ",
+				agree_rules: " "
+			}
+		})
+	})
 })

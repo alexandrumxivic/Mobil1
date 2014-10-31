@@ -670,6 +670,7 @@ footer a + a{
 }
 .submit-story input:not(.rect-btn),
 .submit-story textarea{
+	width: 100%;
 	padding: 10px;
 	font-size: 12px;
 	line-height: 16px;
@@ -684,27 +685,54 @@ footer a + a{
 .submit-story input:focus,
 .submit-story textarea:focus{
 	border-color: #0068b0;
+	outline: none;
 }
-.submit-story input + input{
-	margin-left: 2%;
+.submit-story .row .cell{
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	width: 50%;
+	box-sizing: border-box;
 }
-.submit-story .row.first input,
-.submit-story .row.second input,
-.submit-story .row.fourth input{
-	width: 49%;
+.submit-story .row .cell:first-child{
+	padding-right: 3px;
+	padding-left: 0;
+}
+.submit-story .row .cell{
+	padding-left: 3px;
 }
 .submit-story .row.third{
 	position: relative;
 	height: 110px;
 }
-.submit-story textarea{
+.submit-story .row.third .cell{
+	width: 67%;
+	height: 110px;
+}
+.submit-story .row.third .cell textarea{
 	display: block;
 	position: absolute;
-	width: 67%;
 	top: 0;
 	left: 0;
 	right: 10px;
 	bottom: 0;
+}
+.submit-story input.error + label,
+.submit-story textarea.error + label{
+	display: inline-block;
+	vertical-align: middle;
+	height: 20px;
+	line-height: 20px;
+	position: absolute;
+	top: -10px;
+	left: 15px;
+	padding: 0 5px;
+	background: black;
+	font-size: 12px;
+}
+.submit-story input.error,
+.submit-story textarea.error{
+	border-color: #eb2036;
 }
 .submit-story .story-pic{
 	display: inline-block;
@@ -746,11 +774,29 @@ footer a + a{
 .custom-check input.custom-check--input{
 	display: inline-block;
 	vertical-align: middle;
-	width: 0;
-	height: 0;
+	width:20px;
+	height: 20px;
 	padding: 0;
 	border: none;
-	margin-right: -4px;
+	margin-right: -24px;
+}
+.custom-check input:checked ~ label:before{
+	background: #0068b0;
+}
+.custom-check label.error:before{
+	display: none;
+}
+.custom-check label.error + label{
+	color: red;
+}
+.custom-check input:checked ~label:not(.error){
+	color: #fff;
+}
+.custom-check input:checked ~label:not(.error):after{
+	display: none;
+}
+.custom-check label.error + label:after{
+	content:"(We need you to consent)";
 }
 .custom-check label{
 	font-family:'EmPrintSemi';

@@ -254,7 +254,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="row">
                         <div class="custom-check">
-                            <input type="checkbox" id="agree-rules" class="custom-check--input">
+                            <input type="checkbox" id="agree-rules" class="custom-check--input" name="rules">
 
                             <label for="agree-rules">
                                 I agree to the official rules
@@ -264,7 +264,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="row">
                         <div class="custom-check">
-                            <input type="checkbox" id="agree-age" class="custom-check--input">
+                            <input type="checkbox" id="agree-age" class="custom-check--input" name="age">
 
                             <label for="agree-age">
                                 I am 18 years of age or older
@@ -386,7 +386,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <h3>Performance Pictures</h3>
 
                         <div class="deco-line">
-                            <span class="icon-photos"></span>
+                            <span class="icon-images"></span>
                         </div>
 
                         <p>

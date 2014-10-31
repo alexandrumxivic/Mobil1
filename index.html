@@ -14,6 +14,7 @@
 	<!-- <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script> -->
 	<script type="text/javascript" src="js/masonry.js"></script>
 	<script type="text/javascript" src="js/main_second.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 	<!-- MasterSlider files-->
     <link rel="stylesheet" href="masterslider/style/masterslider.css"/>
     <link rel="stylesheet" href="masterslider/style/masterslider_aux.css"/>
@@ -131,61 +132,75 @@
 				Tell us your favorite story made possible by Mobil 1 to join the Our Normal sweepstakes. You’ll get a custom Story Card to share and be entered for a chance at great prizes!
 			</p>
 
-			<form class="submit-story">
-				<div class="row first">
-					<input type="text" placeholder="First Name">
+			<form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
+                    <div class="row first">
+	                    <div class="cell">
+	                        <input type="text" placeholder="First Name" name="first_name">
+	                    </div>
+	                    <div class="cell">
+	                        <input type="text" placeholder="Last Name" name="last_name">
+	                    </div>
+                    </div>
 
-					<input type="text" placeholder="Last Name">
-				</div>
+                    <div class="row second">
+	                    <div class="cell">
+	                        <input type="email" placeholder="Email" name="email">
+	                    </div>
 
-				<div class="row second">
-					<input type="email" placeholder="Email">
+	                    <div class="cell">
+	                        <input type="tel" placeholder="Phone Number" name="phone">
+	                    </div>
+                    </div>
 
-					<input type="tel" placeholder="Phone Number">
-				</div>
+                    <div class="row third">
+	                    <div class="cell">
+	                        <textarea placeholder="Your story" name="story"></textarea>
+	                    </div>
+	                    
+                        <div class="story-pic">
+                            <div class="rect-btn blue">
+                                Upload image<br/>
+                                <span class="lowercase">(optional)</span>
+                            </div>
+                            <input type="file" name="image" accept="image/*">
+                        </div>
+                    </div>
 
-				<div class="row third">
-					<textarea placeholder="Your story"></textarea>
+                    <div class="row fourth">
+	                    <div class="cell">
+	                        <input type="text" placeholder="Year (optional)" name="year">
+	                    </div>
 
-					<div class="story-pic">
-						<div class="rect-btn blue">
-							Upload image<br/>
-							<span class="lowercase">(optional)</span>
-						</div>
-						<input type="file">
-					</div>
-				</div>
+	                    <div class="cell">
+	                        <input type="number" placeholder="Mileage (optional)" name="mileage">
+	                        <input type="hidden" name="facebook_id" value="<?php echo $signedRequestJSON->user_id; ?>">
+	                    </div>
+                    </div>
 
-				<div class="row fourth">
-					<input type="number" placeholder="Year (optional)">
+                    <div class="row">
+                        <div class="custom-check">
+                            <input type="checkbox" id="agree-rules" class="custom-check--input" name="agree_rules">
 
-					<input type="number" placeholder="Mileage (optional)">
-				</div>
-				
-				<div class="row">
-					<div class="custom-check">
-						<input type="checkbox" id="agree-rules" class="custom-check--input">
+                            <label for="agree-rules">
+                                I agree to the official rules
+                            </label>
+                        </div>
+                    </div>
 
-						<label for="agree-rules">
-							I agree to the official rules
-						</label>
-					</div>
-				</div>
+                    <div class="row">
+                        <div class="custom-check">
+                            <input type="checkbox" id="agree-age" class="custom-check--input" name="agree_age">
 
-				<div class="row">
-					<div class="custom-check">
-						<input type="checkbox" id="agree-age" class="custom-check--input">
+                            <label for="agree-age">
+                                I am 18 years of age or older
+                            </label>
+                        </div>
+                    </div>
 
-						<label for="agree-age">
-							I am 18 years of age or older
-						</label>
-					</div>
-				</div>
+                    <div class="rect-btn js-top-default">Go Back</div>
 
-				<div class="rect-btn js-top-default">Go Back</div>
-
-				<input type="submit" class="rect-btn blue" placeholder="Submit">
-			</form>
+                    <input type="submit" class="rect-btn blue" placeholder="Submit">
+                </form>
 		</div>
 
 		<div class="view-stories-wrap top-module">
