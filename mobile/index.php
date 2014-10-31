@@ -109,36 +109,54 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
             $(document).ready(function () {
                 $("form").submit(function (event) {
                     //disable the default form submission
-                    event.preventDefault();
-                    //grab all form data  
-                    var formData = new FormData($(this)[0]);
-                    $.ajax({
-                        url: '<?php echo BASE_URL ?>stories/new/create',
-                        type: 'POST',
-                        data: formData,
-                        async: false,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function (returndata) {
-                            if (returndata.success === true) {
-                                $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
-                                $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
-                                $("#submited-story-author").append(returndata.name);
-                                $("#submited-story").append(returndata.story);
-                            }
-                            $(".submit-story-wrap").hide();
-                            $(".thank-msg-wrap").show();
-                            $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
-                            $('.js-show-submit').unbind('click');
-                            $('.js-show-thank').bind('click', function () {
-                                $(this).parents('.top-module').hide(300);
-                                $('.submit-story-wrap').hide();
-                                $('.thank-msg-wrap').show(300);
+                    $('.submit-story').validate({
+                        rules: {
+                            first_name: "required",
+                            last_name: "required",
+                            email: "required",
+                            phone: "required",
+                            story: "required",
+                            agree_age: "required",
+                            agree_rules: "required"
+                        },
+                        messages: {
+                            story: " Tell us your story in a few lines",
+                            agree_age: " ",
+                            agree_rules: " "
+                        },
+                        submitHandler: function(){
+                            var formData = new FormData($(this)[0]);
+                            $.ajax({
+                                url: '<?php echo BASE_URL ?>stories/new/create',
+                                type: 'POST',
+                                data: formData,
+                                async: false,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                success: function (returndata) {
+                                    if (returndata.success === true) {
+                                        $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
+                                        $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
+                                        $("#submited-story-author").append(returndata.name);
+                                        $("#submited-story").append(returndata.story);
+                                    }
+                                    $(".submit-story-wrap").hide();
+                                    $(".thank-msg-wrap").show();
+                                    $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
+                                    $('.js-show-submit').unbind('click');
+                                    $('.js-show-thank').bind('click', function () {
+                                        $(this).parents('.top-module').hide(300);
+                                        $('.submit-story-wrap').hide();
+                                        $('.thank-msg-wrap').show(300);
+                                    });
+
+                                }
                             });
 
                         }
                     });
+                    //grab all form data  
 
                     return false;
                 });
