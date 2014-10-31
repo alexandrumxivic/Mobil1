@@ -1,55 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "https://www.w3.org/TR/html4/strict.dtd">
 
 <?php
+if (isset($_REQUEST['signed_request'])) {
+    list($signature, $data) = explode('.', $_REQUEST['signed_request'], 2);
+
+    $signedRequest = base64_decode(strtr($data, '-_', '+/'));
+    $signedRequestJSON = json_decode(base64_decode(strtr($data, '-_', '+/'), true));
+    $isFromFacebook = true;
+} else {
+    $isFromFacebook = false;
+}
+
+
 require_once 'mob_detect/Mobile_Detect.php';
 $detect = new Mobile_Detect;
+
+$meta_view = 0;
+$tabletFb = 0;
+
+// is on mobile device except tablet
 if ($detect->isMobile() && !$detect->isTablet()) {
-    
-} else {
-    header('Location: http://mobile1.projects-directory.com/mobile');
+    header('Location: https://mobile1.projects-directory.com/mobile/');
     die();
 }
-?>
-<?php
-require 'config.php';
-require 'src/facebook.php';
-
-// Create our Application instance (replace this with your appId and secret).
-$facebook = new Facebook(array(
-    'appId' => '597677730337203',
-    'secret' => 'b46c33f425059aee60705ea7f28050f7'
-        ));
-
-$facebook->publiclyClearAllData();
-
-// Get User ID
-$user = $facebook->getUser();
-
-if ($user) {
-    if (!isset($_GET['code'])) {
-        try {
-            $user_profile = $facebook->api('/me');
-        } catch (FacebookApiException $e) {
-            $user = NULL;
-        }
-    }
+//is on tablet native fb app
+elseif ($_SERVER['HTTP_REFERER'] == 'https://m.facebook.com' && $detect->isTablet()) {
+    $tabletFb = 1;
+    $meta_view = '<meta name="viewport" content="width=device-width,user-scalable=no">';
 }
-
-if (empty($user)) {
-    $loginurl = $facebook->getLoginUrl(array(
-        'scope' => 'email'
-//'display'=>'popup'
-    ));
-    header('Location: ' . $loginurl);
+//is on desktop
+elseif (!$isFromFacebook) {
+    header('Location: https://www.facebook.com/pages/Fanscape-Development/353585258094472?sk=app_597677730337203');
+    die();
 }
-
-include("Facebook.php");
+// is on tablet browser
+if ($isFromFacebook && $detect->isTablet()) {
+    $tabletFb = 1;
+}
 ?>
+
+<?php include "Facebook.php"; ?> 
 <?php
 /* defines */
 
 define('BASE_URL', 'https://mobile1.projects-directory.com/cms/web/');
-$user_id = (isset($signedRequestJSON->user_id)) ? $signedRequestJSON->user_id : '0';
 /* get required info */
 /* get Stories */
 $stories = file_get_contents(BASE_URL . 'stories/list');
@@ -58,7 +52,7 @@ $stories = json_decode($stories);
 $stories = $stories->response;
 /* check if submitted story by id */
 
-$check = file_get_contents(BASE_URL . 'stories/check/' . $user_id);
+$check = file_get_contents(BASE_URL . 'stories/check/' . $signedRequestJSON->user_id);
 $check = json_decode($check);
 
 /* get image gallery */
@@ -70,40 +64,47 @@ $video_gallery = file_get_contents(BASE_URL . 'videos/list');
 $video_gallery = json_decode($video_gallery);
 $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NULL;
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html xmlns="https://www.w3.org/1999/xhtml">
     <head>
-        <meta name="viewport" content="initial-scale=1, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- Force latest IE rendering engine (even in intranet) & Chrome Frame -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta name="apple-touch-fullscreen" content="YES"/>
-        <meta name="HandheldFriendly" content="True" />
-
-
         <title>Mobile 1</title>
 
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/shame.css">
         <link rel="stylesheet" type="text/css" href="css/fonts.css">
         <link rel="stylesheet" type="text/css" href="css/icons.css">
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js"></script>  
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <!-- <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script> -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/utils/Draggable.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+
+        <script type="text/javascript"  src="js/modernizr.custom.js"></script>
+        <script type="text/javascript"  src="js/facebook.js"></script>
+
+        <script src="js/Validate.js"></script>
+
+
+
         <script type="text/javascript" src="js/masonry.js"></script>
         <script type="text/javascript" src="js/main_second.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <!-- MasterSlider files-->
         <link rel="stylesheet" href="masterslider/style/masterslider.css"/>
         <link rel="stylesheet" href="masterslider/style/masterslider_aux.css"/>
         <link rel="stylesheet" href="masterslider/skins/default/style.css" />
+
         <script src="masterslider/masterslider.js"></script>
-        <script type="text/javascript"  src="js/facebook.js"></script>
-
-        <script src="js/Validate.js"></script>
+        <!-- End MasterSlider files-->
         <script type="text/javascript" src="js/main.js"></script>
-
         <script>
             $(document).ready(function () {
                 $("form").submit(function (event) {
@@ -152,24 +153,6 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
             </h2>
 
             <div class="landing-intro top-module">
-                <div class="landing-msg">
-                    <h3>Our normal is anything but.</h3>
-
-                    <span class="emph">What's yours?</span>
-
-                    <p>
-                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1 synthetic motor oil or some other great Mobil 1 gear.
-                    </p>
-
-                    <div class="rect-btn blue <?php
-                    if ($check->success === TRUE): echo 'js-show-submit';
-                    else: echo 'js-show-thank';
-                    endif;
-                    ?>">Share your story</div>
-
-                    <div class="rect-btn js-show-stories">View Stories</div>
-                </div>
-
                 <div class="landing-stories-wrap sg">
                     <div class="arrow-btn sg-prev">
                         <span class=" icon-arrow-left"></span>
@@ -183,12 +166,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             $count++;
                             ?>">
                                 <div class="pic">
-                                    <img src="<?php echo $stories[$key]->image; ?>">
+                                    <img src="<?php echo $stories[$key]->image; ?>" width="344" height="377">
                                 </div>
 
                                 <div class="author">
                                     <div class="author--pic">
-                                        <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal">
+                                        <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" width="64" height="64">
                                     </div>
 
                                     <span class="author--name"><?php echo $stories[$key]->first_name . ' ' . $stories[$key]->last_name; ?></span>
@@ -202,37 +185,54 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     </p>
                                 </div>
                             </li>
-                        <?php endforeach; ?>
+                        <? endforeach; ?> 
                     </ul>
 
                     <div class="arrow-btn sg-next">
                         <span class="icon-arrow-right"></span>
                     </div>
                 </div>
+
+                <div class="landing-msg">
+                    <h3>Our normal is anything but</h3>
+
+                    <span class="emph">What's yours?</span>
+
+                    <p>
+                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1&#8482; synthetic motor oil or some other great Mobil 1 gear.
+                    </p>
+
+                    <div class="rect-btn go-to-form blue <?php
+                    if ($check->success === TRUE): echo 'js-show-submit';
+                    else: echo 'js-show-thank';
+                    endif;
+                    ?>">Share your story</div>
+
+                    <div class="rect-btn js-show-stories">View Stories</div>
+                </div>
             </div>
 
-            <div class="submit-story-wrap top-module" style="display:none">
-                <h3>Our normal is anything but.</h3>
+            <div id="contest-form" class="submit-story-wrap top-module">
+                <h3>Our normal is anything but</h3>
 
                 <span class="emph">So you can keep your engine running like new.</span>
 
                 <p>
-                    Tell us your favorite story made possible by Mobil 1 to join the Our Normal sweepstakes. You’ll get a custom Story Card to share and be entered for a chance at great prizes!
+                    Tell us your favorite story made possible by Mobil 1 to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
                 </p>
 
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
-                    <div class="row first">
+                   <div class="row first">
                         <div class="cell">
                             <input type="text" placeholder="First Name" name="first_name">
                         </div>
-
                         <div class="cell">
                             <input type="text" placeholder="Last Name" name="last_name">
                         </div>
                     </div>
 
                     <div class="row second">
-                        <div class="cell"
+                        <div class="cell">
                             <input type="email" placeholder="Email" name="email">
                         </div>
 
@@ -243,9 +243,9 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="row third">
                         <div class="cell">
-                            <textarea placeholder="Your story" name='story'></textarea>
+                            <textarea placeholder="Your story" name="story"></textarea>
                         </div>
-
+                        
                         <div class="story-pic">
                             <div class="rect-btn blue">
                                 Upload image<br/>
@@ -257,17 +257,18 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="row fourth">
                         <div class="cell">
-                            <input type="number" placeholder="Year (optional)" name="year">
+                            <input type="text" placeholder="Year (optional)" name="year">
                         </div>
 
                         <div class="cell">
                             <input type="number" placeholder="Mileage (optional)" name="mileage">
+                            <input type="hidden" name="facebook_id" value="<?php echo $signedRequestJSON->user_id; ?>">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="custom-check">
-                            <input type="checkbox" id="agree-rules" class="custom-check--input">
+                            <input type="checkbox" id="agree-rules" class="custom-check--input" name="agree_rules">
 
                             <label for="agree-rules">
                                 I agree to the official rules
@@ -277,7 +278,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="row">
                         <div class="custom-check">
-                            <input type="checkbox" id="agree-age" class="custom-check--input">
+                            <input type="checkbox" id="agree-age" class="custom-check--input" name="agree_age">
 
                             <label for="agree-age">
                                 I am 18 years of age or older
@@ -286,37 +287,37 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     </div>
 
                     <div class="rect-btn js-top-default">Go Back</div>
-                    <input type="hidden" name="facebook_id" value="<?php echo $user_id; ?>">
+
                     <input type="submit" class="rect-btn blue" placeholder="Submit">
                 </form>
             </div>
 
-            <div class="view-stories-wrap top-module" style="display:none">
+            <div class="view-stories-wrap top-module">
                 <div class="landing-msg">
                     <h3>Our normal is anything but</h3>
 
-                    <p class="emph">So you can keep your engine running like new.</p>
+                    <span class="emph">So you can keep your engine running like new.</span>
                 </div>
 
                 <div id="slider-containter">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
-                        <!-- new slide -->
                         <?php foreach ($stories as $key => $value) : ?>
+                            <!-- new slide -->
                             <div class="ms-slide">
                                 <!-- slide background -->
-                                <img src="<?php echo $stories[$key]->image; ?>" data-src="<?php echo $stories[$key]->image; ?>" data-src="<?php echo $stories[$key]->image; ?>" data-src="<?php echo $stories[$key]->image; ?>" alt="lorem ipsum dolor sit"/>
+                                <img src="<?php echo $stories[$key]->image; ?>" data-src="<?php echo $stories[$key]->image; ?>" alt="lorem ipsum dolor sit" width="355" height="355"/>
 
                                 <!-- slide profile picture -->
                                 <div class="slide-picture">
-                                    <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" data-src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" alt="lorem ipsum dolor sit"/>
+                                    <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" data-src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" alt="lorem ipsum dolor sit" width="64" height="64"/>
                                 </div>
 
                                 <!-- slide text layer -->
                                 <div class="slide-text-container">
                                     <div class="slide-text">
                                         <h1>Here is our title</h1>
-                                        <p class="description"> <?php echo $stories[$key]->story; ?></p>
+                                        <p class="description">  <?php echo $stories[$key]->story; ?></p>
                                     </div>
                                 </div>
 
@@ -325,31 +326,26 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                                 <!-- like button -->
                                 <div class="slide-like-button">
-                                    <a class="like-button" href="#" title="Like">
-                                        <img src="images/btn-like.jpg" alt="Like" />
-                                    </a>
+                                    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fmobile1.projects-directory.com%2Fcms%2Fweb%2Fstories%2Flike%2F<?php echo $stories[$key]->id;?>&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=597677730337203" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;width:60px;float:right;" allowTransparency="true"></iframe>  </div>
                                 </div>
 
                                 <!-- slide color overlay picture -->
                                 <div class="slide-hover"><!-- --></div>
                             </div>
-                            <!-- end of slide -->
+                            <!-- end of slide -->  
                         <? endforeach; ?> 
-                        <!-- new slide -->
-
-
                     </div>
                     <!-- end of masterslider -->
                 </div>
 
-                <div class="rect-btn <?php
+                <div  class="rect-btn go-to-form <?php
                 if ($check->success === TRUE): echo 'js-show-submit';
                 else: echo 'js-show-thank';
                 endif;
                 ?>">Submit your story</div>
             </div>
 
-            <div class="thank-msg-wrap top-module" style="display:none;">
+            <div class="thank-msg-wrap top-module">
                 <div class="thank-msg">
                     <h3 class="large">
                         <span class="emph">Thanks</span> for telling us your story
@@ -367,6 +363,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 <div class="story-preview story-box">
 
                     <div class="pic" id="submited-story-pic">
+                        <!-- submitted story pic-->
                         <?php echo ($check->success === false) ? "<img src='" . $check->image . "' width='355' height='355'/>" : ''; ?>
                     </div>
 
@@ -443,16 +440,11 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             </li>
                         </ul>
                     </div>
-
                     <div class="scroll-visible-area">
                         <div class="scrollable">
                             <ul class="image-performance-wrap linked-container">
-                                <?php $i = 1; ?>
                                 <?php foreach ($image_gallery as $images_gal): ?>
-                                    <li class="image-performance" data-index="<?php
-                                    echo $i;
-                                    $i++;
-                                    ?>">
+                                    <li class="image-performance" data-index="1">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">
@@ -462,9 +454,8 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     </li>
                                 <?php endforeach; ?>
 
-                            </ul>
 
-                            <div class="image-performance-scroll js-scroll-images-next">view more</div>
+                            </ul>
                         </div>
 
                         <div class="overlayed-image-gallery linked-container overlay sg">
@@ -485,7 +476,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                             <?php echo $images_gal->description; ?>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>    
+                                <?php endforeach; ?>                                
                             </ul>
 
                             <div class="arrow-btn small sg-next">
@@ -524,6 +515,28 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <span class="icon-close"></span>
                     </div>
 
+                    <div class="scroller vertical video-scroller linked-container">
+                        <div class="arrow-btn js-scroller-prev disabled">
+                            <span class="icon-arrow-up"></span>
+                        </div>
+
+                        <ul class="scroller--content linked-control">
+                            <?php $i = 1; ?>
+                            <?php foreach ($video_gallery as $videos): ?>
+                                <li class="scroller--item active" data-index="<?php
+                                echo $i;
+                                $i++;
+                                ?>">
+                                    <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg">
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+
+                        <div class="arrow-btn js-scroller-next">
+                            <span class="icon-arrow-down"></span>
+                        </div>
+                    </div>
+
                     <div class="video-gallery-container linked-container">
                         <h3>Performance Videos</h3>
 
@@ -544,7 +557,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     $i++;
                                     ?>">
                                         <div class="pic">
-                                            <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg">
+                                            <iframe width="482" height="288" src="//www.youtube.com/embed/<?php echo $videos->video_id; ?>?rel=0&autoplay=0" frameborder="0" allowfullscreen ></iframe>
                                         </div>
                                     </li>
                                 <?php endforeach; ?>
@@ -554,28 +567,10 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 <span class="icon-arrow-right"></span>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="scroller horizontal video-scroller linked-container">
-                        <div class="arrow-btn js-scroller-prev disabled">
-                            <span class="icon-arrow-up"></span>
-                        </div>
-                        <div class="scroller--content-mask">
-                            <ul class="scroller--content linked-control">
-                                <?php $i = 1; ?>
-                                <?php foreach ($video_gallery as $videos): ?>
-                                    <li class="scroller--item active" data-index="<?php
-                                    echo $i;
-                                    $i++;
-                                    ?>">
-                                    <iframe width="482" height="288" src="//www.youtube.com/embed/<?php echo $videos->video_id; ?>?rel=0&autoplay=0" frameborder="0" allowfullscreen ></iframe>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <div class="arrow-btn js-scroller-next">
-                            <span class="icon-arrow-down"></span>
-                        </div>
+                        <div class="rect-btn js-restore-default">Back</div>
+
+                        <div class="rect-btn js-switch-section">Image gallery</div>
                     </div>
                 </div>
             </div>
@@ -591,10 +586,10 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
     var slider = new MasterSlider();
     slider.setup('masterslider', {
         hideLayers: false,
-        fullwidth: false,
-        width: 250,
-        height: 250,
+        width: 335, // slider standard width
+        height: 335, // slider standard height
         space: 142,
+        fullwidth: false,
         autoHeight: false,
         layout: "partialview",
         view: "wave",

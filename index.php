@@ -326,9 +326,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                                 <!-- like button -->
                                 <div class="slide-like-button">
-                                    <a class="like-button" href="#" title="Like">
-                                        <img src="images/btn-like.jpg" alt="Like" />
-                                    </a>
+                                  <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fmobile1.projects-directory.com%2Fcms%2Fweb%2Fstories%2Flike%2F<?php echo $stories[$key]->id;?>&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=597677730337203" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;width:60px;float:right;" allowTransparency="true"></iframe>  </div>
                                 </div>
 
                                 <!-- slide color overlay picture -->
