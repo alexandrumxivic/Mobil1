@@ -153,9 +153,11 @@ p{
 }
 .story-box .content--text{
 	display: block;
+	max-height: 66px;
 	margin: 0;
 	font-size: 17px;
 	line-height: 22px;
+	overflow: hidden;
 }
 .story-box.landing-story .author--pic{
 	position: absolute;
