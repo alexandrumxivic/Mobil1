@@ -86,6 +86,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
         <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/utils/Draggable.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
         <script type="text/javascript"  src="js/modernizr.custom.js"></script>
         <script type="text/javascript"  src="js/facebook.js"></script>
@@ -221,21 +222,30 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 </p>
 
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
-                    <div class="row first">
-                        <input type="text" placeholder="First Name" name="first_name">
-
-                        <input type="text" placeholder="Last Name" name="last_name">
+                   <div class="row first">
+                        <div class="cell">
+                            <input type="text" placeholder="First Name" name="first_name">
+                        </div>
+                        <div class="cell">
+                            <input type="text" placeholder="Last Name" name="last_name">
+                        </div>
                     </div>
 
                     <div class="row second">
-                        <input type="email" placeholder="Email" name="email">
+                        <div class="cell">
+                            <input type="email" placeholder="Email" name="email">
+                        </div>
 
-                        <input type="tel" placeholder="Phone Number" name="phone">
+                        <div class="cell">
+                            <input type="tel" placeholder="Phone Number" name="phone">
+                        </div>
                     </div>
 
                     <div class="row third">
-                        <textarea placeholder="Your story" name="story"></textarea>
-
+                        <div class="cell">
+                            <textarea placeholder="Your story" name="story"></textarea>
+                        </div>
+                        
                         <div class="story-pic">
                             <div class="rect-btn blue">
                                 Upload image<br/>
@@ -246,15 +256,19 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     </div>
 
                     <div class="row fourth">
-                        <input type="text" placeholder="Year (optional)" name="year">
+                        <div class="cell">
+                            <input type="text" placeholder="Year (optional)" name="year">
+                        </div>
 
-                        <input type="number" placeholder="Mileage (optional)" name="mileage">
-                        <input type="hidden" name="facebook_id" value="<?php echo $signedRequestJSON->user_id; ?>">
+                        <div class="cell">
+                            <input type="number" placeholder="Mileage (optional)" name="mileage">
+                            <input type="hidden" name="facebook_id" value="<?php echo $signedRequestJSON->user_id; ?>">
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="custom-check">
-                            <input type="checkbox" id="agree-rules" class="custom-check--input" name="rules">
+                            <input type="checkbox" id="agree-rules" class="custom-check--input" name="agree_rules">
 
                             <label for="agree-rules">
                                 I agree to the official rules
@@ -264,7 +278,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="row">
                         <div class="custom-check">
-                            <input type="checkbox" id="agree-age" class="custom-check--input" name="age">
+                            <input type="checkbox" id="agree-age" class="custom-check--input" name="agree_age">
 
                             <label for="agree-age">
                                 I am 18 years of age or older

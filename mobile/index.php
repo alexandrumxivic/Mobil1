@@ -93,6 +93,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
         <!-- <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script> -->
         <script type="text/javascript" src="js/masonry.js"></script>
         <script type="text/javascript" src="js/main_second.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <!-- MasterSlider files-->
         <link rel="stylesheet" href="masterslider/style/masterslider.css"/>
         <link rel="stylesheet" href="masterslider/style/masterslider_aux.css"/>
@@ -221,20 +222,29 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
                     <div class="row first">
+                        <div class="cell">
+                            <input type="text" placeholder="First Name" name="first_name">
+                        </div>
 
-                        <input type="text" placeholder="First Name" name="first_name">
-
-                        <input type="text" placeholder="Last Name" name="last_name">
+                        <div class="cell">
+                            <input type="text" placeholder="Last Name" name="last_name">
+                        </div>
                     </div>
 
                     <div class="row second">
-                        <input type="email" placeholder="Email" name="email">
+                        <div class="cell"
+                            <input type="email" placeholder="Email" name="email">
+                        </div>
 
-                        <input type="tel" placeholder="Phone Number" name="phone">
+                        <div class="cell">
+                            <input type="tel" placeholder="Phone Number" name="phone">
+                        </div>
                     </div>
 
                     <div class="row third">
-                        <textarea placeholder="Your story" name='story'></textarea>
+                        <div class="cell">
+                            <textarea placeholder="Your story" name='story'></textarea>
+                        </div>
 
                         <div class="story-pic">
                             <div class="rect-btn blue">
@@ -246,9 +256,13 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     </div>
 
                     <div class="row fourth">
-                        <input type="number" placeholder="Year (optional)" name="year">
+                        <div class="cell">
+                            <input type="number" placeholder="Year (optional)" name="year">
+                        </div>
 
-                        <input type="number" placeholder="Mileage (optional)" name="mileage">
+                        <div class="cell">
+                            <input type="number" placeholder="Mileage (optional)" name="mileage">
+                        </div>
                     </div>
 
                     <div class="row">
