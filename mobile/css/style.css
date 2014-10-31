@@ -688,6 +688,7 @@ footer a + a{
 .submit-story textarea:focus{
 	border-color: #0068b0;
 	outline: none;
+	-moz-appearance: textfield;
 }
 .submit-story .row .cell{
 	display: inline-block;

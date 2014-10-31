@@ -598,6 +598,7 @@ footer a + a{
 	position: relative;
 }
 .submit-story .cell input{
+	-moz-appearance: textfield;
 	display: block;
 	width: 100%;
 }
