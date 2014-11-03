@@ -100,6 +100,7 @@ p{
 	height: 304px;
 	position: relative;
 	box-sizing: border-box;
+	text-align: left;
 }
 .overlayed-images{
 	display: inline-block;
@@ -140,7 +141,8 @@ p{
 	overflow: hidden;
 }
 .story-box .pic img{
-	width: 100%;
+	min-width: 100%;
+	min-height: 100%;
 }
 .story-box .content{
 	position: absolute;
@@ -148,15 +150,15 @@ p{
 .story-box .content--title{
 	display: block;
 	font-family:'EmPrintBold';
-	font-size: 20px;
+	font-size: 18px;
 	text-transform: uppercase;
 }
 .story-box .content--text{
 	display: block;
-	max-height: 66px;
+	max-height: 36px;
 	margin: 0;
-	font-size: 17px;
-	line-height: 22px;
+	font-size: 14px;
+	line-height: 18px;
 	overflow: hidden;
 }
 .story-box.landing-story .author--pic{
