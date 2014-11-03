@@ -12,7 +12,7 @@ h2{
 h3{
 	margin: 0;
 	color: #fff;
-	font-size: 19px;
+	font-size: 17px;
 	line-height: 17px;
 	font-family:'EmPrintBold';
 	text-transform: uppercase;
@@ -163,13 +163,13 @@ p{
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 }
 .story-box.landing-story .author--name{
 	position: absolute;
 	top: 0;
-	left: 100px;
+	left: 80px;
 	right: 0;
 	display: inline-block;
 	vertical-align: top;
@@ -179,9 +179,13 @@ p{
 	height: 39px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	font-size: 15px;
 	line-height: 39px;
 	background: rgba(0,84,158,.68);
 	text-align: left;
+}
+sup{
+	font-size: 8px;
 }
 .story-box.landing-story .author--pic img{
 	width: auto;
@@ -274,10 +278,13 @@ p{
 	display: inline-block;
 	vertical-align: middle;
 	width: auto;
-	padding: 30px;
+	padding: 20px;
 }
-.landing-msg p{
+.landing-msg p,
+.submit-story-wrap p{
 	margin-top: 10px;
+	font-size: 14px;
+	line-height: 17px;
 }
 .landing-msg .rect-btn{
 	display: inline-block;
@@ -1156,4 +1163,7 @@ footer a + a{
 	width: 0;
 	height: 30px;
 	opacity: 0;
+}
+#share{
+	text-decoration: none;
 }

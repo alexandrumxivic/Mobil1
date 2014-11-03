@@ -1013,3 +1013,10 @@ footer a + a{
 	height: 30px;
 	opacity: 0;
 }
+
+sup{
+	font-size: 8px;
+}
+#share{
+	text-decoration: none;
+}
