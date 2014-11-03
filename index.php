@@ -106,6 +106,22 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
         <!-- End MasterSlider files-->
         <script type="text/javascript" src="js/main.js"></script>
         <script>
+            $('#share').on('click', function (e) {
+                if (Application.selector !== null) {
+                    ga('send', 'event', 'button', 'click', 'Select a Veteran');
+                    FB.ui({
+                        method: 'feed',
+                        title: "We're Celebrating a Better Nation!",
+                        link: Application.share.URL,
+                        name: "We're Celebrating a Better Nation!",
+                        picture: Application.share.photourl + "images/shareLogo.png",
+                        to: Application.data.id,
+                        caption: '',
+                        description: "You've been honored for serving our country through sacrifice and dedication. Thank you. Now we'd like to help you Find Better&reg; in today's job market and maybe win some great prizes, too!",
+                        message: ''
+                    });
+                }
+            });
             $(document).ready(function () {
                 $("form").validate({
                     rules: {
@@ -366,9 +382,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     <div class="uppercase">
                         Now <b>share it</b> with the rest of your friends!
                     </div>
-
-                    <div class="rect-btn red">Share</div>
-
+                    <div class="rect-btn red" ><a href='#' id='share'>Share</a></div>
                     <div class="rect-btn js-show-stories">View other stories</div>
                 </div>
 
@@ -456,10 +470,14 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <div class="scrollable">
 
                             <ul class="image-performance-wrap linked-container">
-                                <?php $i = 1;
-                                foreach ($image_gallery as $images_gal): ?>
-                                    <li class="image-performance" data-index="<? echo $i;
-                                    $i++; ?>">
+                                <?php
+                                $i = 1;
+                                foreach ($image_gallery as $images_gal):
+                                    ?>
+                                    <li class="image-performance" data-index="<?
+                                        echo $i;
+                                        $i++;
+                                        ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">

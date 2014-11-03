@@ -15,7 +15,7 @@ if (isset($_REQUEST['signed_request'])) {
 <?php include "Facebook.php"; ?> 
 <?php
 /* defines */
-
+$user_id = (isset($signedRequestJSON->user_id)) ? $signedRequestJSON->user_id : '0';
 define('BASE_URL', 'https://mobile1.projects-directory.com/cms/web/');
 /* get required info */
 /* get Stories */
@@ -25,7 +25,7 @@ $stories = json_decode($stories);
 $stories = $stories->response;
 /* check if submitted story by id */
 
-$check = file_get_contents(BASE_URL . 'stories/check/' . $signedRequestJSON->user_id);
+$check = file_get_contents(BASE_URL . 'stories/check/' . $user_id);
 $check = json_decode($check);
 
 /* get image gallery */
@@ -40,42 +40,26 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
 <html xmlns="https://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <!-- Force latest IE rendering engine (even in intranet) & Chrome Frame -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, user-scalable=no">
         <meta name="viewport" content="initial-scale=1, user-scalable=no">
         <title>Mobile 1</title>
-
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/shame.css">
         <link rel="stylesheet" type="text/css" href="css/fonts.css">
         <link rel="stylesheet" type="text/css" href="css/icons.css">
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js"></script>  
-
-
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/utils/Draggable.min.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-
-        <script type="text/javascript"  src="js/modernizr.custom.js"></script>
-        <script type="text/javascript"  src="js/facebook.js"></script>
-
-        <script src="js/Validate.js"></script>
-
-
-
         <script type="text/javascript" src="js/masonry.js"></script>
         <script type="text/javascript" src="js/main_second.js"></script>
-        <!-- MasterSlider files-->
+        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <link rel="stylesheet" href="masterslider/style/masterslider.css"/>
         <link rel="stylesheet" href="masterslider/style/masterslider_aux.css"/>
         <link rel="stylesheet" href="masterslider/skins/default/style.css" />
-
         <script src="masterslider/masterslider.js"></script>
+        <script type="text/javascript"  src="js/modernizr.custom.js"></script>
+        <script type="text/javascript"  src="js/facebook.js"></script>
         <!-- End MasterSlider files-->
         <script type="text/javascript" src="js/main.js"></script>
         <script>
@@ -136,26 +120,40 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 <img src="assets/logo.png"> Performance Story
             </h2>
 
-            <div class="landing-intro top-module">
+            <div class="landing-intro top-module" >
+                <div class="landing-msg">
+                    <h3>Our normal is anything but.</h3>
+
+                    <span class="emph">What's yours?</span>
+
+                    <p>
+                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1 synthetic motor oil or some other great Mobil 1 gear.
+                    </p>
+
+                    <div class="rect-btn blue js-show-submit">Share your story</div>
+
+                    <div class="rect-btn js-show-stories">View Stories</div>
+                </div>
+
                 <div class="landing-stories-wrap sg">
                     <div class="arrow-btn sg-prev">
                         <span class=" icon-arrow-left"></span>
                     </div>
 
                     <ul class="landing-stories sg-content">
-<?php $count = 1; ?>
-<?php foreach ($stories as $key => $value) : ?>
-                            <li class="story-box landing-story sg-item active" data-index="<?php
+                        <?php $count = 1; ?>
+                        <?php foreach ($stories as $key => $value) : ?>
+                            <li class="story-box landing-story sg-item <?php echo ($count == 1) ? 'active' : '' ?>" data-index="<?php
                             echo $count;
                             $count++;
                             ?>">
                                 <div class="pic">
-                                    <img src="<?php echo $stories[$key]->image; ?>" width="344" height="377">
+                                    <img src="<?php echo $stories[$key]->image; ?>" width='278' height='278'>
                                 </div>
 
                                 <div class="author">
                                     <div class="author--pic">
-                                        <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" width="64" height="64">
+                                        <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" width='60' height='60'>
                                     </div>
 
                                     <span class="author--name"><?php echo $stories[$key]->first_name . ' ' . $stories[$key]->last_name; ?></span>
@@ -165,39 +163,25 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     <span class="content--title">My Story:</span>
 
                                     <p class="content--text">
-    <?php echo $stories[$key]->story; ?>
+                                        <?php echo $stories[$key]->story; ?>
                                     </p>
                                 </div>
                             </li>
-<? endforeach; ?> 
+                        <?php endforeach; ?>
                     </ul>
 
                     <div class="arrow-btn sg-next">
                         <span class="icon-arrow-right"></span>
                     </div>
                 </div>
-
-                <div class="landing-msg">
-                    <h3>Our normal is anything but</h3>
-
-                    <span class="emph">What's yours?</span>
-
-                    <p>
-                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1&#8482; synthetic motor oil or some other great Mobil 1 gear.
-                    </p>
-
-                    <div class="rect-btn go-to-form blue <?php
-if ($check->success === TRUE): echo 'js-show-submit';
-else: echo 'js-show-thank';
-endif;
-?>">Share your story</div>
-
-                    <div class="rect-btn js-show-stories">View Stories</div>
-                </div>
             </div>
 
-            <div id="contest-form" class="submit-story-wrap top-module">
-                <h3>Our normal is anything but</h3>
+            <div class="submit-story-wrap top-module <?php
+            if ($check->success === TRUE): echo 'js-show-submit';
+            else: echo 'js-show-thank';
+            endif;
+            ?>">
+                <h3>Our normal is anything but.</h3>
 
                 <span class="emph">So you can keep your engine running like new.</span>
 
@@ -246,7 +230,7 @@ endif;
 
                         <div class="cell">
                             <input type="number" placeholder="Mileage (optional)" name="mileage">
-                            <input type="hidden" name="facebook_id" value="<?php echo $signedRequestJSON->user_id; ?>">
+                            <input type="hidden" name="facebook_id" value="<?php echo $user_id; ?>">
                         </div>
                     </div>
 
@@ -280,28 +264,29 @@ endif;
                 <div class="landing-msg">
                     <h3>Our normal is anything but</h3>
 
-                    <span class="emph">So you can keep your engine running like new.</span>
+                    <p class="emph">So you can keep your engine running like new.</p>
                 </div>
 
                 <div id="slider-containter">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
-<?php foreach ($stories as $key => $value) : ?>
+                        <?php foreach ($stories as $key => $value) : ?>
                             <!-- new slide -->
                             <div class="ms-slide">
                                 <!-- slide background -->
-                                <img src="<?php echo $stories[$key]->image; ?>" data-src="<?php echo $stories[$key]->image; ?>" alt="lorem ipsum dolor sit" width="355" height="355"/>
+                                <img src="<?php echo $stories[$key]->image; ?>" data-src="<?php echo $stories[$key]->image; ?>" alt="lorem ipsum dolor sit"/>
 
                                 <!-- slide profile picture -->
                                 <div class="slide-picture">
-                                    <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" data-src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" alt="lorem ipsum dolor sit" width="64" height="64"/>
+                                    <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" data-src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" alt="lorem ipsum dolor sit"/>
                                 </div>
 
                                 <!-- slide text layer -->
                                 <div class="slide-text-container">
                                     <div class="slide-text">
                                         <h1>Here is our title</h1>
-                                        <p class="description">  <?php echo $stories[$key]->story; ?></p>
+                                        <p class="description"><?php echo $stories[$key]->story; ?></p>
+
                                     </div>
                                 </div>
 
@@ -310,26 +295,22 @@ endif;
 
                                 <!-- like button -->
                                 <div class="slide-like-button">
-                                    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fmobile1.projects-directory.com%2Fcms%2Fweb%2Fstories%2Flike%2F<?php echo $stories[$key]->id; ?>&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=597677730337203" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;width:60px;float:right;" allowTransparency="true"></iframe> 
+                                    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fmobile1.projects-directory.com%2Fcms%2Fweb%2Fstories%2Flike%2F<?php echo $stories[$key]->id; ?>&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=597677730337203" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;width:60px;float:right;" allowTransparency="true"></iframe>  
                                 </div>
 
                                 <!-- slide color overlay picture -->
                                 <div class="slide-hover"><!-- --></div>
                             </div>
-                            <!-- end of slide -->  
-<? endforeach; ?> 
+                            <!-- end of slide -->
+                        <?php endforeach; ?>
                     </div>
                     <!-- end of masterslider -->
                 </div>
 
-                <div  class="rect-btn go-to-form <?php
-if ($check->success === TRUE): echo 'js-show-submit';
-else: echo 'js-show-thank';
-endif;
-?>">Submit your story</div>
+                <div class="rect-btn js-show-submit">Submit your story</div>
             </div>
 
-            <div class="thank-msg-wrap top-module">
+            <div class="thank-msg-wrap top-module ">
                 <div class="thank-msg">
                     <h3 class="large">
                         <span class="emph">Thanks</span> for telling us your story
@@ -338,36 +319,41 @@ endif;
                     <div class="uppercase">
                         Now <b>share it</b> with the rest of your friends!
                     </div>
-
-                    <div class="rect-btn red">Share</div>
-
+                    <!-- share button -->
+                    <div id="fb-root"></div>
+                    <script>(function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id))
+                                return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=597677730337203&version=v2.0";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                    <div class="fb-share-button" data-href="https://mobile1.projects-directory.com" og:title></div>
+                    <!-- Share button -->
                     <div class="rect-btn js-show-stories">View other stories</div>
                 </div>
 
                 <div class="story-preview story-box">
 
-                    <div class="pic" id="submited-story-pic">
-                        <!-- submitted story pic-->
-<?php echo ($check->success === false) ? "<img src='" . $check->image . "' width='355' height='355'/>" : ''; ?>
+                    <div class="pic">
+                        <?php echo ($check->success === false) ? "<img src='" . $check->image . "'/>" : ''; ?>
                     </div>
 
                     <div class="author">
-                        <div class="author--pic" id="submited-story-author-pic">
-                            <!-- submitted story  author--> 
-<?php echo ($check->success === false) ? "<img src='https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal' width='80' height='80' />" : ''; ?>
-
-
+                        <div class="author--pic">
+                            <?php echo ($check->success === false) ? "<img src='https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal' />" : ''; ?>
                         </div>
                     </div>
 
-                    <span class="author--name" id="submited-story-author">- <!-- submitted story  author--><?php echo ($check->success === false) ? $check->name : ''; ?></span>
+                    <span class="author--name">- <?php echo ($check->success === false) ? $check->name : ''; ?></span>
 
                     <div class="content">
                         <span class="content--title">My Performance Story:</span>
 
-                        <p class="content--text" id="submited-story">
-<?php echo ($check->success === false) ? $check->story : ''; ?>
-                            <!-- submitted story -->
+                        <p class="content--text">
+                            <?php echo ($check->success === false) ? $check->story : ''; ?>
                         </p>
                     </div>
 
@@ -424,22 +410,29 @@ endif;
                             </li>
                         </ul>
                     </div>
+
                     <div class="scroll-visible-area">
                         <div class="scrollable">
                             <ul class="image-performance-wrap linked-container">
-<?php foreach ($image_gallery as $images_gal): ?>
-                                    <li class="image-performance" data-index="1">
+                                <?php
+                                $i = 1;
+                                foreach ($image_gallery as $images_gal):
+                                    ?>
+                                    <li class="image-performance" data-index="<?php
+                                    echo $i;
+                                    $i++;
+                                    ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">
-    <?php echo $images_gal->description; ?>
+                                            <?php echo $images_gal->description; ?>
                                             <div class="center">view</div>
                                         </div>
                                     </li>
-<?php endforeach; ?>
-
-
+                                <?php endforeach; ?>
                             </ul>
+
+                            <div class="image-performance-scroll js-scroll-images-next">view more</div>
                         </div>
 
                         <div class="overlayed-image-gallery linked-container overlay sg">
@@ -448,19 +441,22 @@ endif;
                             </div>
 
                             <ul class="overlayed-images sg-content linked-control">
-<?php $c = 1; ?>
-<?php foreach ($image_gallery as $images_gal): ?>
-                                    <li class="sg-item" data-index="<?php echo $c; ?>">
-                                    <?php $c++; ?>
+                                <?php $c = 1; ?>
+                                <?php foreach ($image_gallery as $images_gal): ?>
+                                    <li class="sg-item" data-index="<?php
+                                    echo $c;
+                                    $c++;
+                                    ?>">
                                         <div class="pic">
                                             <img src="<?php echo $images_gal->image_url; ?>">
                                         </div>
 
                                         <div class="hover-content">
-    <?php echo $images_gal->description; ?>
+                                            <?php echo $images_gal->description; ?>
                                         </div>
                                     </li>
-                                        <?php endforeach; ?>                                
+
+                                <?php endforeach; ?>
                             </ul>
 
                             <div class="arrow-btn small sg-next">
@@ -499,28 +495,6 @@ endif;
                         <span class="icon-close"></span>
                     </div>
 
-                    <div class="scroller vertical video-scroller linked-container">
-                        <div class="arrow-btn js-scroller-prev disabled">
-                            <span class="icon-arrow-up"></span>
-                        </div>
-
-                        <ul class="scroller--content linked-control">
-<?php $i = 1; ?>
-<?php foreach ($video_gallery as $videos): ?>
-                                <li class="scroller--item active" data-index="<?php
-                                echo $i;
-                                $i++;
-                                ?>">
-                                    <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg">
-                                </li>
-                                <?php endforeach; ?>
-                        </ul>
-
-                        <div class="arrow-btn js-scroller-next">
-                            <span class="icon-arrow-down"></span>
-                        </div>
-                    </div>
-
                     <div class="video-gallery-container linked-container">
                         <h3>Performance Videos</h3>
 
@@ -534,27 +508,48 @@ endif;
                             </div>
 
                             <ul class="video-stories sg-content linked-control">
-<?php $i = 1; ?>
-<?php foreach ($video_gallery as $videos): ?>
-                                    <li class="story-box video-story sg-item active" data-index="<?php
+                                <?php $i = 1; ?>
+                                <?php foreach ($video_gallery as $videos): ?>
+                                    <li class="story-box video-story sg-item <?php echo ($i == 1) ? 'active' : '' ?>" data-index="<?php
                                     echo $i;
                                     $i++;
                                     ?>">
                                         <div class="pic">
-                                            <iframe width="482" height="288" src="//www.youtube.com/embed/<?php echo $videos->video_id; ?>?rel=0&autoplay=0" frameborder="0" allowfullscreen ></iframe>
+                                            <a href='https://www.youtube.com/watch?v=<?php echo $videos->video_id; ?>'><img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='182' width='278'></a>
                                         </div>
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
+
                             </ul>
 
                             <div class="arrow-btn small sg-next">
                                 <span class="icon-arrow-right"></span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="rect-btn js-restore-default">Back</div>
+                    <div class="scroller horizontal video-scroller linked-container">
+                        <div class="arrow-btn js-scroller-prev disabled">
+                            <span class="icon-arrow-up"></span>
+                        </div>
+                        <div class="scroller--content-mask">
+                            <ul class="scroller--content linked-control">
+                                <?php $i = 1; ?>
+                                <?php foreach ($video_gallery as $videos): ?>
+                                    <li class="scroller--item <?php echo ($i == 1) ? 'active' : '' ?>" data-index="<?php
+                                    echo $i;
+                                    $i++;
+                                    ?>">
+                                        <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='60' width='80'>
 
-                        <div class="rect-btn js-switch-section">Image gallery</div>
+                                    </li>
+                                <?php endforeach; ?>
+
+                            </ul>
+                        </div>
+                        <div class="arrow-btn js-scroller-next">
+                            <span class="icon-arrow-down"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -570,10 +565,10 @@ endif;
     var slider = new MasterSlider();
     slider.setup('masterslider', {
         hideLayers: false,
-        width: 335, // slider standard width
-        height: 335, // slider standard height
-        space: 142,
         fullwidth: false,
+        width: 250,
+        height: 250,
+        space: 142,
         autoHeight: false,
         layout: "partialview",
         view: "wave",
