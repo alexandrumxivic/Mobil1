@@ -122,7 +122,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         agree_age: " ",
                         agree_rules: " "
                     },
-                    submitHandler: function(){
+                    submitHandler: function () {
                         var formData = new FormData($("form")[0]);
                         $.ajax({
                             url: '<?php echo BASE_URL ?>stories/new/create',
@@ -233,7 +233,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 </p>
 
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
-                   <div class="row first">
+                    <div class="row first">
                         <div class="cell">
                             <input type="text" placeholder="First Name" name="first_name">
                         </div>
@@ -256,7 +256,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <div class="cell">
                             <textarea placeholder="Your story" name="story"></textarea>
                         </div>
-                        
+
                         <div class="story-pic">
                             <div class="rect-btn blue">
                                 Upload image<br/>
@@ -336,9 +336,10 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 <div class="slide-text-signature">- <?php echo $stories[$key]->first_name . ' ' . $stories[$key]->last_name; ?></div>
 
                                 <!-- like button -->
-                                <div class="slide-like-button">
-                                  <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fmobile1.projects-directory.com%2Fcms%2Fweb%2Fstories%2Flike%2F<?php echo $stories[$key]->id;?>&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=597677730337203" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;width:60px;float:right;" allowTransparency="true"></iframe>  </div>
+                                <div class="slide-like-button">                                  
+                                    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fmobile1.projects-directory.com%2Fcms%2Fweb%2Fstories%2Flike%2F<?php echo $stories[$key]->id; ?>&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=597677730337203" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;width:60px;float:right;" allowTransparency="true"></iframe>  
                                 </div>
+
 
                                 <!-- slide color overlay picture -->
                                 <div class="slide-hover"><!-- --></div>
@@ -453,17 +454,20 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     </div>
                     <div class="scroll-visible-area">
                         <div class="scrollable">
+
                             <ul class="image-performance-wrap linked-container">
-                                <?php foreach ($image_gallery as $images_gal): ?>
-                                    <li class="image-performance" data-index="1">
+                                <?php $i = 1;
+                                foreach ($image_gallery as $images_gal): ?>
+                                    <li class="image-performance" data-index="<? echo $i;
+                                    $i++; ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">
-                                            <?php echo $images_gal->description; ?>
+    <?php echo $images_gal->description; ?>
                                             <div class="center">view</div>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>
+<?php endforeach; ?>
 
 
                             </ul>
@@ -475,19 +479,19 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             </div>
 
                             <ul class="overlayed-images sg-content linked-control">
-                                <?php $c = 1; ?>
-                                <?php foreach ($image_gallery as $images_gal): ?>
+                                    <?php $c = 1; ?>
+                                    <?php foreach ($image_gallery as $images_gal): ?>
                                     <li class="sg-item" data-index="<?php echo $c; ?>">
-                                        <?php $c++; ?>
+    <?php $c++; ?>
                                         <div class="pic">
                                             <img src="<?php echo $images_gal->image_url; ?>">
                                         </div>
 
                                         <div class="hover-content">
-                                            <?php echo $images_gal->description; ?>
+                                    <?php echo $images_gal->description; ?>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>                                
+<?php endforeach; ?>                                
                             </ul>
 
                             <div class="arrow-btn small sg-next">
@@ -535,12 +539,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             <?php $i = 1; ?>
                             <?php foreach ($video_gallery as $videos): ?>
                                 <li class="scroller--item active" data-index="<?php
-                                echo $i;
-                                $i++;
-                                ?>">
+                                    echo $i;
+                                    $i++;
+                                    ?>">
                                     <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg">
                                 </li>
-                            <?php endforeach; ?>
+<?php endforeach; ?>
                         </ul>
 
                         <div class="arrow-btn js-scroller-next">
@@ -564,14 +568,14 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 <?php $i = 1; ?>
                                 <?php foreach ($video_gallery as $videos): ?>
                                     <li class="story-box video-story sg-item active" data-index="<?php
-                                    echo $i;
-                                    $i++;
-                                    ?>">
+                                        echo $i;
+                                        $i++;
+                                        ?>">
                                         <div class="pic">
                                             <iframe width="482" height="288" src="//www.youtube.com/embed/<?php echo $videos->video_id; ?>?rel=0&autoplay=0" frameborder="0" allowfullscreen ></iframe>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>
+<?php endforeach; ?>
                             </ul>
 
                             <div class="arrow-btn small sg-next">
