@@ -712,12 +712,11 @@ footer a + a{
 	position: absolute;
 	top: 0;
 	left: 0;
-	bottom: 0;
+	bottom: 45px;
 	right: 0;
 	padding: 25px;
 	font-size: 18px;
 	line-height: 22px;
-	background: rgba(0,0,0,.4);
 	opacity: 0;
 	-webkit-transition: opacity .3s ease;
 	-moz-transition: opacity .3s ease;
@@ -726,12 +725,21 @@ footer a + a{
 	overflow: hidden;
 	box-sizing: border-box;
 }
-
-.image-performance .hover-content .center{
+.image-performance .center{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 20px;
+	font-size: 18px;
 	text-align: center;
 	text-decoration: underline;
+	opacity: 0;
+	-webkit-transition: opacity .3s ease;
+	-moz-transition: opacity .3s ease;
+	-o-transition: opacity .3s ease;
+	transition: opacity .3s ease;
 }
-.image-performance .hover-content .center:after{
+.image-performance .center:after{
 	display: inline-block;
 	vertical-align: middle;
 	width: 12px;
@@ -741,17 +749,41 @@ footer a + a{
 	background-size: contain;
 	content: "";
 }
-.image-performance .hover-content:after{
+.image-performance:before{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,.4);
+	content: "";
+	opacity: 0;
+	-webkit-transition: opacity .3s ease;
+	-moz-transition: opacity .3s ease;
+	-o-transition: opacity .3s ease;
+	transition: opacity .3s ease;
+
+}
+.image-performance:after{
 	position: absolute;
 	z-index: 0;
-	top: 10px;
-	left: 10px;
-	bottom: 10px;
-	right:10px;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right:0;
+	margin: 10px;
 	border: 1px solid #fff;
 	content: "";
+	opacity: 0;
+	-webkit-transition: opacity .3s ease;
+	-moz-transition: opacity .3s ease;
+	-o-transition: opacity .3s ease;
+	transition: opacity .3s ease;
 }
-.image-performance:hover .hover-content{
+.image-performance:hover .hover-content,
+.image-performance:hover .center,
+.image-performance:hover:after,
+.image-performance:hover:before{
 	opacity: 1;
 }
 .image-performance img{
