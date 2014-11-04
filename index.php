@@ -177,6 +177,20 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
             });
         </script>
         <script>
+            $(document).ready(function () {
+                FB.login(function (response) {
+                    if (response.authResponse) {
+                        console.log('Welcome!  Fetching your information.... ');
+                        FB.api('/me', function (response) {
+                            console.log('Good to see you, ' + response.name + '.');
+                        });
+                    } else {
+                        console.log('User cancelled login or did not fully authorize.');
+                    }
+                });
+            });
+        </script>
+        <script>
             function share_caption(picture, userId, story) {
                 FB.ui({
                     method: 'feed',
@@ -253,7 +267,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     if ($check->success === TRUE): echo 'js-show-submit';
                     else: echo 'js-show-thank';
                     endif;
-                    ?>" <?php echo ($user_id==0)?  "id='reee'" : "id='loggedIn'";?>>Share your story</div>
+                    ?>" <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='FB.login();'" : "id='loggedIn' "; ?>>Share your story</div>
 
                     <div class="rect-btn js-show-stories">View Stories</div>
                 </div>
@@ -474,7 +488,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <ul class="image-categories-list">
                             <?php foreach ($categories as $category): ?>
                                 <li>
-                                    <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-categry="<?php echo $category->id; ?>">
+                                    <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
                                     <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
                                 </li>
                             <?php endforeach; ?>
