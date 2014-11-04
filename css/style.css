@@ -858,6 +858,9 @@ footer a + a{
 	width: 100%;
 	height: auto;
 }
+.overlayed-image-gallery .overlayed-images .sg-item{
+	max-height: 100%;
+}
 .overlayed-images .hover-content{
 	position: absolute;
 	bottom: 0;
@@ -989,7 +992,7 @@ footer a + a{
 	background: #d21428;
 	line-height: 40px;
 }
-.image-categories .toggle{
+.image-categories .toggle:not(.disabled){
 	cursor: pointer;
 }
 .image-categories .icon-categs{
