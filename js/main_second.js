@@ -175,12 +175,24 @@ $(document).ready(function () {
         }
     });
 // Masonry
-    var $container = $('.image-performance-wrap');
-    $container.masonry({
-        columnWidth: ".image-performance",
-        itemSelecter: ('.image-performance')
-    });
+    var $masonryCont = $('.image-performance-wrap');
+    $masonryCont.imagesLoaded(function(){
+        $masonryCont.masonry({
+            columnWidth: ".image-performance",
+            itemSelector: ('.image-performance')
+        });
+    })
 
+    $('.image-categories-list li').bind('click', function(){
+        console.log('here');
+        var categID = $(this).find('input').attr('data-category');
+        $('.image-performance').hide();
+        $('.image-performance[data-category="'+ categID +'"]').show();
+        $masonryCont.masonry({
+            columnWidth: ".image-performance[data-category='"+ categID +"']",
+            itemSelector: ".image-performance[data-category='"+ categID +"']"
+        })
+    });
 
 
 // Linked galleries controls
