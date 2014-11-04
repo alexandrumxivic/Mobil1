@@ -28,7 +28,9 @@ p{
 	text-transform: uppercase;
 }
 .top-area{
+	height: 616px;
 	background: url('../assets/topBg.jpg') no-repeat top left;
+	background-size: cover;
 }
 .top-area--title{
 	padding: 13px;
@@ -420,8 +422,9 @@ footer{
 }
 footer a{
 	display: inline-block;
-	vertical-align: top;
+	vertical-align: middle;
 	height: 15px;
+	line-height: 48px;
 	padding: 0 10px;
 	color: #fff;
 	font-family:"EmPrintSemi";
