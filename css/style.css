@@ -819,7 +819,21 @@ footer a + a{
 	transition: opacity .3s ease, visibility .3s ease;
 	background: url('../assets/overlayedImagesBg.png') repeat-x top left;
 }
+.overlayed-image-gallery-closer {
+	position:absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+}
+.overlayed-image-gallery .arrow-btn{
+	position: relative;
+	z-index: 2;
+}
 .overlayed-image-gallery .rect-btn{
+	position: relative;
+	z-index: 2;
 	margin-top: 23px;
 	background: #0c0c0c;
 }

@@ -534,6 +534,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <div class="overlayed-image-gallery linked-container overlay sg">
+                            <div class="overlayed-image-gallery-closer js-close-overlay"></div>
                             <div class="arrow-btn small sg-prev">
                                 <span class="icon-arrow-left"></span>
                             </div>
