@@ -176,10 +176,12 @@ $(document).ready(function () {
     });
 // Masonry
     var $masonryCont = $('.image-performance-wrap');
-    $masonryCont.masonry({
-        columnWidth: ".image-performance",
-        itemSelector: ('.image-performance')
-    });
+    $masonryCont.imagesLoaded(function(){
+        $masonryCont.masonry({
+            columnWidth: ".image-performance",
+            itemSelector: ('.image-performance')
+        });
+    })
 
     $('.image-categories-list li').bind('click', function(){
         console.log('here');

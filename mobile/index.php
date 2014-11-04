@@ -58,6 +58,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         
         <script type="text/javascript" src="js/masonry.js"></script>
+        <script type="text/javascript" src="js/imagesloaded.js"></script>
         <script type="text/javascript" src="js/main_second.js"></script>
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <link rel="stylesheet" href="masterslider/style/masterslider.css"/>

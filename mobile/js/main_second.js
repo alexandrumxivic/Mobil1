@@ -186,6 +186,7 @@ $(document).ready(function () {
     })
 // Masonry
     var $masonryCont = $('.image-performance-wrap');
+
     $masonryCont.masonry({
         columnWidth: ".image-performance",
         itemSelector: ('.image-performance')
