@@ -731,6 +731,16 @@ footer a + a{
 	text-align: center;
 	text-decoration: underline;
 }
+.image-performance .hover-content .center:after{
+	display: inline-block;
+	vertical-align: middle;
+	width: 12px;
+	height: 13px;
+	margin-left: 6px;
+	background: url('../assets/arrow-right-double.png') no-repeat top left;
+	background-size: contain;
+	content: "";
+}
 .image-performance .hover-content:after{
 	position: absolute;
 	z-index: 0;
@@ -922,7 +932,7 @@ footer a + a{
 }
 .image-categories{
 	position: absolute;
-	z-index: 2;
+	z-index: 3;
 	top: -20px;
 	left: 20px;
 	color: #fff;
@@ -974,8 +984,9 @@ footer a + a{
 }
 .image-categories-list li{
 	display: block;
-	text-align: center;
 	height: 30px;
+	padding: 0 20px;
+	text-align: left;
 	line-height: 30px;
 	cursor: pointer;
 }
@@ -1002,4 +1013,12 @@ footer a + a{
 	width: 0;
 	height: 30px;
 	opacity: 0;
+}
+
+sup{
+	font-size: 8px;
+}
+#share{
+	text-decoration: none;
+	color: #fff;
 }

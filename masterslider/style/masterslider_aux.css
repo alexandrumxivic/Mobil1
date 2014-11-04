@@ -23,6 +23,12 @@
 	position: absolute;
 	z-index: 3;
 }
+.ms-slide .slide-picture img{
+	widht: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
 .ms-slide .slide-text-container {
 	position: absolute;
 	z-index: 3;

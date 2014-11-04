@@ -162,7 +162,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     <span class="emph">What's yours?</span>
 
                     <p>
-                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1 synthetic motor oil or some other great Mobil 1 gear.
+                        Share your Mobil 1<sup>TM</sup> performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1 synthetic motor oil or some other great Mobil 1 gear.
                     </p>
 
                     <div class="rect-btn blue js-show-submit" >Share your story</div>
