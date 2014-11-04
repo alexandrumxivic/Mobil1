@@ -523,8 +523,9 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                                         <div class="hover-content">
                                             <?php echo $images_gal->description; ?>
-                                            <div class="center">view</div>
                                         </div>
+
+                                        <div class="center">view</div>
                                     </li>
                                 <?php endforeach; ?>
 
