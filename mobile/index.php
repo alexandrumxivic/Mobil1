@@ -23,6 +23,11 @@ $stories = file_get_contents(BASE_URL . 'stories/list');
 
 $stories = json_decode($stories);
 $stories = $stories->response;
+
+/* get categories */
+$categories = file_get_contents(BASE_URL . 'categories/list');
+$categories = json_decode($categories);
+$categories = $categories->categories;
 /* check if submitted story by id */
 
 $check = file_get_contents(BASE_URL . 'stories/check/' . $user_id);
@@ -63,6 +68,18 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
         <!-- End MasterSlider files-->
         <script type="text/javascript" src="js/main.js"></script>
         <script>
+            var picture_p;
+            var userId_p;
+            var story_p;
+        </script>
+        <?php if ($check->success == false): ?>
+            <script>
+                var picture_p = '<?php echo $check->image_unsecured; ?>';
+                var userId_p = '<?php echo $check->facebook_id; ?>';
+                var story_p = '<?php echo $check->story; ?>';
+            </script>
+        <?php endif; ?>
+        <script>
             $(document).ready(function () {
                 $("form").validate({
                     rules: {
@@ -95,6 +112,9 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
                                     $("#submited-story-author").append(returndata.name);
                                     $("#submited-story").append(returndata.story);
+                                    picture_p = returndata.image_unsecured;
+                                    userId_p = returndata.facebook_id;
+                                    story_p = returndata.story;
                                 }
                                 $(".submit-story-wrap").hide();
                                 $(".thank-msg-wrap").show();
@@ -111,6 +131,21 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     }
                 });
             });
+        </script>
+        <script>
+            function share_caption(picture, userId, story) {
+                FB.ui({
+                    method: 'feed',
+                    title: "Mobile 1 Performance Story",
+                    link: 'https://mobile1.projects-directory.com',
+                    name: "My Submitted Story",
+                    picture: 'http://mobile1.projects-directory.com/cms/web/uploads/' + picture,
+                    to: userId,
+                    caption: '',
+                    description: story,
+                    message: 'This is my story...'
+                });
+            }
         </script>
     </head>
     <body>
@@ -130,7 +165,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1 synthetic motor oil or some other great Mobil 1 gear.
                     </p>
 
-                    <div class="rect-btn blue js-show-submit">Share your story</div>
+                    <div class="rect-btn blue js-show-submit" >Share your story</div>
 
                     <div class="rect-btn js-show-stories">View Stories</div>
                 </div>
@@ -320,17 +355,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         Now <b>share it</b> with the rest of your friends!
                     </div>
                     <!-- share button -->
-                    <div id="fb-root"></div>
-                    <script>(function (d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id))
-                                return;
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=597677730337203&version=v2.0";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));</script>
-                    <div class="fb-share-button" data-href="https://mobile1.projects-directory.com" og:title></div>
+                    <div class="rect-btn red" ><a href='#' id='share' onclick="share_caption(picture_p, userId_p, story_p)">Share</a></div>
                     <!-- Share button -->
                     <div class="rect-btn js-show-stories">View other stories</div>
                 </div>
@@ -391,23 +416,13 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <ul class="image-categories-list">
-                            <li>
-                                <input id="categ1" type="radio" name="image-category" value="cat1">
+                            <?php foreach ($categories as $category): ?>
+                                <li>
+                                    <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
+                                    <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
+                                </li>
+                            <?php endforeach; ?>
 
-                                <label for="categ1">Category 1</label>
-                            </li>
-
-                            <li>
-                                <input id="categ2" type="radio" name="image-category" value="cat1">
-
-                                <label for="categ2">Category 2</label>
-                            </li>
-
-                            <li>
-                                <input id="categ3" type="radio" name="image-category" value="cat1">
-
-                                <label for="categ3">Category 3</label>
-                            </li>
                         </ul>
                     </div>
 
@@ -421,7 +436,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     <li class="image-performance" data-index="<?php
                                     echo $i;
                                     $i++;
-                                    ?>">
+                                    ?>" data-category="<?php echo $images_gal->category; ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">

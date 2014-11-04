@@ -44,16 +44,21 @@ if ($isFromFacebook && $detect->isTablet()) {
 /* defines */
 
 define('BASE_URL', 'https://mobile1.projects-directory.com/cms/web/');
+define('APP_URL', 'https://mobile1.projects-directory.com/');
 /* get required info */
 /* get Stories */
 $stories = file_get_contents(BASE_URL . 'stories/list');
-
+$user_id = (isset($signedRequestJSON->user_id)) ? $signedRequestJSON->user_id : 0;
 $stories = json_decode($stories);
 $stories = $stories->response;
 /* check if submitted story by id */
 
-$check = file_get_contents(BASE_URL . 'stories/check/' . $signedRequestJSON->user_id);
+$check = file_get_contents(BASE_URL . 'stories/check/' . $user_id);
 $check = json_decode($check);
+/* get categories */
+$categories = file_get_contents(BASE_URL . 'categories/list');
+$categories = json_decode($categories);
+$categories = $categories->categories;
 
 /* get image gallery */
 $image_gallery = file_get_contents(BASE_URL . 'images/list');
@@ -105,23 +110,20 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
         <script src="masterslider/masterslider.js"></script>
         <!-- End MasterSlider files-->
         <script type="text/javascript" src="js/main.js"></script>
+
         <script>
-            $('#share').on('click', function (e) {
-                if (Application.selector !== null) {
-                    ga('send', 'event', 'button', 'click', 'Select a Veteran');
-                    FB.ui({
-                        method: 'feed',
-                        title: "We're Celebrating a Better Nation!",
-                        link: Application.share.URL,
-                        name: "We're Celebrating a Better Nation!",
-                        picture: Application.share.photourl + "images/shareLogo.png",
-                        to: Application.data.id,
-                        caption: '',
-                        description: "You've been honored for serving our country through sacrifice and dedication. Thank you. Now we'd like to help you Find Better&reg; in today's job market and maybe win some great prizes, too!",
-                        message: ''
-                    });
-                }
-            });
+            var picture_p;
+            var userId_p;
+            var story_p;
+        </script>
+        <?php if ($check->success == false): ?>
+            <script>
+                var picture_p = '<?php echo $check->image_unsecured; ?>';
+                var userId_p = '<?php echo $check->facebook_id; ?>';
+                var story_p = '<?php echo $check->story; ?>';
+            </script>
+        <?php endif; ?>
+        <script>
             $(document).ready(function () {
                 $("form").validate({
                     rules: {
@@ -154,6 +156,9 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
                                     $("#submited-story-author").append(returndata.name);
                                     $("#submited-story").append(returndata.story);
+                                    picture_p = returndata.image_unsecured;
+                                    userId_p = returndata.facebook_id;
+                                    story_p = returndata.story;
                                 }
                                 $(".submit-story-wrap").hide();
                                 $(".thank-msg-wrap").show();
@@ -170,6 +175,21 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     }
                 });
             });
+        </script>
+        <script>
+            function share_caption(picture, userId, story) {
+                FB.ui({
+                    method: 'feed',
+                    title: "Mobile 1 Performance Story",
+                    link: 'https://mobile1.projects-directory.com',
+                    name: "My Submitted Story",
+                    picture: 'http://mobile1.projects-directory.com/cms/web/uploads/' + picture,
+                    to: userId,
+                    caption: '',
+                    description: story,
+                    message: 'This is my story...'
+                });
+            }
         </script>
     </head>
     <body>
@@ -233,7 +253,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     if ($check->success === TRUE): echo 'js-show-submit';
                     else: echo 'js-show-thank';
                     endif;
-                    ?>">Share your story</div>
+                    ?>" <?php echo ($user_id==0)?  "id='reee'" : "id='loggedIn'";?>>Share your story</div>
 
                     <div class="rect-btn js-show-stories">View Stories</div>
                 </div>
@@ -289,7 +309,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                         <div class="cell">
                             <input type="number" placeholder="Mileage (optional)" name="mileage">
-                            <input type="hidden" name="facebook_id" value="<?php echo $signedRequestJSON->user_id; ?>">
+                            <input type="hidden" name="facebook_id" value="<?php echo $user_id; ?>">
                         </div>
                     </div>
 
@@ -382,7 +402,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     <div class="uppercase">
                         Now <b>share it</b> with the rest of your friends!
                     </div>
-                    <div class="rect-btn red" ><a href='#' id='share'>Share</a></div>
+                    <?php if ($check->success == FALSE) { ?>
+
+
+
+                    <?php } ?>
+                    <div class="rect-btn red" ><a href='#' id='share' onclick="share_caption(picture_p, userId_p, story_p)">Share</a></div>
                     <div class="rect-btn js-show-stories">View other stories</div>
                 </div>
 
@@ -447,23 +472,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <ul class="image-categories-list">
-                            <li>
-                                <input id="categ1" type="radio" name="image-category" value="cat1">
-
-                                <label for="categ1">Category 1</label>
-                            </li>
-
-                            <li>
-                                <input id="categ2" type="radio" name="image-category" value="cat1">
-
-                                <label for="categ2">Category 2</label>
-                            </li>
-
-                            <li>
-                                <input id="categ3" type="radio" name="image-category" value="cat1">
-
-                                <label for="categ3">Category 3</label>
-                            </li>
+                            <?php foreach ($categories as $category): ?>
+                                <li>
+                                    <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-categry="<?php echo $category->id; ?>">
+                                    <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="scroll-visible-area">
@@ -475,17 +489,17 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 foreach ($image_gallery as $images_gal):
                                     ?>
                                     <li class="image-performance" data-index="<?
-                                        echo $i;
-                                        $i++;
-                                        ?>">
+                                    echo $i;
+                                    $i++;
+                                    ?>" data-category="<?php echo $images_gal->category; ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">
-    <?php echo $images_gal->description; ?>
+                                            <?php echo $images_gal->description; ?>
                                             <div class="center">view</div>
                                         </div>
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
 
 
                             </ul>
@@ -497,19 +511,19 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             </div>
 
                             <ul class="overlayed-images sg-content linked-control">
-                                    <?php $c = 1; ?>
-                                    <?php foreach ($image_gallery as $images_gal): ?>
+                                <?php $c = 1; ?>
+                                <?php foreach ($image_gallery as $images_gal): ?>
                                     <li class="sg-item" data-index="<?php echo $c; ?>">
-    <?php $c++; ?>
+                                        <?php $c++; ?>
                                         <div class="pic">
                                             <img src="<?php echo $images_gal->image_url; ?>">
                                         </div>
 
                                         <div class="hover-content">
-                                    <?php echo $images_gal->description; ?>
+                                            <?php echo $images_gal->description; ?>
                                         </div>
                                     </li>
-<?php endforeach; ?>                                
+                                <?php endforeach; ?>                                
                             </ul>
 
                             <div class="arrow-btn small sg-next">
@@ -557,12 +571,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             <?php $i = 1; ?>
                             <?php foreach ($video_gallery as $videos): ?>
                                 <li class="scroller--item active" data-index="<?php
-                                    echo $i;
-                                    $i++;
-                                    ?>">
+                                echo $i;
+                                $i++;
+                                ?>">
                                     <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg">
                                 </li>
-<?php endforeach; ?>
+                            <?php endforeach; ?>
                         </ul>
 
                         <div class="arrow-btn js-scroller-next">
@@ -586,14 +600,14 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 <?php $i = 1; ?>
                                 <?php foreach ($video_gallery as $videos): ?>
                                     <li class="story-box video-story sg-item active" data-index="<?php
-                                        echo $i;
-                                        $i++;
-                                        ?>">
+                                    echo $i;
+                                    $i++;
+                                    ?>">
                                         <div class="pic">
                                             <iframe width="482" height="288" src="//www.youtube.com/embed/<?php echo $videos->video_id; ?>?rel=0&autoplay=0" frameborder="0" allowfullscreen ></iframe>
                                         </div>
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
                             </ul>
 
                             <div class="arrow-btn small sg-next">
