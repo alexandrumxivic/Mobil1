@@ -15,6 +15,7 @@ if (isset($_REQUEST['signed_request'])) {
 <?php include "Facebook.php"; ?> 
 <?php
 /* defines */
+
 $user_id = (isset($signedRequestJSON->user_id)) ? $signedRequestJSON->user_id : '0';
 define('BASE_URL', 'https://mobile1.projects-directory.com/cms/web/');
 /* get required info */
@@ -107,15 +108,15 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             contentType: false,
                             processData: false,
                             success: function (returndata) {
-                                if (returndata.success === true) {
-                                    $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
-                                    $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
-                                    $("#submited-story-author").append(returndata.name);
-                                    $("#submited-story").append(returndata.story);
-                                    picture_p = returndata.image_unsecured;
-                                    userId_p = returndata.facebook_id;
-                                    story_p = returndata.story;
-                                }
+                                console.log(returndata);
+                                $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
+                                $("#submited-story-pic").append("<img src='" + returndata.image + "' width='278' height='278'>");
+                                $("#submited-story-author").append(returndata.name);
+                                $("#submited-story").append(returndata.story);
+                                picture_p = returndata.image_unsecured;
+                                userId_p = returndata.facebook_id;
+                                story_p = returndata.story;
+
                                 $(".submit-story-wrap").hide();
                                 $(".thank-msg-wrap").show();
                                 $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
@@ -147,6 +148,51 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 });
             }
         </script>
+        <script>
+            function loginFacebook() {
+                FB.getLoginStatus(function (response) {
+
+                    if (response.status !== 'connected') {
+                        $('.js-show-submit').unbind('click');
+                        FB.login(function (response) {
+                            if (response.authResponse) {
+                                console.log(response);
+                                FB.api('/me', function (response) {
+                                    $('#notLoggedIn').attr('onclick', '').unbind('click');
+                                    $('#notLoggedIn').attr('id', 'loggedIn');
+                                    $('#facebook_id').val(response.id);
+                                    $('.js-show-submit').bind('click', function () {
+                                        $(this).parents('.top-module').hide(300);
+                                        $('.submit-story-wrap').show(300);
+                                    });
+                                    $('.landing-intro').hide(300);
+                                    $('.submit-story-wrap').show(300);
+                                });
+                            }
+
+                        });
+                    } else {
+                        $.ajax({
+                            url: "<?php echo BASE_URL; ?>stories/check/" + response.authResponse.userID
+                        }).done(function (data) {
+                            $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + data.facebook_id + "/picture?type=normal' width='80' height='80'>");
+                            $("#submited-story-pic").append("<img src='" + data.image + "' width='278' height='278'>");
+                            $("#submited-story-author").append(data.name);
+                            $("#submited-story").append(data.story);
+                        });
+                        $('#notLoggedIn').attr('onclick', '').unbind('click');
+                        $('#notLoggedIn').attr('id', 'loggedIn');
+                        $('.js-show-submit').bind('click', function () {
+                            $(this).parents('.top-module').hide(300);
+                            $('.submit-story-wrap').show(300);
+                        });
+                        $('.landing-intro').hide(300);
+                        $('.submit-story-wrap').show(300);
+                        $('#facebook_id').val(response.authResponse.userID);
+                    }
+                });
+            }
+        </script>
     </head>
     <body>
     <main class="restricted">
@@ -162,10 +208,10 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     <span class="emph">What's yours?</span>
 
                     <p>
-                        Share your Mobil 1<sup>TM</sup> performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1 synthetic motor oil or some other great Mobil 1 gear.
+                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1 synthetic motor oil or some other great Mobil 1 gear.
                     </p>
 
-                    <div class="rect-btn blue js-show-submit" >Share your story</div>
+                    <div class="rect-btn blue js-show-submit"  <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='loginFacebook();'" : "id='loggedIn' "; ?>>Share your story</div>
 
                     <div class="rect-btn js-show-stories">View Stories</div>
                 </div>
@@ -265,7 +311,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                         <div class="cell">
                             <input type="number" placeholder="Mileage (optional)" name="mileage">
-                            <input type="hidden" name="facebook_id" value="<?php echo $user_id; ?>">
+                            <input type="hidden" name="facebook_id" id="facebook_id" value="<?php echo $user_id; ?>">
                         </div>
                     </div>
 

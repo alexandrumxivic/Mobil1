@@ -164,6 +164,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 $(".thank-msg-wrap").show();
                                 $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
                                 $('.js-show-submit').unbind('click');
+                                
                                 $('.js-show-thank').bind('click', function () {
                                     $(this).parents('.top-module').hide(300);
                                     $('.submit-story-wrap').hide();
@@ -172,20 +173,6 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             }
                         });
 
-                    }
-                });
-            });
-        </script>
-        <script>
-            $(document).ready(function () {
-                FB.login(function (response) {
-                    if (response.authResponse) {
-                        console.log('Welcome!  Fetching your information.... ');
-                        FB.api('/me', function (response) {
-                            console.log('Good to see you, ' + response.name + '.');
-                        });
-                    } else {
-                        console.log('User cancelled login or did not fully authorize.');
                     }
                 });
             });
@@ -204,6 +191,31 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     message: 'This is my story...'
                 });
             }
+        </script>
+        <script>
+            function loginFacebook() {
+                $('.js-show-submit').unbind('click');
+                FB.login(function (response) {
+
+                    if (response.authResponse) {
+                        console.log('Welcome!  Fetching your information.... ');
+                        FB.api('/me', function (response) {
+                            $('#notLoggedIn').attr('onclick', '').unbind('click');
+                            $('#notLoggedIn').attr('id','loggedIn');
+                            $('#facebook_id').val(response.id);
+                            $('.js-show-submit').bind('click', function () {
+                                $(this).parents('.top-module').hide(300);
+                                $('.submit-story-wrap').show(300);
+                            });
+                            $('.landing-intro').hide(300);
+                            $('.submit-story-wrap').show(300);
+                        });
+                    }
+
+                });
+            }
+            ;
+
         </script>
     </head>
     <body>
@@ -267,7 +279,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     if ($check->success === TRUE): echo 'js-show-submit';
                     else: echo 'js-show-thank';
                     endif;
-                    ?>" <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='FB.login();'" : "id='loggedIn' "; ?>>Share your story</div>
+                    ?>" <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='loginFacebook();'" : "id='loggedIn' "; ?>>Share your story</div>
 
                     <div class="rect-btn js-show-stories">View Stories</div>
                 </div>
@@ -323,7 +335,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                         <div class="cell">
                             <input type="number" placeholder="Mileage (optional)" name="mileage">
-                            <input type="hidden" name="facebook_id" value="<?php echo $user_id; ?>">
+                            <input type="hidden" name="facebook_id" id="facebook_id" value="<?php echo $user_id; ?>">
                         </div>
                     </div>
 
