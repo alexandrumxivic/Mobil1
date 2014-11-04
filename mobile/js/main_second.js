@@ -114,7 +114,13 @@ $(document).ready(function () {
         $(this).parents('.media-section').removeClass('expanded')
                 .siblings('.media-section').removeClass('collapsed');
 
-        $('.overlayed-image-gallery').removeClass('active')
+        $('.overlayed-image-gallery').removeClass('active');
+
+        if($(this).parents('.images').length) {
+            $('.images').attr('style','');
+            $('.scroll-visible-area').attr('style','');
+             $('.scrollable').attr('style','');
+        }      
     })
 
     $('.js-switch-section').bind('click', function () {
@@ -204,20 +210,38 @@ $(document).ready(function () {
     });
 
 // SCroll for the image gallery
+    var vertScrollOffset = 0; // Difference between the first expanded view of the images height & the scrolling height
+    var firstAttempt = true;
+    
     $('.js-scroll-images-next').bind('click', function () {
         var btn = $(this);
+        var scrollH = 300;
 
-        if (!btn.hasClass('.disabled')) {
-            var target = $('.image-performance-wrap');
-            var targetTop = parseInt(target.css('top'));
-            var scrollH = target.parent().height();
-            var remainingScroll = target.height() % scrollH;
+        if(firstAttempt){
+            vertScrollOffset = $('.scrollable').height() - scrollH;
+            console.log(vertScrollOffset);
+        }
 
-            if (Math.abs(targetTop) < target.height() - scrollH) {
-                if (Math.abs(targetTop) < target.height() - scrollH - remainingScroll) {
-                    target.css('top', targetTop - scrollH);
+        if (!btn.hasClass('.disabled')) {firstAttempt = false;
+            var target = $('.images.expanded');
+            var targetAux = $('.scroll-visible-area');
+            var targetAuxMask = $('.scrollable');
+            var scrolledCont = $('.image-performance-wrap');
+            var targetH = target.height();
+            var targetAuxH = targetAux.height();
+            var remainingScroll = (scrolledCont.height() - vertScrollOffset) % scrollH;
+
+            if (targetH < scrolledCont.height()) {
+                if (scrolledCont.height() - targetAuxMask.height() > remainingScroll) {
+                    console.log('a')
+                    target.height(target.height() + scrollH);
+                    targetAux.height(targetAux.height() + scrollH);
+                    targetAuxMask.height(targetAuxMask.height() + scrollH);
                 } else {
-                    target.css('top', targetTop - remainingScroll);
+                    console.log('b')
+                    target.height(target.height() + vertScrollOffset);
+                    targetAux.height(targetAux.height() + vertScrollOffset);
+                    targetAuxMask.height(targetAuxMask.height() + vertScrollOffset);
                     btn.addClass('disabled')
                 }
             }
