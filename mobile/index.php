@@ -57,7 +57,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
         <link rel="stylesheet" type="text/css" href="css/icons.css">
         <link rel="stylesheet" type="text/css" href="css/main.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        
+
         <script type="text/javascript" src="js/masonry.js"></script>
         <script type="text/javascript" src="js/imagesloaded.js"></script>
         <script type="text/javascript" src="js/main_second.js"></script>
@@ -110,24 +110,25 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                             contentType: false,
                             processData: false,
                             success: function (returndata) {
-                                console.log(returndata);
-                                $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
-                                $("#submited-story-pic").append("<img src='" + returndata.image + "' width='278' height='278'>");
-                                $("#submited-story-author").append(returndata.name);
-                                $("#submited-story").append(returndata.story);
-                                picture_p = returndata.image_unsecured;
-                                userId_p = returndata.facebook_id;
-                                story_p = returndata.story;
+                                if (returndata.success === true) {
+                                    $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
+                                    $("#submited-story-pic").append("<img src='" + returndata.image + "' width='278' height='278'>");
+                                    $("#submited-story-author").append(returndata.name);
+                                    $("#submited-story").append(returndata.story);
+                                    picture_p = returndata.image_unsecured;
+                                    userId_p = returndata.facebook_id;
+                                    story_p = returndata.story;
 
-                                $(".submit-story-wrap").hide();
-                                $(".thank-msg-wrap").show();
-                                $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
-                                $('.js-show-submit').unbind('click');
-                                $('.js-show-thank').bind('click', function () {
-                                    $(this).parents('.top-module').hide(300);
-                                    $('.submit-story-wrap').hide();
-                                    $('.thank-msg-wrap').show(300);
-                                });
+                                    $(".submit-story-wrap").hide();
+                                    $(".thank-msg-wrap").show();
+                                    $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
+                                    $('.js-show-submit').unbind('click');
+                                    $('.js-show-thank').bind('click', function () {
+                                        $(this).parents('.top-module').hide(300);
+                                        $('.submit-story-wrap').hide();
+                                        $('.thank-msg-wrap').show(300);
+                                    });
+                                }
                             }
                         });
 
@@ -177,17 +178,26 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         $.ajax({
                             url: "<?php echo BASE_URL; ?>stories/check/" + response.authResponse.userID
                         }).done(function (data) {
-                            $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + data.facebook_id + "/picture?type=normal' width='80' height='80'>");
-                            $("#submited-story-pic").append("<img src='" + data.image + "' width='278' height='278'>");
-                            $("#submited-story-author").append(data.name);
-                            $("#submited-story").append(data.story);
+                            if (data.success === false) {
+                                $('.js-show-submit').unbind('click');
+                                $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + data.facebook_id + "/picture?type=normal' width='80' height='80'>");
+                                $("#submited-story-pic").append("<img src='" + data.image + "' width='278' height='278'>");
+                                $("#submited-story-author").append(data.name);
+                                $("#submited-story").append(data.story);
+                                $('.js-show-submit').bind('click', function () {
+                                    $(this).parents('.top-module').hide(300);
+                                    $('.thank-msg-wrap').show(300);
+                                });
+                            } else {
+                                $('.js-show-submit').bind('click', function () {
+                                    $(this).parents('.top-module').hide(300);
+                                    $('.submit-story-wrap').show(300);
+                                });
+                            }
                         });
                         $('#notLoggedIn').attr('onclick', '').unbind('click');
                         $('#notLoggedIn').attr('id', 'loggedIn');
-                        $('.js-show-submit').bind('click', function () {
-                            $(this).parents('.top-module').hide(300);
-                            $('.submit-story-wrap').show(300);
-                        });
+
                         $('.landing-intro').hide(300);
                         $('.submit-story-wrap').show(300);
                         $('#facebook_id').val(response.authResponse.userID);
@@ -410,23 +420,23 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                 <div class="story-preview story-box">
 
-                    <div class="pic">
-                        <?php echo ($check->success === false) ? "<img src='" . $check->image . "'/>" : ''; ?>
+                    <div class="pic" id="submited-story-pic">
+
                     </div>
 
                     <div class="author">
-                        <div class="author--pic">
-                            <?php echo ($check->success === false) ? "<img src='https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal' />" : ''; ?>
+                        <div class="author--pic" id="submited-story-author-pic">
+
                         </div>
                     </div>
 
-                    <span class="author--name">- <?php echo ($check->success === false) ? $check->name : ''; ?></span>
+                    <span class="author--name" id="submited-story-author">- </span>
 
                     <div class="content">
                         <span class="content--title">My Performance Story:</span>
 
-                        <p class="content--text">
-                            <?php echo ($check->success === false) ? $check->story : ''; ?>
+                        <p class="content--text" id="submited-story">
+
                         </p>
                     </div>
 
