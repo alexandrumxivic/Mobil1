@@ -218,7 +218,7 @@ $(document).ready(function () {
     });
 
     $('.js-close-overlay').bind('click', function () {
-        $(this).parents('.overlay').removeClass('active');
+        $(this).parents('.overlay').removeClass('active').find('.active').removeClass('active');
     });
 
 
