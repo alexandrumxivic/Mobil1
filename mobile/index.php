@@ -56,6 +56,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
         <link rel="stylesheet" type="text/css" href="css/icons.css">
         <link rel="stylesheet" type="text/css" href="css/main.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        
         <script type="text/javascript" src="js/masonry.js"></script>
         <script type="text/javascript" src="js/main_second.js"></script>
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>
