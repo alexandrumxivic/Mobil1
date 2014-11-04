@@ -932,7 +932,7 @@ footer a + a{
 }
 .image-categories{
 	position: absolute;
-	z-index: 2;
+	z-index: 3;
 	top: -20px;
 	left: 20px;
 	color: #fff;
@@ -984,8 +984,9 @@ footer a + a{
 }
 .image-categories-list li{
 	display: block;
-	text-align: center;
 	height: 30px;
+	padding: 0 20px;
+	text-align: left;
 	line-height: 30px;
 	cursor: pointer;
 }
