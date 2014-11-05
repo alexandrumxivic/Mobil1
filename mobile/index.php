@@ -42,6 +42,17 @@ $image_gallery = ($image_gallery->success === 1) ? $image_gallery->response : NU
 $video_gallery = file_get_contents(BASE_URL . 'videos/list');
 $video_gallery = json_decode($video_gallery);
 $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NULL;
+
+/// functions
+function trim_story($text) {
+    if (strlen($text) > 50) {
+        $text = $text . ' ';
+        $text = substr($text, 0, 50);
+        $text = substr($text, 0, strrpos($text, ' '));
+        $text = '&#8220;' . $text . '...&#8221;';
+    }
+    return $text;
+}
 ?>
 
 <html xmlns="https://www.w3.org/1999/xhtml">
@@ -75,13 +86,13 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
             var userId_p;
             var story_p;
         </script>
-        <?php if ($check->success == false): ?>
+<?php if ($check->success == false): ?>
             <script>
                 var picture_p = '<?php echo $check->image_unsecured; ?>';
                 var userId_p = '<?php echo $check->facebook_id; ?>';
-                var story_p = '<?php echo $check->story; ?>';
+                var story_p = "<?php echo '&#8220;' . $stories[$key]->story . '&#8221;'; ?>";
             </script>
-        <?php endif; ?>
+<?php endif; ?>
         <script>
             $(document).ready(function () {
                 $("form").validate({
@@ -114,7 +125,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
                                     $("#submited-story-pic").append("<img src='" + returndata.image + "' width='278' height='278'>");
                                     $("#submited-story-author").append(returndata.name);
-                                    $("#submited-story").append(returndata.story);
+                                    $("#submited-story").append('&#8220;' + returndata.story + '&#8221;');
                                     picture_p = returndata.image_unsecured;
                                     userId_p = returndata.facebook_id;
                                     story_p = returndata.story;
@@ -183,7 +194,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + data.facebook_id + "/picture?type=normal' width='80' height='80'>");
                                 $("#submited-story-pic").append("<img src='" + data.image + "' width='278' height='278'>");
                                 $("#submited-story-author").append(data.name);
-                                $("#submited-story").append(data.story);
+                                $("#submited-story").append('&#8220;' + data.story + '&#8221;');
                                 $('.js-show-submit').bind('click', function () {
                                     $(this).parents('.top-module').hide(300);
                                     $('.thank-msg-wrap').show(300);
@@ -220,7 +231,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     <span class="emph">What's yours?</span>
 
                     <p>
-                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1 synthetic motor oil or some other great Mobil 1 gear.
+                        Share your Mobil 1<sup>TM</sup> performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1<sup>TM</sup> synthetic motor oil or some other great Mobil 1<sup>TM</sup> gear.
                     </p>
 
                     <div class="rect-btn blue js-show-submit"  <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='loginFacebook();'" : "id='loggedIn' "; ?>>Share your story</div>
@@ -256,11 +267,11 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     <span class="content--title">My Story:</span>
 
                                     <p class="content--text">
-                                        <?php echo $stories[$key]->story; ?>
+    <?php echo trim_story($stories[$key]->story); ?>
                                     </p>
                                 </div>
                             </li>
-                        <?php endforeach; ?>
+<?php endforeach; ?>
                     </ul>
 
                     <div class="arrow-btn sg-next">
@@ -279,7 +290,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 <span class="emph">So you can keep your engine running like new.</span>
 
                 <p>
-                    Tell us your favorite story made possible by Mobil 1 to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
+                    Tell us your favorite story made possible by Mobil 1<sup>TM</sup> to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
                 </p>
 
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
@@ -349,7 +360,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="rect-btn js-top-default">Go Back</div>
 
-                    <input type="submit" class="rect-btn blue" placeholder="Submit">
+                    <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
                 </form>
             </div>
 
@@ -363,7 +374,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 <div id="slider-containter">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
-                        <?php foreach ($stories as $key => $value) : ?>
+<?php foreach ($stories as $key => $value) : ?>
                             <!-- new slide -->
                             <div class="ms-slide">
                                 <!-- slide background -->
@@ -378,7 +389,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 <div class="slide-text-container">
                                     <div class="slide-text">
                                         <h1>Here is our title</h1>
-                                        <p class="description"><?php echo $stories[$key]->story; ?></p>
+                                        <p class="description"><?php echo '&#8220;' . $stories[$key]->story . '&#8221;'; ?></p>
 
                                     </div>
                                 </div>
@@ -395,7 +406,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 <div class="slide-hover"><!-- --></div>
                             </div>
                             <!-- end of slide -->
-                        <?php endforeach; ?>
+<?php endforeach; ?>
                     </div>
                     <!-- end of masterslider -->
                 </div>
@@ -455,7 +466,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <p>
-                            Check out Mobil 1 in action with our Normal photos and more.
+                            Check out Mobil 1<sup>TM</sup> in action with our Normal photos and more.
                         </p>
 
                         <div class="rect-btn js-expand-section">Explore</div>
@@ -474,12 +485,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <ul class="image-categories-list">
-                            <?php foreach ($categories as $category): ?>
+<?php foreach ($categories as $category): ?>
                                 <li>
                                     <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
                                     <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
                                 </li>
-                            <?php endforeach; ?>
+<?php endforeach; ?>
 
                         </ul>
                     </div>
@@ -498,11 +509,11 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">
-                                            <?php echo $images_gal->description; ?>
+    <?php echo $images_gal->description; ?>
                                             <div class="center">view</div>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>
+<?php endforeach; ?>
                             </ul>
 
                             <div class="image-performance-scroll js-scroll-images-next">view more</div>
@@ -525,11 +536,11 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                         </div>
 
                                         <div class="hover-content">
-                                            <?php echo $images_gal->description; ?>
+    <?php echo $images_gal->description; ?>
                                         </div>
                                     </li>
 
-                                <?php endforeach; ?>
+<?php endforeach; ?>
                             </ul>
 
                             <div class="arrow-btn small sg-next">
@@ -556,7 +567,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <p>
-                            Watch now for more on how Mobil 1 keeps your engine running like new.
+                            Watch now for more on how Mobil 1<sup>TM</sup> keeps your engine running like new.
                         </p>
 
                         <div class="rect-btn js-expand-section">Explore</div>
@@ -572,7 +583,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <h3>Performance Videos</h3>
 
                         <p>
-                            Watch now for more on how Mobil 1 keeps your engine running like new.
+                            Watch now for more on how Mobil 1<sup>TM</sup> keeps your engine running like new.
                         </p>
 
                         <div class="video-performances-wrap sg">
@@ -591,7 +602,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                             <a href='https://www.youtube.com/watch?v=<?php echo $videos->video_id; ?>'><img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='182' width='278'></a>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>
+<?php endforeach; ?>
 
                             </ul>
 
@@ -602,8 +613,8 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                     </div>
 
                     <div class="scroller horizontal video-scroller linked-container">
-                        <div class="arrow-btn js-scroller-prev disabled">
-                            <span class="icon-arrow-up"></span>
+                        <div class="arrow-btn small js-scroller-prev disabled">
+                            <span class="icon-arrow-left"></span>
                         </div>
                         <div class="scroller--content-mask">
                             <ul class="scroller--content linked-control">
@@ -616,12 +627,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                         <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='60' width='80'>
 
                                     </li>
-                                <?php endforeach; ?>
+<?php endforeach; ?>
 
                             </ul>
                         </div>
-                        <div class="arrow-btn js-scroller-next">
-                            <span class="icon-arrow-down"></span>
+                        <div class="arrow-btn small js-scroller-next">
+                            <span class="icon-arrow-right"></span>
                         </div>
                     </div>
                 </div>

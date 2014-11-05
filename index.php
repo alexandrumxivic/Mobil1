@@ -68,6 +68,17 @@ $image_gallery = ($image_gallery->success === 1) ? $image_gallery->response : NU
 $video_gallery = file_get_contents(BASE_URL . 'videos/list');
 $video_gallery = json_decode($video_gallery);
 $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NULL;
+
+/// functions
+function trim_story($text) {
+    if (strlen($text) > 60) {
+        $text = $text . ' ';
+        $text = substr($text, 0, 60);
+        $text = substr($text, 0, strrpos($text, ' '));
+        $text = '&#8220;' . $text . '...&#8221;';
+    }
+    return $text;
+}
 ?>
 
 <html xmlns="https://www.w3.org/1999/xhtml">
@@ -121,7 +132,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
             <script>
                 var picture_p = '<?php echo $check->image_unsecured; ?>';
                 var userId_p = '<?php echo $check->facebook_id; ?>';
-                var story_p = '<?php echo $check->story; ?>';
+                var story_p = "<?php echo '&#8220;' . $stories[$key]->story . '&#8221;'; ?>";
             </script>
         <?php endif; ?>
         <script>
@@ -156,7 +167,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
                                     $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
                                     $("#submited-story-author").append(returndata.name);
-                                    $("#submited-story").append(returndata.story);
+                                    $("#submited-story").append('&#8220;' + returndata.story + '&#8221;');
                                     picture_p = returndata.image_unsecured;
                                     userId_p = returndata.facebook_id;
                                     story_p = returndata.story;
@@ -165,7 +176,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 $(".thank-msg-wrap").show();
                                 $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
                                 $('.js-show-submit').unbind('click');
-                                
+
                                 $('.js-show-thank').bind('click', function () {
                                     $(this).parents('.top-module').hide(300);
                                     $('.submit-story-wrap').hide();
@@ -202,7 +213,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         console.log('Welcome!  Fetching your information.... ');
                         FB.api('/me', function (response) {
                             $('#notLoggedIn').attr('onclick', '').unbind('click');
-                            $('#notLoggedIn').attr('id','loggedIn');
+                            $('#notLoggedIn').attr('id', 'loggedIn');
                             $('#facebook_id').val(response.id);
                             $('.js-show-submit').bind('click', function () {
                                 $(this).parents('.top-module').hide(300);
@@ -255,7 +266,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                     <span class="content--title">My Story:</span>
 
                                     <p class="content--text">
-                                        <?php echo $stories[$key]->story; ?>
+                                        <?php echo trim_story($stories[$key]->story); ?>
                                     </p>
                                 </div>
                             </li>
@@ -268,12 +279,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 </div>
 
                 <div class="landing-msg">
-                    <h3>Our normal is anything but</h3>
+                    <h3>Our normal is anything but.</h3>
 
                     <span class="emph">What's yours?</span>
 
                     <p>
-                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1&#8482; synthetic motor oil or some other great Mobil 1 gear.
+                        Share your Mobil 1<sup>TM</sup> performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1<sup>TM</sup>synthetic motor oil or some other great Mobil 1<sup>TM</sup> gear.
                     </p>
 
                     <div class="rect-btn go-to-form blue <?php
@@ -292,7 +303,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 <span class="emph">So you can keep your engine running like new.</span>
 
                 <p>
-                    Tell us your favorite story made possible by Mobil 1 to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
+                    Tell us your favorite story made possible by Mobil 1<sup>TM</sup> to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
                 </p>
 
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
@@ -362,13 +373,13 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="rect-btn js-top-default">Go Back</div>
 
-                    <input type="submit" class="rect-btn blue" placeholder="Submit">
+                    <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
                 </form>
             </div>
 
             <div class="view-stories-wrap top-module">
                 <div class="landing-msg">
-                    <h3>Our normal is anything but</h3>
+                    <h3>Our normal is anything but.</h3>
 
                     <span class="emph">So you can keep your engine running like new.</span>
                 </div>
@@ -391,7 +402,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                                 <div class="slide-text-container">
                                     <div class="slide-text">
                                         <h1>Here is our title</h1>
-                                        <p class="description">  <?php echo $stories[$key]->story; ?></p>
+                                        <p class="description">  <?php echo '&#8220;' . $stories[$key]->story . '&#8221;'; ?></p>
                                     </div>
                                 </div>
 
@@ -460,7 +471,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <span class="content--title">My Performance Story:</span>
 
                         <p class="content--text" id="submited-story">
-                            <?php echo ($check->success === false) ? $check->story : ''; ?>
+                            <?php echo ($check->success === false) ? '&#8220;' . $check->story . ' &#8221;' : ''; ?>
                             <!-- submitted story -->
                         </p>
                     </div>
@@ -480,7 +491,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <p>
-                            Check out Mobil 1 in action with our Normal photos and more.
+                            Check out Mobil 1<sup>TM</sup> in action with our Normal photos and more.
                         </p>
 
                         <div class="rect-btn js-expand-section">Explore</div>
@@ -534,6 +545,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <div class="overlayed-image-gallery linked-container overlay sg">
+                            <div class="overlayed-image-gallery-closer js-close-overlay"></div>
                             <div class="arrow-btn small sg-prev">
                                 <span class="icon-arrow-left"></span>
                             </div>
@@ -578,7 +590,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <p>
-                            Watch now for more on how Mobil 1 keeps your engine running like new.
+                            Watch now for more on how Mobil 1<sup>TM</sup> keeps your engine running like new.
                         </p>
 
                         <div class="rect-btn js-expand-section">Explore</div>
@@ -616,7 +628,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <h3>Performance Videos</h3>
 
                         <p>
-                            Watch now for more on how Mobil 1 keeps your engine running like new.
+                            Watch now for more on how Mobil 1<sup>TM</sup> keeps your engine running like new.
                         </p>
 
                         <div class="video-performances-wrap sg">
