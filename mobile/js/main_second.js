@@ -108,6 +108,10 @@ $(document).ready(function () {
 // Expanding & collapsing the performance pictures/videos sections
     $('.js-expand-section').bind('click', function () {
         $(this).parents('.media-section').addClass('expanded').siblings('.media-section').removeClass('expanded');
+        
+        $('.images').attr('style','');
+        $('.scroll-visible-area').attr('style','');
+        $('.scrollable').attr('style','');
     })
 
     $('.js-restore-default').bind('click', function () {
@@ -313,7 +317,7 @@ $(document).ready(function () {
 
 
 // Prepping the palceholder for the user's submitted story
-    // $('.story-preview .pic').height($('.story-preview').width())
+    $('.story-preview .pic').height($(window).width() - 60);
 
     $('.image-categories .toggle').bind('click', function () {
         $(this).parent().toggleClass('active');
