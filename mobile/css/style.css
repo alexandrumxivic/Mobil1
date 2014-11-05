@@ -34,7 +34,7 @@ p{
 	background-size: cover;
 }
 .top-area--title{
-	padding: 13px;
+	padding: 13px 7px;
 	color: #fff;
 	text-align: center;
 	text-transform: uppercase;
@@ -377,8 +377,13 @@ sup{
 	position: relative;
 	z-index: 1;
 }
+@media (max-width: 360px){
+	.images.expanded .media-section--cover .container{
+		vertical-align: top;
+		margin-top: 10px;
+	}
+}
 .media-section--cover h3{
-	letter-spacing: 3px;
 	font-size: 18px;
 	line-height: 16px;
 }

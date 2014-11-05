@@ -268,12 +268,12 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 </div>
 
                 <div class="landing-msg">
-                    <h3>Our normal is anything but</h3>
+                    <h3>Our normal is anything but.</h3>
 
                     <span class="emph">What's yours?</span>
 
                     <p>
-                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1&#8482; synthetic motor oil or some other great Mobil 1 gear.
+                        Share your Mobil 1<sup>TM</sup> performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1<sup>TM</sup>synthetic motor oil or some other great Mobil 1<sup>TM</sup> gear.
                     </p>
 
                     <div class="rect-btn go-to-form blue <?php
@@ -292,7 +292,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                 <span class="emph">So you can keep your engine running like new.</span>
 
                 <p>
-                    Tell us your favorite story made possible by Mobil 1 to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
+                    Tell us your favorite story made possible by Mobil 1<sup>TM</sup> to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
                 </p>
 
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
@@ -362,13 +362,13 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
 
                     <div class="rect-btn js-top-default">Go Back</div>
 
-                    <input type="submit" class="rect-btn blue" placeholder="Submit">
+                    <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
                 </form>
             </div>
 
             <div class="view-stories-wrap top-module">
                 <div class="landing-msg">
-                    <h3>Our normal is anything but</h3>
+                    <h3>Our normal is anything but.</h3>
 
                     <span class="emph">So you can keep your engine running like new.</span>
                 </div>
@@ -480,7 +480,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <p>
-                            Check out Mobil 1 in action with our Normal photos and more.
+                            Check out Mobil 1<sup>TM</sup> in action with our Normal photos and more.
                         </p>
 
                         <div class="rect-btn js-expand-section">Explore</div>
@@ -579,7 +579,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         </div>
 
                         <p>
-                            Watch now for more on how Mobil 1 keeps your engine running like new.
+                            Watch now for more on how Mobil 1<sup>TM</sup> keeps your engine running like new.
                         </p>
 
                         <div class="rect-btn js-expand-section">Explore</div>
@@ -617,7 +617,7 @@ $video_gallery = ($video_gallery->success === 1) ? $video_gallery->response : NU
                         <h3>Performance Videos</h3>
 
                         <p>
-                            Watch now for more on how Mobil 1 keeps your engine running like new.
+                            Watch now for more on how Mobil 1<sup>TM</sup> keeps your engine running like new.
                         </p>
 
                         <div class="video-performances-wrap sg">

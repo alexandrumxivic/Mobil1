@@ -563,9 +563,9 @@ footer a + a{
 }
 .submit-story input:not(.rect-btn),
 .submit-story textarea{
-	padding: 8px 20px;
+	padding: 7px 20px;
 	font-size: 15px;
-	line-height: 16px;
+	line-height: 18px;
 	border: 2px solid #fff;
 	background: #111;
 	-webkit-transition: border .3s ease;
@@ -573,6 +573,7 @@ footer a + a{
 	-o-transition: border .3s ease;
 	transition: border .3s ease;
 	box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 .submit-story input:focus,
 .submit-story textarea:focus{

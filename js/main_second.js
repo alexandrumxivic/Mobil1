@@ -215,7 +215,8 @@ $(document).ready(function () {
         var targetIndex = $(this).attr('data-index');
         $('.overlayed-image-gallery li[data-index="' + targetIndex + '"]').addClass('active');
 
-        $('.image-categories .toggle').addClass('disabled')
+        $('.image-categories .toggle').addClass('disabled');
+        $('.image-categories').removeClass('active');
     });
 
     $('.js-close-overlay').bind('click', function () {

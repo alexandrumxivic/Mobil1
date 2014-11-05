@@ -199,7 +199,6 @@ $(document).ready(function () {
     });
 
     $('.image-categories-list li').bind('click', function(){
-        console.log('here');
         var categID = $(this).find('input').attr('data-category');
         $('.image-performance').hide();
         $('.image-performance[data-category="'+ categID +'"]').show();
@@ -219,7 +218,6 @@ $(document).ready(function () {
 
         if(firstAttempt){
             vertScrollOffset = $('.scrollable').height() - scrollH;
-            console.log(vertScrollOffset);
         }
 
         if (!btn.hasClass('.disabled')) {firstAttempt = false;
@@ -233,12 +231,12 @@ $(document).ready(function () {
 
             if (targetH < scrolledCont.height()) {
                 if (scrolledCont.height() - targetAuxMask.height() > remainingScroll) {
-                    console.log('a')
+                   
                     target.height(target.height() + scrollH);
                     targetAux.height(targetAux.height() + scrollH);
                     targetAuxMask.height(targetAuxMask.height() + scrollH);
                 } else {
-                    console.log('b')
+                   
                     target.height(target.height() + vertScrollOffset);
                     targetAux.height(targetAux.height() + vertScrollOffset);
                     targetAuxMask.height(targetAuxMask.height() + vertScrollOffset);
@@ -315,7 +313,7 @@ $(document).ready(function () {
 
 
 // Prepping the palceholder for the user's submitted story
-    $('.story-preview .pic').height($('.story-preview').width())
+    // $('.story-preview .pic').height($('.story-preview').width())
 
     $('.image-categories .toggle').bind('click', function () {
         $(this).parent().toggleClass('active');
