@@ -862,13 +862,32 @@ footer a + a{
 	height: 293px;
 	overflow: hidden;
 }
-.overlayed-image-gallery .overlayed-images img,
+
 .overlayed-image-gallery .overlayed-images .sg-item{
 	width: 100%;
 	height: auto;
 }
-.overlayed-image-gallery .overlayed-images .sg-item{
+.overlayed-image-gallery .overlayed-images img{
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
+	height: auto;
+	max-width: 100%;
 	max-height: 100%;
+}
+.overlayed-image-gallery .overlayed-images .sg-item,
+.overlayed-image-gallery .overlayed-images .sg-item .pic{
+	height: 100%;
+	width: 100%;
+	background: #000;
+	text-align: center;
+}
+.overlayed-image-gallery .overlayed-images .sg-item .pic:before{
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 100%;
+	content: "";
 }
 .overlayed-images .hover-content{
 	position: absolute;
