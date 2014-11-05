@@ -215,10 +215,13 @@ $(document).ready(function () {
         var targetIndex = $(this).attr('data-index');
         $('.overlayed-image-gallery li[data-index="' + targetIndex + '"]').addClass('active');
 
+        $('.image-categories .toggle').addClass('disabled');
+        $('.image-categories').removeClass('active');
     });
 
     $('.js-close-overlay').bind('click', function () {
-        $(this).parents('.overlay').removeClass('active');
+        $(this).parents('.overlay').removeClass('active').find('.active').removeClass('active');
+        $(this).parents('.media-section--content').find('.toggle').removeClass('disabled')
     });
 
 
@@ -270,7 +273,9 @@ $(document).ready(function () {
 // Code for the toggling of the category filtering for the image gallery
 
     $('.image-categories .toggle').bind('click', function () {
-        $(this).parent().toggleClass('active');
+        if(!$(this).hasClass('disabled')){
+            $(this).parent().toggleClass('active');
+        }
     });
 
 });

@@ -28,7 +28,9 @@ p{
 	text-transform: uppercase;
 }
 .top-area{
+	height: 616px;
 	background: url('../assets/topBg.jpg') no-repeat top left;
+	background-size: cover;
 }
 .top-area--title{
 	padding: 13px;
@@ -308,7 +310,11 @@ p{
 	display: none;
 }
 .images.expanded .media-section--cover p{
-	margin: 5px 0 0;
+	margin: 0;
+}
+.images.expanded .media-section--cover .container{
+	vertical-align: top;
+	margin-top: 20px;
 }
 .media-section--cover .container{
 	display: inline-block;
@@ -416,8 +422,9 @@ footer{
 }
 footer a{
 	display: inline-block;
-	vertical-align: top;
+	vertical-align: middle;
 	height: 15px;
+	line-height: 48px;
 	padding: 0 10px;
 	color: #fff;
 	font-family:"EmPrintSemi";
@@ -466,7 +473,12 @@ footer a + a{
 	left: 0;
 	right: 0;
 	height: 43px;
+	font-size: 16px;
 	background: rgba(0, 0, 0, .48);
+}
+.scroller.vertical .arrow-btn .icon-arrow-up,
+.scroller.vertical .arrow-btn .icon-arrow-down{
+	line-height: 46px;
 }
 .scroller.vertical .arrow-btn:hover{
 	background: rgba(0, 104, 176, .48);
@@ -556,9 +568,9 @@ footer a + a{
 }
 .submit-story input:not(.rect-btn),
 .submit-story textarea{
-	padding: 8px 20px;
+	padding: 7px 20px;
 	font-size: 15px;
-	line-height: 16px;
+	line-height: 18px;
 	border: 2px solid #fff;
 	background: #111;
 	-webkit-transition: border .3s ease;
@@ -566,6 +578,7 @@ footer a + a{
 	-o-transition: border .3s ease;
 	transition: border .3s ease;
 	box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 .submit-story input:focus,
 .submit-story textarea:focus{
@@ -815,7 +828,21 @@ footer a + a{
 	transition: opacity .3s ease, visibility .3s ease;
 	background: url('../assets/overlayedImagesBg.png') repeat-x top left;
 }
+.overlayed-image-gallery-closer {
+	position:absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+}
+.overlayed-image-gallery .arrow-btn{
+	position: relative;
+	z-index: 2;
+}
 .overlayed-image-gallery .rect-btn{
+	position: relative;
+	z-index: 2;
 	margin-top: 23px;
 	background: #0c0c0c;
 }
@@ -839,6 +866,9 @@ footer a + a{
 .overlayed-image-gallery .overlayed-images .sg-item{
 	width: 100%;
 	height: auto;
+}
+.overlayed-image-gallery .overlayed-images .sg-item{
+	max-height: 100%;
 }
 .overlayed-images .hover-content{
 	position: absolute;
@@ -971,7 +1001,7 @@ footer a + a{
 	background: #d21428;
 	line-height: 40px;
 }
-.image-categories .toggle{
+.image-categories .toggle:not(.disabled){
 	cursor: pointer;
 }
 .image-categories .icon-categs{
@@ -1040,11 +1070,13 @@ footer a + a{
 	background: url('../assets/radioselected.png') no-repeat top left;
 }
 .image-categories-list input[type="radio"]{
-	display: inline-block;
+	display: none;
 	vertical-align: middle;
 	width: 0;
 	height: 30px;
 	opacity: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 
 sup{
