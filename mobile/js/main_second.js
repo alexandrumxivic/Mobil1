@@ -313,7 +313,8 @@ $(document).ready(function () {
 
 
 // Prepping the palceholder for the user's submitted story
-    // $('.story-preview .pic').height($('.story-preview').width())
+    $('.story-preview .pic').height($(window).width() - 60);
+    console.log($(window).width() - 60)
 
     $('.image-categories .toggle').bind('click', function () {
         $(this).parent().toggleClass('active');
