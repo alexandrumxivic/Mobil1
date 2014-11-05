@@ -49,9 +49,9 @@ function trim_story($text) {
         $text = $text . ' ';
         $text = substr($text, 0, 50);
         $text = substr($text, 0, strrpos($text, ' '));
-        $text = '&#8220;' . $text . '...&#8221;';
     }
-    return $text;
+    $text = '&#8220;' . $text . '...&#8221;';
+    return '&#8220;' . $text . '...&#8221;';
 }
 ?>
 
@@ -86,13 +86,13 @@ function trim_story($text) {
             var userId_p;
             var story_p;
         </script>
-<?php if ($check->success == false): ?>
+        <?php if ($check->success == false): ?>
             <script>
                 var picture_p = '<?php echo $check->image_unsecured; ?>';
                 var userId_p = '<?php echo $check->facebook_id; ?>';
                 var story_p = "<?php echo '&#8220;' . $stories[$key]->story . '&#8221;'; ?>";
             </script>
-<?php endif; ?>
+        <?php endif; ?>
         <script>
             $(document).ready(function () {
                 $("form").validate({
@@ -248,8 +248,8 @@ function trim_story($text) {
                         <?php $count = 1; ?>
                         <?php foreach ($stories as $key => $value) : ?>
                             <li class="story-box landing-story sg-item <?php echo ($count == 1) ? 'active' : '' ?>" data-index="<?php
-                            echo $count;
-                            $count++;
+                        echo $count;
+                        $count++;
                             ?>">
                                 <div class="pic">
                                     <img src="<?php echo $stories[$key]->image; ?>" width='278' height='278'>
@@ -267,11 +267,11 @@ function trim_story($text) {
                                     <span class="content--title">My Story:</span>
 
                                     <p class="content--text">
-    <?php echo trim_story($stories[$key]->story); ?>
+                                        <?php echo trim_story($stories[$key]->story); ?>
                                     </p>
                                 </div>
                             </li>
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                     </ul>
 
                     <div class="arrow-btn sg-next">
@@ -281,10 +281,10 @@ function trim_story($text) {
             </div>
 
             <div class="submit-story-wrap top-module <?php
-            if ($check->success === TRUE): echo 'js-show-submit';
-            else: echo 'js-show-thank';
-            endif;
-            ?>">
+                        if ($check->success === TRUE): echo 'js-show-submit';
+                        else: echo 'js-show-thank';
+                        endif;
+                        ?>">
                 <h3>Our normal is anything but.</h3>
 
                 <span class="emph">So you can keep your engine running like new.</span>
@@ -374,7 +374,7 @@ function trim_story($text) {
                 <div id="slider-containter">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
-<?php foreach ($stories as $key => $value) : ?>
+                        <?php foreach ($stories as $key => $value) : ?>
                             <!-- new slide -->
                             <div class="ms-slide">
                                 <!-- slide background -->
@@ -406,7 +406,7 @@ function trim_story($text) {
                                 <div class="slide-hover"><!-- --></div>
                             </div>
                             <!-- end of slide -->
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                     </div>
                     <!-- end of masterslider -->
                 </div>
@@ -485,12 +485,12 @@ function trim_story($text) {
                         </div>
 
                         <ul class="image-categories-list">
-<?php foreach ($categories as $category): ?>
+                            <?php foreach ($categories as $category): ?>
                                 <li>
                                     <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
                                     <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
                                 </li>
-<?php endforeach; ?>
+                            <?php endforeach; ?>
 
                         </ul>
                     </div>
@@ -503,17 +503,17 @@ function trim_story($text) {
                                 foreach ($image_gallery as $images_gal):
                                     ?>
                                     <li class="image-performance" data-index="<?php
-                                    echo $i;
-                                    $i++;
+                                echo $i;
+                                $i++;
                                     ?>" data-category="<?php echo $images_gal->category; ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">
-    <?php echo $images_gal->description; ?>
+                                            <?php echo $images_gal->description; ?>
                                             <div class="center">view</div>
                                         </div>
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
                             </ul>
 
                             <div class="image-performance-scroll js-scroll-images-next">view more</div>
@@ -528,19 +528,19 @@ function trim_story($text) {
                                 <?php $c = 1; ?>
                                 <?php foreach ($image_gallery as $images_gal): ?>
                                     <li class="sg-item" data-index="<?php
-                                    echo $c;
-                                    $c++;
+                                echo $c;
+                                $c++;
                                     ?>">
                                         <div class="pic">
                                             <img src="<?php echo $images_gal->image_url; ?>">
                                         </div>
 
                                         <div class="hover-content">
-    <?php echo $images_gal->description; ?>
+                                            <?php echo $images_gal->description; ?>
                                         </div>
                                     </li>
 
-<?php endforeach; ?>
+                                <?php endforeach; ?>
                             </ul>
 
                             <div class="arrow-btn small sg-next">
@@ -595,14 +595,14 @@ function trim_story($text) {
                                 <?php $i = 1; ?>
                                 <?php foreach ($video_gallery as $videos): ?>
                                     <li class="story-box video-story sg-item <?php echo ($i == 1) ? 'active' : '' ?>" data-index="<?php
-                                    echo $i;
-                                    $i++;
+                                echo $i;
+                                $i++;
                                     ?>">
                                         <div class="pic">
                                             <a href='https://www.youtube.com/watch?v=<?php echo $videos->video_id; ?>'><img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='182' width='278'></a>
                                         </div>
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
 
                             </ul>
 
@@ -621,13 +621,13 @@ function trim_story($text) {
                                 <?php $i = 1; ?>
                                 <?php foreach ($video_gallery as $videos): ?>
                                     <li class="scroller--item <?php echo ($i == 1) ? 'active' : '' ?>" data-index="<?php
-                                    echo $i;
-                                    $i++;
+                                echo $i;
+                                $i++;
                                     ?>">
                                         <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='60' width='80'>
 
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
 
                             </ul>
                         </div>

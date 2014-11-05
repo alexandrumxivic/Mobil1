@@ -75,8 +75,8 @@ function trim_story($text) {
         $text = $text . ' ';
         $text = substr($text, 0, 60);
         $text = substr($text, 0, strrpos($text, ' '));
-        $text = '&#8220;' . $text . '...&#8221;';
     }
+    $text = '&#8220;' . $text . '...&#8221;';
     return $text;
 }
 ?>
@@ -247,8 +247,8 @@ function trim_story($text) {
                         <?php $count = 1; ?>
                         <?php foreach ($stories as $key => $value) : ?>
                             <li class="story-box landing-story sg-item active" data-index="<?php
-                            echo $count;
-                            $count++;
+                        echo $count;
+                        $count++;
                             ?>">
                                 <div class="pic">
                                     <img src="<?php echo $stories[$key]->image; ?>" width="344" height="377">
@@ -288,10 +288,10 @@ function trim_story($text) {
                     </p>
 
                     <div class="rect-btn go-to-form blue <?php
-                    if ($check->success === TRUE): echo 'js-show-submit';
-                    else: echo 'js-show-thank';
-                    endif;
-                    ?>" <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='loginFacebook();'" : "id='loggedIn' "; ?>>Share your story</div>
+                        if ($check->success === TRUE): echo 'js-show-submit';
+                        else: echo 'js-show-thank';
+                        endif;
+                        ?>" <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='loginFacebook();'" : "id='loggedIn' "; ?>>Share your story</div>
 
                     <div class="rect-btn js-show-stories">View Stories</div>
                 </div>
@@ -425,10 +425,10 @@ function trim_story($text) {
                 </div>
 
                 <div  class="rect-btn go-to-form <?php
-                if ($check->success === TRUE): echo 'js-show-submit';
-                else: echo 'js-show-thank';
-                endif;
-                ?>">Submit your story</div>
+                        if ($check->success === TRUE): echo 'js-show-submit';
+                        else: echo 'js-show-thank';
+                        endif;
+                        ?>">Submit your story</div>
             </div>
 
             <div class="thank-msg-wrap top-module">
@@ -527,8 +527,8 @@ function trim_story($text) {
                                 foreach ($image_gallery as $images_gal):
                                     ?>
                                     <li class="image-performance" data-index="<?
-                                    echo $i;
-                                    $i++;
+                                echo $i;
+                                $i++;
                                     ?>" data-category="<?php echo $images_gal->category; ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
@@ -611,8 +611,8 @@ function trim_story($text) {
                             <?php $i = 1; ?>
                             <?php foreach ($video_gallery as $videos): ?>
                                 <li class="scroller--item active" data-index="<?php
-                                echo $i;
-                                $i++;
+                            echo $i;
+                            $i++;
                                 ?>">
                                     <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg">
                                 </li>
@@ -640,8 +640,8 @@ function trim_story($text) {
                                 <?php $i = 1; ?>
                                 <?php foreach ($video_gallery as $videos): ?>
                                     <li class="story-box video-story sg-item active" data-index="<?php
-                                    echo $i;
-                                    $i++;
+                                echo $i;
+                                $i++;
                                     ?>">
                                         <div class="pic">
                                             <iframe width="482" height="288" src="//www.youtube.com/embed/<?php echo $videos->video_id; ?>?rel=0&autoplay=0" frameborder="0" allowfullscreen ></iframe>
