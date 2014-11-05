@@ -171,7 +171,10 @@ function trim_story($text) {
                         FB.login(function (response) {
                             if (response.authResponse) {
                                 console.log(response);
-                                FB.api('/me', function (response) {
+                                FB.api('/me?fields=id,name,email', function (response) {
+                                    $('#first_name').val(response.first_name);
+                                    $('#last_name').val(response.last_name);
+                                    $('#email').val(response.email);
                                     $('#notLoggedIn').attr('onclick', '').unbind('click');
                                     $('#notLoggedIn').attr('id', 'loggedIn');
                                     $('#facebook_id').val(response.id);
@@ -185,6 +188,7 @@ function trim_story($text) {
                             }
 
                         });
+                        );
                     } else {
                         $.ajax({
                             url: "<?php echo BASE_URL; ?>stories/check/" + response.authResponse.userID
@@ -248,8 +252,8 @@ function trim_story($text) {
                         <?php $count = 1; ?>
                         <?php foreach ($stories as $key => $value) : ?>
                             <li class="story-box landing-story sg-item <?php echo ($count == 1) ? 'active' : '' ?>" data-index="<?php
-                        echo $count;
-                        $count++;
+                            echo $count;
+                            $count++;
                             ?>">
                                 <div class="pic">
                                     <img src="<?php echo $stories[$key]->image; ?>" width='278' height='278'>
@@ -267,11 +271,11 @@ function trim_story($text) {
                                     <span class="content--title">My Story:</span>
 
                                     <p class="content--text">
-                                        <?php echo trim_story($stories[$key]->story); ?>
+    <?php echo trim_story($stories[$key]->story); ?>
                                     </p>
                                 </div>
                             </li>
-                        <?php endforeach; ?>
+<?php endforeach; ?>
                     </ul>
 
                     <div class="arrow-btn sg-next">
@@ -281,10 +285,10 @@ function trim_story($text) {
             </div>
 
             <div class="submit-story-wrap top-module <?php
-                        if ($check->success === TRUE): echo 'js-show-submit';
-                        else: echo 'js-show-thank';
-                        endif;
-                        ?>">
+            if ($check->success === TRUE): echo 'js-show-submit';
+            else: echo 'js-show-thank';
+            endif;
+            ?>">
                 <h3>Our normal is anything but.</h3>
 
                 <span class="emph">So you can keep your engine running like new.</span>
@@ -296,16 +300,16 @@ function trim_story($text) {
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
                     <div class="row first">
                         <div class="cell">
-                            <input type="text" placeholder="First Name" name="first_name">
+                            <input type="text" placeholder="First Name" name="first_name" id="first_name">
                         </div>
                         <div class="cell">
-                            <input type="text" placeholder="Last Name" name="last_name">
+                            <input type="text" placeholder="Last Name" name="last_name" id="last_name">
                         </div>
                     </div>
 
                     <div class="row second">
                         <div class="cell">
-                            <input type="email" placeholder="Email" name="email">
+                            <input type="email" placeholder="Email" name="email" id="email">
                         </div>
 
                         <div class="cell">
@@ -374,7 +378,7 @@ function trim_story($text) {
                 <div id="slider-containter">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
-                        <?php foreach ($stories as $key => $value) : ?>
+<?php foreach ($stories as $key => $value) : ?>
                             <!-- new slide -->
                             <div class="ms-slide">
                                 <!-- slide background -->
@@ -406,7 +410,7 @@ function trim_story($text) {
                                 <div class="slide-hover"><!-- --></div>
                             </div>
                             <!-- end of slide -->
-                        <?php endforeach; ?>
+<?php endforeach; ?>
                     </div>
                     <!-- end of masterslider -->
                 </div>
@@ -485,12 +489,12 @@ function trim_story($text) {
                         </div>
 
                         <ul class="image-categories-list">
-                            <?php foreach ($categories as $category): ?>
+<?php foreach ($categories as $category): ?>
                                 <li>
                                     <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
                                     <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
                                 </li>
-                            <?php endforeach; ?>
+<?php endforeach; ?>
 
                         </ul>
                     </div>
@@ -503,17 +507,17 @@ function trim_story($text) {
                                 foreach ($image_gallery as $images_gal):
                                     ?>
                                     <li class="image-performance" data-index="<?php
-                                echo $i;
-                                $i++;
+                                    echo $i;
+                                    $i++;
                                     ?>" data-category="<?php echo $images_gal->category; ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">
-                                            <?php echo $images_gal->description; ?>
+    <?php echo $images_gal->description; ?>
                                             <div class="center">view</div>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>
+<?php endforeach; ?>
                             </ul>
 
                             <div class="image-performance-scroll js-scroll-images-next">view more</div>
@@ -528,19 +532,19 @@ function trim_story($text) {
                                 <?php $c = 1; ?>
                                 <?php foreach ($image_gallery as $images_gal): ?>
                                     <li class="sg-item" data-index="<?php
-                                echo $c;
-                                $c++;
+                                    echo $c;
+                                    $c++;
                                     ?>">
                                         <div class="pic">
                                             <img src="<?php echo $images_gal->image_url; ?>">
                                         </div>
 
                                         <div class="hover-content">
-                                            <?php echo $images_gal->description; ?>
+    <?php echo $images_gal->description; ?>
                                         </div>
                                     </li>
 
-                                <?php endforeach; ?>
+<?php endforeach; ?>
                             </ul>
 
                             <div class="arrow-btn small sg-next">
@@ -595,14 +599,14 @@ function trim_story($text) {
                                 <?php $i = 1; ?>
                                 <?php foreach ($video_gallery as $videos): ?>
                                     <li class="story-box video-story sg-item <?php echo ($i == 1) ? 'active' : '' ?>" data-index="<?php
-                                echo $i;
-                                $i++;
+                                    echo $i;
+                                    $i++;
                                     ?>">
                                         <div class="pic">
                                             <a href='https://www.youtube.com/watch?v=<?php echo $videos->video_id; ?>'><img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='182' width='278'></a>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>
+<?php endforeach; ?>
 
                             </ul>
 
@@ -621,13 +625,13 @@ function trim_story($text) {
                                 <?php $i = 1; ?>
                                 <?php foreach ($video_gallery as $videos): ?>
                                     <li class="scroller--item <?php echo ($i == 1) ? 'active' : '' ?>" data-index="<?php
-                                echo $i;
-                                $i++;
+                                    echo $i;
+                                    $i++;
                                     ?>">
                                         <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='60' width='80'>
 
                                     </li>
-                                <?php endforeach; ?>
+<?php endforeach; ?>
 
                             </ul>
                         </div>

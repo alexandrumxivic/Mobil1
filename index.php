@@ -208,10 +208,14 @@ function trim_story($text) {
             function loginFacebook() {
                 $('.js-show-submit').unbind('click');
                 FB.login(function (response) {
-
+                    console.log(response);
                     if (response.authResponse) {
-                        console.log('Welcome!  Fetching your information.... ');
+                       
                         FB.api('/me', function (response) {
+                           
+                            $('#first_name').val(response.first_name);
+                            $('#last_name').val(response.last_name);
+                            $('#email').val(response.email);
                             $('#notLoggedIn').attr('onclick', '').unbind('click');
                             $('#notLoggedIn').attr('id', 'loggedIn');
                             $('#facebook_id').val(response.id);
@@ -309,16 +313,16 @@ function trim_story($text) {
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
                     <div class="row first">
                         <div class="cell">
-                            <input type="text" placeholder="First Name" name="first_name">
+                            <input type="text" placeholder="First Name" name="first_name" id="first_name">
                         </div>
                         <div class="cell">
-                            <input type="text" placeholder="Last Name" name="last_name">
+                            <input type="text" placeholder="Last Name" name="last_name" id="last_name">
                         </div>
                     </div>
 
                     <div class="row second">
                         <div class="cell">
-                            <input type="email" placeholder="Email" name="email">
+                            <input type="email" placeholder="Email" name="email" id="email">
                         </div>
 
                         <div class="cell">
@@ -440,11 +444,7 @@ function trim_story($text) {
                     <div class="uppercase">
                         Now <b>share it</b> with the rest of your friends!
                     </div>
-                    <?php if ($check->success == FALSE) { ?>
-
-
-
-                    <?php } ?>
+                  
                     <div class="rect-btn red" ><a href='#' id='share' onclick="share_caption(picture_p, userId_p, story_p)">Share</a></div>
                     <div class="rect-btn js-show-stories">View other stories</div>
                 </div>
