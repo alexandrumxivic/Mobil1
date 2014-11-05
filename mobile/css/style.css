@@ -559,6 +559,10 @@ footer a + a{
 	height: 63px;
 	top: 0;
 }
+.horizontal .arrow-btn .icon-arrow-right,
+.horizontal .arrow-btn .icon-arrow-left{
+	line-height: 63px;
+}
 .horizontal .js-scroller-prev{
 	left: 0;
 }

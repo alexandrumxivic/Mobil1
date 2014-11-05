@@ -473,7 +473,12 @@ footer a + a{
 	left: 0;
 	right: 0;
 	height: 43px;
+	font-size: 16px;
 	background: rgba(0, 0, 0, .48);
+}
+.scroller.vertical .arrow-btn .icon-arrow-up,
+.scroller.vertical .arrow-btn .icon-arrow-down{
+	line-height: 46px;
 }
 .scroller.vertical .arrow-btn:hover{
 	background: rgba(0, 104, 176, .48);
