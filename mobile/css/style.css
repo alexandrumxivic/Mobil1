@@ -1098,7 +1098,7 @@ footer a + a{
 	left: 0;
 	bottom: 0;
 	right: 0;
-	padding: 70px 35px 110px 35px;
+	padding: 70px 30px 110px 30px;
 	font-size: 18px;
 	background: rgba(0,87,163,.3);
 }
@@ -1106,7 +1106,11 @@ footer a + a{
 	font-size: 15px;
 }
 .story-preview .content--text{
-	max-height: 128px;
+	position: absolute;
+	top: 90px;
+	left: 30px;
+	right: 30px;
+	bottom: 88px;
 	font-size: 13px;
 	line-height: 16px;
 	overflow: hidden;

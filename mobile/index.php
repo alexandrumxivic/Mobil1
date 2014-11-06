@@ -236,7 +236,7 @@ function trim_story($text) {
                     <span class="emph">What's yours?</span>
 
                     <p>
-                        Share your Mobil 1<sup>TM</sup> performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1<sup>TM</sup> synthetic motor oil or some other great Mobil 1<sup>TM</sup> gear.
+                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/>You'll get a custom story card and have a chance to win a case of Mobil 1<sup>TM</sup> synthetic motor oil or some other great Mobil 1 gear.
                     </p>
 
                     <div class="rect-btn blue js-show-submit"  <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='loginFacebook();'" : "id='loggedIn' "; ?>>Share your story</div>
@@ -295,7 +295,7 @@ function trim_story($text) {
                 <span class="emph">So you can keep your engine running like new.</span>
 
                 <p>
-                    Tell us your favorite story made possible by Mobil 1<sup>TM</sup> to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
+                    Tell us your favorite story made possible by Mobil 1 to join the Our Normal sweepstakes. You'll get a custom Story Card to share and be entered for a chance at great prizes!
                 </p>
 
                 <form class="submit-story" method="post" enctype="multipart/form-data" action="<?php echo BASE_URL ?>stories/new/create">
@@ -371,7 +371,7 @@ function trim_story($text) {
 
             <div class="view-stories-wrap top-module">
                 <div class="landing-msg">
-                    <h3>Our normal is anything but</h3>
+                    <h3>Our normal is anything but.</h3>
 
                     <p class="emph">So you can keep your engine running like new.</p>
                 </div>
@@ -471,7 +471,7 @@ function trim_story($text) {
                         </div>
 
                         <p>
-                            Check out Mobil 1<sup>TM</sup> in action with our Normal photos and more.
+                            Check out Mobil 1 in action with our Normal photos and more.
                         </p>
 
                         <div class="rect-btn js-expand-section">Explore</div>
@@ -572,7 +572,7 @@ function trim_story($text) {
                         </div>
 
                         <p>
-                            Watch now for more on how Mobil 1<sup>TM</sup> keeps your engine running like new.
+                            Watch now for more on how Mobil 1 keeps your engine running like new.
                         </p>
 
                         <div class="rect-btn js-expand-section">Explore</div>
@@ -588,7 +588,7 @@ function trim_story($text) {
                         <h3>Performance Videos</h3>
 
                         <p>
-                            Watch now for more on how Mobil 1<sup>TM</sup> keeps your engine running like new.
+                            Watch now for more on how Mobil 1 keeps your engine running like new.
                         </p>
 
                         <div class="video-performances-wrap sg">
