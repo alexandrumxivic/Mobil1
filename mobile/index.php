@@ -51,7 +51,7 @@ function trim_story($text) {
         $text = substr($text, 0, strrpos($text, ' '));
     }
     $text = '&#8220;' . $text . '...&#8221;';
-    return '&#8220;' . $text . '...&#8221;';
+    return $text;
 }
 ?>
 
@@ -90,7 +90,7 @@ function trim_story($text) {
             <script>
                 var picture_p = '<?php echo $check->image_unsecured; ?>';
                 var userId_p = '<?php echo $check->facebook_id; ?>';
-                var story_p = "<?php echo  $stories[$key]->story; ?>";
+                var story_p = "<?php echo $stories[$key]->story; ?>";
             </script>
         <?php endif; ?>
         <script>
@@ -170,7 +170,6 @@ function trim_story($text) {
                         $('.js-show-submit').unbind('click');
                         FB.login(function (response) {
                             if (response.authResponse) {
-                                console.log(response);
                                 FB.api('/me?fields=id,name,email', function (response) {
                                     $('#first_name').val(response.first_name);
                                     $('#last_name').val(response.last_name);
@@ -193,6 +192,7 @@ function trim_story($text) {
                         $.ajax({
                             url: "<?php echo BASE_URL; ?>stories/check/" + response.authResponse.userID
                         }).done(function (data) {
+
                             if (data.success === false) {
                                 $('.js-show-submit').unbind('click');
                                 $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + data.facebook_id + "/picture?type=normal' width='80' height='80'>");
@@ -201,25 +201,33 @@ function trim_story($text) {
                                 $("#submited-story").append('&#8220;' + data.story + '&#8221;');
                                 $('.js-show-submit').bind('click', function () {
                                     $(this).parents('.top-module').hide(300);
-                                            else{ $('.thank-msg-wrap').show(300);
-                                        });
-                            } else {
-                                $('.js-show-submit').bind('click', function () {
-                                    $(this).parents('.top-module').hide(300);
-                                    $('.submit-story-wrap').show(300);
+                                    $('.thank-msg-wrap').show(300);
                                 });
+                            } else {
+                                console.log('qq');
+                                $('.landing-intro').hide(300);
+                                $('.submit-story-wrap').show(300);
                             }
                         });
+
                         $('#notLoggedIn').attr('onclick', '').unbind('click');
                         $('#notLoggedIn').attr('id', 'loggedIn');
+                        $('#loggedIn').bind('click', function () {
+                            $(this).parents('.top-module').hide(300);
+                            $('.submit-story-wrap').show(300);
+                        });
 
-                        $('.landing-intro').hide(300);
-                        $('.submit-story-wrap').show(300);
+
+
                         $('#facebook_id').val(response.authResponse.userID);
                     }
                 });
-                }
             }
+
+            $('#back').click(function () {
+                console.log('click');
+                $('.submit-story-wrap').hide(300);
+            });
         </script>
     </head>
     <body>
@@ -285,11 +293,7 @@ function trim_story($text) {
                 </div>
             </div>
 
-            <div class="submit-story-wrap top-module <?php
-            if ($check->success === TRUE): echo 'js-show-submit';
-            else: echo 'js-show-thank';
-            endif;
-            ?>">
+            <div class="submit-story-wrap top-module" id="form_element" style="display:none;">
                 <h3>Our normal is anything but.</h3>
 
                 <span class="emph">So you can keep your engine running like new.</span>
@@ -363,13 +367,13 @@ function trim_story($text) {
                         </div>
                     </div>
 
-                    <div class="rect-btn js-top-default">Go Back</div>
+                    <div class="rect-btn js-top-default" id="back">Go Back</div>
 
                     <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
                 </form>
             </div>
 
-            <div class="view-stories-wrap top-module">
+            <div class="view-stories-wrap top-module" style="display:none;">
                 <div class="landing-msg">
                     <h3>Our normal is anything but.</h3>
 

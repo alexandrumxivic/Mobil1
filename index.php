@@ -250,7 +250,7 @@ function trim_story($text) {
                     <ul class="landing-stories sg-content">
                         <?php $count = 1; ?>
                         <?php foreach ($stories as $key => $value) : ?>
-                            <li class="story-box landing-story sg-item active" data-index="<?php
+                            <li class="story-box landing-story sg-item <?php echo ($count==1)? 'active':''?>" data-index="<?php
                         echo $count;
                         $count++;
                             ?>">
@@ -610,7 +610,7 @@ function trim_story($text) {
                         <ul class="scroller--content linked-control">
                             <?php $i = 1; ?>
                             <?php foreach ($video_gallery as $videos): ?>
-                                <li class="scroller--item active" data-index="<?php
+                                <li class="scroller--item <?php echo ($i==1)? 'active':'';?>" data-index="<?php
                             echo $i;
                             $i++;
                                 ?>">
@@ -639,7 +639,7 @@ function trim_story($text) {
                             <ul class="video-stories sg-content linked-control">
                                 <?php $i = 1; ?>
                                 <?php foreach ($video_gallery as $videos): ?>
-                                    <li class="story-box video-story sg-item active" data-index="<?php
+                                    <li class="story-box video-story sg-item <?php echo ($i==1)? 'active':''?>" data-index="<?php
                                 echo $i;
                                 $i++;
                                     ?>">
