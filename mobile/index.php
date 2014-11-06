@@ -90,7 +90,7 @@ function trim_story($text) {
             <script>
                 var picture_p = '<?php echo $check->image_unsecured; ?>';
                 var userId_p = '<?php echo $check->facebook_id; ?>';
-                var story_p = "<?php echo '&#8220;' . $stories[$key]->story . '&#8221;'; ?>";
+                var story_p = "<?php echo  $stories[$key]->story; ?>";
             </script>
         <?php endif; ?>
         <script>
@@ -188,7 +188,7 @@ function trim_story($text) {
                             }
 
                         });
-                        );
+
                     } else {
                         $.ajax({
                             url: "<?php echo BASE_URL; ?>stories/check/" + response.authResponse.userID
@@ -201,8 +201,8 @@ function trim_story($text) {
                                 $("#submited-story").append('&#8220;' + data.story + '&#8221;');
                                 $('.js-show-submit').bind('click', function () {
                                     $(this).parents('.top-module').hide(300);
-                                    $('.thank-msg-wrap').show(300);
-                                });
+                                            else{ $('.thank-msg-wrap').show(300);
+                                        });
                             } else {
                                 $('.js-show-submit').bind('click', function () {
                                     $(this).parents('.top-module').hide(300);
@@ -218,6 +218,7 @@ function trim_story($text) {
                         $('#facebook_id').val(response.authResponse.userID);
                     }
                 });
+                }
             }
         </script>
     </head>
@@ -271,11 +272,11 @@ function trim_story($text) {
                                     <span class="content--title">My Story:</span>
 
                                     <p class="content--text">
-    <?php echo trim_story($stories[$key]->story); ?>
+                                        <?php echo trim_story($stories[$key]->story); ?>
                                     </p>
                                 </div>
                             </li>
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                     </ul>
 
                     <div class="arrow-btn sg-next">
@@ -378,7 +379,7 @@ function trim_story($text) {
                 <div id="slider-containter">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
-<?php foreach ($stories as $key => $value) : ?>
+                        <?php foreach ($stories as $key => $value) : ?>
                             <!-- new slide -->
                             <div class="ms-slide">
                                 <!-- slide background -->
@@ -410,7 +411,7 @@ function trim_story($text) {
                                 <div class="slide-hover"><!-- --></div>
                             </div>
                             <!-- end of slide -->
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                     </div>
                     <!-- end of masterslider -->
                 </div>
@@ -489,12 +490,12 @@ function trim_story($text) {
                         </div>
 
                         <ul class="image-categories-list">
-<?php foreach ($categories as $category): ?>
+                            <?php foreach ($categories as $category): ?>
                                 <li>
                                     <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
                                     <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
                                 </li>
-<?php endforeach; ?>
+                            <?php endforeach; ?>
 
                         </ul>
                     </div>
@@ -513,11 +514,11 @@ function trim_story($text) {
                                         <img src="<?php echo $images_gal->image_url; ?>">
 
                                         <div class="hover-content">
-    <?php echo $images_gal->description; ?>
+                                            <?php echo $images_gal->description; ?>
                                             <div class="center">view</div>
                                         </div>
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
                             </ul>
 
                             <div class="image-performance-scroll js-scroll-images-next">view more</div>
@@ -540,11 +541,11 @@ function trim_story($text) {
                                         </div>
 
                                         <div class="hover-content">
-    <?php echo $images_gal->description; ?>
+                                            <?php echo $images_gal->description; ?>
                                         </div>
                                     </li>
 
-<?php endforeach; ?>
+                                <?php endforeach; ?>
                             </ul>
 
                             <div class="arrow-btn small sg-next">
@@ -606,7 +607,7 @@ function trim_story($text) {
                                             <a href='https://www.youtube.com/watch?v=<?php echo $videos->video_id; ?>'><img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='182' width='278'></a>
                                         </div>
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
 
                             </ul>
 
@@ -631,7 +632,7 @@ function trim_story($text) {
                                         <img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='60' width='80'>
 
                                     </li>
-<?php endforeach; ?>
+                                <?php endforeach; ?>
 
                             </ul>
                         </div>

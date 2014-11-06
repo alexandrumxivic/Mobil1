@@ -132,7 +132,7 @@ function trim_story($text) {
             <script>
                 var picture_p = '<?php echo $check->image_unsecured; ?>';
                 var userId_p = '<?php echo $check->facebook_id; ?>';
-                var story_p = "<?php echo '&#8220;' . $stories[$key]->story . '&#8221;'; ?>";
+                var story_p = "<?php echo $stories[$key]->story; ?>";
             </script>
         <?php endif; ?>
         <script>
