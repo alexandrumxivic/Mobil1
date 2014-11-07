@@ -86,13 +86,7 @@ function trim_story($text) {
             var userId_p;
             var story_p;
         </script>
-        <?php if ($check->success == false): ?>
-            <script>
-                var picture_p = '<?php echo $check->image_unsecured; ?>';
-                var userId_p = '<?php echo $check->facebook_id; ?>';
-                var story_p = "<?php echo $stories[$key]->story; ?>";
-            </script>
-        <?php endif; ?>
+        
         <script>
             $(document).ready(function () {
                 $("form").validate({
@@ -170,9 +164,10 @@ function trim_story($text) {
                         $('.js-show-submit').unbind('click');
                         FB.login(function (response) {
                             if (response.authResponse) {
-                                FB.api('/me?fields=id,name,email', function (response) {
-                                    $('#first_name').val(response.first_name);
-                                    $('#last_name').val(response.last_name);
+                                FB.api('/me?fields=id,name,email', function (response) {                                    
+                                    var fbName = response.name.split(' ');
+                                    $('#first_name').val(fbName[0]);
+                                    $('#last_name').val(fbName[1]);
                                     $('#email').val(response.email);
                                     $('#notLoggedIn').attr('onclick', '').unbind('click');
                                     $('#notLoggedIn').attr('id', 'loggedIn');
