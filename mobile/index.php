@@ -415,7 +415,7 @@ function trim_story($text) {
                     <!-- end of masterslider -->
                 </div>
 
-                <div class="rect-btn js-show-submit">Submit your story</div>
+                <div class="rect-btn js-show-submit"  <?php if($user_id == 0):  echo "onclick='loginFacebook();'"; endif;?>  >Submit your story</div>
             </div>
 
             <div class="thank-msg-wrap top-module ">

@@ -434,7 +434,7 @@ function trim_story($text) {
                         if ($check->success === TRUE): echo 'js-show-submit';
                         else: echo 'js-show-thank';
                         endif;
-                        ?>">Submit your story</div>
+                        ?>" <?php if ($check->success === TRUE): echo "onclick='loginFacebook();'"; endif;?>>Submit your story</div>
             </div>
 
             <div class="thank-msg-wrap top-module">
