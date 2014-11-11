@@ -392,7 +392,7 @@ function trim_story($text) {
                                 <!-- slide text layer -->
                                 <div class="slide-text-container">
                                     <div class="slide-text">
-                                        <h1>Here is our title</h1>
+                                        <h1>My Performance Story</h1>
                                         <p class="description"><?php echo '&#8220;' . $stories[$key]->story . '&#8221;'; ?></p>
 
                                     </div>
@@ -463,7 +463,7 @@ function trim_story($text) {
             <div class="media-section images">
                 <div class="media-section--cover">
                     <div class="container">
-                        <h3>Performance Pictures</h3>
+                        <h3>Performance Snapshots</h3>
 
                         <div class="deco-line">
                             <span class="icon-images"></span>
