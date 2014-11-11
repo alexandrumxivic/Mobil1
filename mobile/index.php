@@ -428,9 +428,9 @@ function trim_story($text) {
                         Now <b>share it</b> with the rest of your friends!
                     </div>
                     <!-- share button -->
-                    <div class="rect-btn red" ><a href='#' id='share' onclick="share_caption(picture_p, userId_p, story_p)">Share</a></div>
+                    <a href='#' id='share' onclick="share_caption(picture_p, userId_p, story_p)"><div class="rect-btn red" >Share</div></a>
                     <!-- Share button -->
-                    <div class="rect-btn js-show-stories">View other stories</div>
+                    <div class="rect-btn js-show-stories viewStories">View other stories</div>
                 </div>
 
                 <div class="story-preview story-box">
