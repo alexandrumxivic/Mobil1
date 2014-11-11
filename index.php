@@ -55,6 +55,7 @@ $stories = $stories->response;
 
 $check = file_get_contents(BASE_URL . 'stories/check/' . $user_id);
 $check = json_decode($check);
+
 /* get categories */
 $categories = file_get_contents(BASE_URL . 'categories/list');
 $categories = json_decode($categories);
@@ -128,11 +129,11 @@ function trim_story($text) {
             var userId_p;
             var story_p;
         </script>
-        <?php if ($check->success == false): ?>
+        <?php if (!($check->success)): ?>
             <script>
                 var picture_p = '<?php echo $check->image_unsecured; ?>';
                 var userId_p = '<?php echo $check->facebook_id; ?>';
-                var story_p = "<?php echo $stories[$key]->story; ?>";
+                var story_p = "<?php echo $check->story; ?>";
             </script>
         <?php endif; ?>
         <script>
@@ -168,6 +169,7 @@ function trim_story($text) {
                                     $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
                                     $("#submited-story-author").append(returndata.name);
                                     $("#submited-story").append('&#8220;' + returndata.story + '&#8221;');
+                                    console.log(returndata.image_unsecured);
                                     picture_p = returndata.image_unsecured;
                                     userId_p = returndata.facebook_id;
                                     story_p = returndata.story;
