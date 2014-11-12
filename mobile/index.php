@@ -603,7 +603,7 @@ function trim_story($text) {
                                     $i++;
                                     ?>">
                                         <div class="pic">
-                                            <a href='https://www.youtube.com/watch?v=<?php echo $videos->video_id; ?>'><img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/default.jpg" height='182' width='278'></a>
+                                            <a href='https://www.youtube.com/watch?v=<?php echo $videos->video_id; ?>'><img src="https://img.youtube.com/vi/<?php echo $videos->video_id; ?>/hqdefault.jpg" height='182' width='278'></a>
                                         </div>
                                     </li>
                                 <?php endforeach; ?>
