@@ -458,7 +458,7 @@ function trim_story($text) {
 
         <section>
             <div class="media-section images">
-                <div class="media-section--cover">
+                <div class="media-section--cover js-expand-section">
                     <div class="container">
                         <h3>Performance Snapshots</h3>
 
@@ -470,7 +470,7 @@ function trim_story($text) {
                             Check out Mobil 1 in action with our Normal photos and more.
                         </p>
 
-                        <div class="rect-btn js-expand-section">Explore</div>
+                        <div class="rect-btn">Explore</div>
                     </div>
                 </div>
 
@@ -559,7 +559,7 @@ function trim_story($text) {
             </div>
 
             <div class="media-section videos">
-                <div class="media-section--cover">
+                <div class="media-section--cover js-expand-section">
                     <div class="container">
                         <h3>Performance Videos</h3>
 
@@ -571,7 +571,7 @@ function trim_story($text) {
                             Watch now for more on how Mobil 1 keeps your engine running like new.
                         </p>
 
-                        <div class="rect-btn js-expand-section">Explore</div>
+                        <div class="rect-btn">Explore</div>
                     </div>
                 </div>
 

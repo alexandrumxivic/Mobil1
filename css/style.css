@@ -270,6 +270,7 @@ p{
 	-moz-transition: opacity .3s ease, height .3s ease;
 	-o-transition: opacity .3s ease, height .3s ease;
 	transition: opacity .3s ease, height .3s ease;
+	cursor: pointer;
 }
 .media-section--cover:after{
 	position: absolute;
