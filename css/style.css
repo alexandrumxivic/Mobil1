@@ -127,6 +127,7 @@ p{
 .story-box.landing-story .author--pic{
 	width: 100px;
 	height: 100px;
+	background-size: cover!important;
 }
 .story-box.landing-story .author--name{
 	display: inline-block;
@@ -140,12 +141,6 @@ p{
 	text-overflow: ellipsis;
 	line-height: 39px;
 	background: rgba(0,84,158,.68);
-}
-.story-box.landing-story .author--pic img{
-	width: auto;
-	height: auto;
-	min-height: 100%;
-	min-width: 100%;
 }
 .story-box.landing-story .content{
 	bottom: 0;

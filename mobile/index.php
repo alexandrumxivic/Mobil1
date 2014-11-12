@@ -264,9 +264,7 @@ function trim_story($text) {
                                 </div>
 
                                 <div class="author">
-                                    <div class="author--pic">
-                                        <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" width='60' height='60'>
-                                    </div>
+                                    <div class="author--pic" style="background: url('https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal') no-repeat top left"></div>
 
                                     <span class="author--name"><?php echo $stories[$key]->first_name . ' ' . $stories[$key]->last_name; ?></span>
                                 </div>

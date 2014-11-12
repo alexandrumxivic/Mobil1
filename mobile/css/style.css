@@ -168,6 +168,7 @@ p{
 	left: 0;
 	width: 80px;
 	height: 80px;
+	background-size: cover!important;
 }
 .story-box.landing-story .author--name{
 	position: absolute;
@@ -189,12 +190,6 @@ p{
 }
 sup{
 	font-size: 8px;
-}
-.story-box.landing-story .author--pic img{
-	width: auto;
-	height: auto;
-	min-height: 100%;
-	min-width: 100%;
 }
 .story-box.landing-story .content{
 	bottom: 0;
