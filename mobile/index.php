@@ -385,8 +385,7 @@ function trim_story($text) {
                                 <img src="<?php echo $stories[$key]->image; ?>" data-src="<?php echo $stories[$key]->image; ?>" alt="lorem ipsum dolor sit"/>
 
                                 <!-- slide profile picture -->
-                                <div class="slide-picture">
-                                    <img src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" data-src="https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal" alt="lorem ipsum dolor sit"/>
+                                <div class="slide-picture" style='background:url("https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal") no-repeat top left'>
                                 </div>
 
                                 <!-- slide text layer -->
