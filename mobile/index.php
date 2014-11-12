@@ -116,7 +116,7 @@ function trim_story($text) {
                             processData: false,
                             success: function (returndata) {
                                 if (returndata.success === true) {
-                                    $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal' width='80' height='80'>");
+                                    $("#submited-story-author-pic").css("background","url('https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal')");
                                     $("#submited-story-pic").append("<img src='" + returndata.image + "' width='278' height='278'>");
                                     $("#submited-story-author").append(returndata.name);
                                     $("#submited-story").append('&#8220;' + returndata.story + '&#8221;');

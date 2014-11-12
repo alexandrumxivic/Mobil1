@@ -1071,6 +1071,7 @@ footer a + a{
 .story-preview .author--pic{
 	width: 57px;
 	height: 57px;
+	background-size: cover!important;
 }
 .story-preview .author{
 	z-index: 2;
