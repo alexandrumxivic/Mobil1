@@ -1,5 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "https://www.w3.org/TR/html4/strict.dtd">
-
 <?php
 if (isset($_REQUEST['signed_request'])) {
     list($signature, $data) = explode('.', $_REQUEST['signed_request'], 2);
@@ -20,7 +18,7 @@ $tabletFb = 0;
 
 // is on mobile device except tablet
 if ($detect->isMobile() && !$detect->isTablet()) {
-    header('Location: https://mobile1.projects-directory.com/mobile/');
+    header('Location: https://performancestory-staging.fb-mobil1.com/mobile/');
     die();
 }
 //is on tablet native fb app
@@ -43,8 +41,8 @@ if ($isFromFacebook && $detect->isTablet()) {
 <?php
 /* defines */
 
-define('BASE_URL', 'https://mobile1.projects-directory.com/cms/web/');
-define('APP_URL', 'https://mobile1.projects-directory.com/');
+define('BASE_URL', 'https://performancestory-staging.fb-mobil1.com/cms/web/');
+define('APP_URL', 'https://performancestory-staging.fb-mobil1.com/');
 /* get required info */
 /* get Stories */
 $stories = file_get_contents(BASE_URL . 'stories/list');
@@ -196,9 +194,9 @@ function trim_story($text) {
                 FB.ui({
                     method: 'feed',
                     title: "Mobile 1 Performance Story",
-                    link: 'https://mobile1.projects-directory.com',
+                    link: 'https://performancestory-staging.fb-mobil1.com',
                     name: "My Submitted Story",
-                    picture: 'http://mobile1.projects-directory.com/cms/web/uploads/' + picture,
+                    picture: 'https://performancestory-staging.fb-mobil1.com/cms/web/uploads/' + picture,
                     to: userId,
                     caption: '',
                     description: story,

@@ -17,7 +17,8 @@ if (isset($_REQUEST['signed_request'])) {
 /* defines */
 
 $user_id = (isset($signedRequestJSON->user_id)) ? $signedRequestJSON->user_id : '0';
-define('BASE_URL', 'https://mobile1.projects-directory.com/cms/web/');
+define('BASE_URL', 'https://performancestory-staging.fb-mobil1.com/cms/web/');
+
 /* get required info */
 /* get Stories */
 $stories = file_get_contents(BASE_URL . 'stories/list');
@@ -60,13 +61,13 @@ function trim_story($text) {
         <meta charset="utf-8" />
         <meta name="viewport" content="initial-scale=1, user-scalable=no">
         <meta name="viewport" content="initial-scale=1, user-scalable=no">
-        <title>Mobile 1</title>
+        <title>Mobil 1</title>
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/shame.css">
         <link rel="stylesheet" type="text/css" href="css/fonts.css">
         <link rel="stylesheet" type="text/css" href="css/icons.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
+       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
         <script type="text/javascript" src="js/masonry.js"></script>
@@ -146,9 +147,9 @@ function trim_story($text) {
                 FB.ui({
                     method: 'feed',
                     title: "Mobile 1 Performance Story",
-                    link: 'https://mobile1.projects-directory.com',
+                    link: 'https://performancestory-staging.fb-mobil1.com',
                     name: "My Submitted Story",
-                    picture: 'http://mobile1.projects-directory.com/cms/web/uploads/' + picture,
+                    picture: 'https://performancestory-staging.fb-mobil1.com/cms/web/uploads/' + picture,
                     to: userId,
                     caption: '',
                     description: story,
