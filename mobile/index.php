@@ -61,13 +61,13 @@ function trim_story($text) {
         <meta charset="utf-8" />
         <meta name="viewport" content="initial-scale=1, user-scalable=no">
         <meta name="viewport" content="initial-scale=1, user-scalable=no">
-        <title>Mobil 1</title>
+        <title>Mobil1 Performance Story</title>
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/shame.css">
         <link rel="stylesheet" type="text/css" href="css/fonts.css">
         <link rel="stylesheet" type="text/css" href="css/icons.css">
-       
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
         <script type="text/javascript" src="js/masonry.js"></script>
