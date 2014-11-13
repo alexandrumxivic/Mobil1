@@ -415,6 +415,14 @@ footer{
 	background: #000;
 	text-align: center;
 	line-height: 45px;
+	height: 45px;
+}
+footer:before{
+	display: inline-block;
+	vertical-align: middle;
+	height:100%;
+	width: 0;
+	content:"";
 }
 footer a{
 	display: inline-block;
