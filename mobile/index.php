@@ -95,8 +95,17 @@ function trim_story($text) {
                         first_name: "required",
                         last_name: "required",
                         email: "required",
-                        phone: "required",
-                        story: "required",
+                        phone{
+                            required: true,
+                            phoneUS: true
+                        },
+                        story{
+                            required: true,
+                            rangelength: [10, 250]
+                        },
+                        year {
+                            rangelength: [4, 4]
+                        },
                         agree_age: "required",
                         agree_rules: "required"
                     },
@@ -332,7 +341,7 @@ function trim_story($text) {
 
                     <div class="row fourth">
                         <div class="cell">
-                            <input type="text" placeholder="Year (optional)" name="year">
+                            <input type="number" placeholder="Year (optional)" name="year">
                         </div>
 
                         <div class="cell">
