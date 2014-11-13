@@ -114,6 +114,18 @@ $(document).ready(function () {
                 .siblings('.media-section').removeClass('collapsed');
 
         $('.overlayed-image-gallery').removeClass('active');
+
+        //Remove&Add back the video iframe if on videos
+        if($(this).parents('.videos').length) {
+            var temp = $('.videos .sg-item.active iframe');
+            var tempSRC = temp.attr('src');
+            var tempW = temp.attr('width');
+            var tempH = temp.attr('height');
+            console.log('121')
+
+            temp.remove();
+            $('.videos .sg-item.active').append('<iframe width="'+ tempW +'" height="'+ tempH +'" src="'+ tempSRC +'"></iframe>');
+        }
     });
 
     $('.js-switch-section').bind('click', function () {

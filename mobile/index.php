@@ -95,22 +95,24 @@ function trim_story($text) {
                         first_name: "required",
                         last_name: "required",
                         email: "required",
-                        phone{
+                        phone: {
                             required: true,
                             phoneUS: true
                         },
-                        story{
+                        story: {
                             required: true,
                             rangelength: [10, 250]
                         },
-                        year {
+                        year :{
                             rangelength: [4, 4]
                         },
                         agree_age: "required",
                         agree_rules: "required"
                     },
                     messages: {
-                        story: " Tell us your story in a few lines",
+                        email: "Invalid email",
+                        story: " Tell us your story",
+                        year: "Invalid year",
                         agree_age: " ",
                         agree_rules: " "
                     },
