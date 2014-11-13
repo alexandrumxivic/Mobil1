@@ -34,6 +34,10 @@ $(document).ready(function () {
                 linkedSibling.find('.active').trigger('activeElementChangedNext');
             }
 
+            if(target.parents('.videos').length){
+                stopIframe(target.find('iframe'));
+            }
+
             target.removeClass('active transition exit-left');
             targetSibling.addClass('active').removeClass('no-transition');
             target.unbind('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
@@ -70,6 +74,10 @@ $(document).ready(function () {
                 linkedSibling.find('.active').removeClass('active');
                 linkedSibling.find('*[data-index="' + targetIndex + '"]').addClass('active');
                 linkedSibling.find('.active').trigger('activeElementChangedPrev');
+            }
+
+            if(target.parents('.videos').length){
+                stopIframe(target.find('iframe'));
             }
 
             target.removeClass('active transition exit-right');
@@ -117,14 +125,7 @@ $(document).ready(function () {
 
         //Remove&Add back the video iframe if on videos
         if($(this).parents('.videos').length) {
-            var temp = $('.videos .sg-item.active iframe');
-            var tempSRC = temp.attr('src');
-            var tempW = temp.attr('width');
-            var tempH = temp.attr('height');
-            console.log('121')
-
-            temp.remove();
-            $('.videos .sg-item.active').append('<iframe width="'+ tempW +'" height="'+ tempH +'" src="'+ tempSRC +'"></iframe>');
+            stopIframe($('.videos .sg-item.active iframe'));
         }
     });
 
@@ -290,4 +291,15 @@ $(document).ready(function () {
         }
     });
 
+
+
+// Misc functions
+    function stopIframe(target){
+        var tempSRC = target.attr('src');
+        var tempW = target.attr('width');
+        var tempH = target.attr('height');
+
+        target.after('<iframe frameborder="0" width="'+ tempW +'" height="'+ tempH +'" src="'+ tempSRC +'"></iframe>');
+        target.remove();
+    }
 });
