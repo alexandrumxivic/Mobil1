@@ -21,6 +21,9 @@ p{
 	font-size: 18px;
 	line-height: 22px;
 }
+li{
+	list-style-type: none;
+}
 .emph{
 	color: #eb2036;
 	font-family:'EmPrintBold';

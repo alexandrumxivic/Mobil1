@@ -326,4 +326,12 @@ $(document).ready(function () {
     $('.image-categories .toggle').bind('click', function () {
         $(this).parent().toggleClass('active');
     });
+
+
+
+$(window).resize(function(){
+    console.log('bla')
+     $('.story-preview .pic').height($(window).width() - 60);
+
+})
 });

@@ -53,7 +53,6 @@ $(document).ready(function () {
         } else {
             targetSibling = target.siblings(':last-child');
         }
-
         target.addClass('transition exit-right');
         targetSibling.addClass('no-transition');
 
@@ -215,6 +214,8 @@ $(document).ready(function () {
 
         $(this).addClass('active').siblings('.active').removeClass('active');
 
+        stopIframe(targetSibling.find('.active iframe'));
+        console.log('a')
         targetSibling.find('.linked-control .active').removeClass('active');
         targetSibling.find('.linked-control li[data-index="' + targetIndex + '"]').addClass('active');
     });
@@ -295,6 +296,7 @@ $(document).ready(function () {
 
 // Misc functions
     function stopIframe(target){
+        console.log('b')
         var tempSRC = target.attr('src');
         var tempW = target.attr('width');
         var tempH = target.attr('height');

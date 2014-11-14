@@ -763,12 +763,13 @@ footer a + a{
 	top: 0;
 	right: 0;
 	width: 30%;
+	height: 100%;
 }
 .submit-story .story-pic .rect-btn{
 	font-size: 9px;
 	width: 100%;
 	height: 100%;
-	padding: 5px;
+	padding: 39px 5px 5px;
 }
 .submit-story .story-pic input{
 	position: absolute;
