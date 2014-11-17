@@ -42,7 +42,7 @@ li{
 	text-transform: uppercase;
 	background: rgba(0,104,176,.68);
 }
-.top-area--title img{
+.top-area--title a{
 	display: inline-block;
 	vertical-align: middle;
 }

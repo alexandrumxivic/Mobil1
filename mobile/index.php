@@ -241,7 +241,7 @@ function trim_story($text) {
     <main class="restricted">
         <section class="top-area">
             <h2 class="top-area--title">
-                <img src="assets/logo.png"> Performance Story
+                <a href="http://www.mobiloil.com/USA-English/MotorOil/Synthetics/Why_Use_Mobil_1_Synthetic_Oil.aspx"><img src="assets/logo.png"></a> Performance Story
             </h2>
 
             <div class="landing-intro top-module" >
