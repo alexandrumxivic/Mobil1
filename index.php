@@ -702,11 +702,13 @@ function trim_story($text) {
                 </div>
             </div>
         </section>
+
+        <section class="promo-rules">
+            <div class="rules-overlay"></div>
+        </section>
     </main>
     <footer>
-        <a href="#">Terms</a>
-
-        <a href="#">Conditions</a>
+        <div class="js-show-rules">Rules</div>
     </footer>
 </body>
 <script type="text/javascript">
