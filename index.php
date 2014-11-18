@@ -551,6 +551,11 @@ function trim_story($text) {
                                     <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
                                 </li>
                             <?php endforeach; ?>
+
+                            <li>
+                                <input id="all-categs" class="default-categs" checked="true" type="checkbox">
+                                <label for="all-categs">All</label>
+                            </li>
                         </ul>
                     </div>
                     <div class="scroll-visible-area">

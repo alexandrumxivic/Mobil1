@@ -211,27 +211,9 @@ $(document).ready(function () {
         var customSelector = '';
         var isFirst = true;
 
-        $('.image-categories-list li input:checked').each(function(){
-            var categID = $(this).attr('data-category');
-            $('.image-performance[data-category="'+ categID +'"]').show();
+        if($(this).find('input').hasClass('default-categs')){
+            $(this).find('input').prop('checked', true);
 
-            if(isFirst){
-                customSelector += '.image-performance[data-category="'+ categID +'"]';
-            } else {
-                customSelector += ',.image-performance[data-category="'+ categID +'"]';
-            }
-
-            filtered = true;
-            isFirst = false;
-        })
-        
-        if(filtered){
-            $masonryCont.masonry('destroy');
-            $masonryCont.masonry({
-                columnWidth: ".image-performance",
-                itemSelector: customSelector
-            })
-        } else {
             $('.image-performance').show();
             
             $masonryCont.masonry('destroy');
@@ -239,6 +221,38 @@ $(document).ready(function () {
                 columnWidth: ".image-performance",
                 itemSelector: ".image-performance"
             })
+        } else {
+            $('.image-categories .default-categs').prop('checked', false)
+
+            $('.image-categories-list li input:checked').each(function(){
+                var categID = $(this).attr('data-category');
+                $('.image-performance[data-category="'+ categID +'"]').show();
+
+                if(isFirst){
+                    customSelector += '.image-performance[data-category="'+ categID +'"]';
+                } else {
+                    customSelector += ',.image-performance[data-category="'+ categID +'"]';
+                }
+
+                filtered = true;
+                isFirst = false;
+            })
+            
+            if(filtered){
+                $masonryCont.masonry('destroy');
+                $masonryCont.masonry({
+                    columnWidth: ".image-performance",
+                    itemSelector: customSelector
+                })
+            } else {
+                $('.image-performance').show();
+                
+                $masonryCont.masonry('destroy');
+                $masonryCont.masonry({
+                    columnWidth: ".image-performance",
+                    itemSelector: ".image-performance"
+                })
+            }
         }
     });
 

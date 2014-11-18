@@ -506,6 +506,10 @@ function trim_story($text) {
                                 </li>
                             <?php endforeach; ?>
 
+                            <li>
+                                <input id="all-categs" class="default-categs" checked="true" type="checkbox">
+                                <label for="all-categs">All</label>
+                            </li>
                         </ul>
                     </div>
 
