@@ -226,13 +226,15 @@ $(document).ready(function () {
         })
         
         if(filtered){
+            $masonryCont.masonry('destroy');
             $masonryCont.masonry({
                 columnWidth: ".image-performance",
                 itemSelector: customSelector
             })
         } else {
             $('.image-performance').show();
-
+            
+            $masonryCont.masonry('destroy');
             $masonryCont.masonry({
                 columnWidth: ".image-performance",
                 itemSelector: ".image-performance"

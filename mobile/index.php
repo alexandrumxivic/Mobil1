@@ -501,7 +501,7 @@ function trim_story($text) {
                         <ul class="image-categories-list">
                             <?php foreach ($categories as $category): ?>
                                 <li>
-                                    <input id="<?php echo $category->id; ?>" type="checbox" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
+                                    <input id="<?php echo $category->id; ?>" type="checkbox" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
                                     <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
                                 </li>
                             <?php endforeach; ?>
