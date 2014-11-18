@@ -620,6 +620,7 @@ footer a + a{
 	position: relative;
 }
 .preview-submission{
+	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -699,16 +700,20 @@ footer a + a{
 	margin-left: 16px;
 }
 .submit-story .js-show-preview{
-	opacity: .5;
+	opacity: 0.5;
+	cursor: initial;
 }
 .submit-story .js-show-preview:hover {
 	border-color: #fff;
+	cursor: initial;
 }
 .submit-story .js-show-preview.active{
 	opacity: 1;
+	cursor: pointer;
 }
 .submit-story .js-show-preview.active:hover{
 	border-color: #0068b0;
+	cursor: pointer;
 }
 .custom-check{
 	font-size: 15px;

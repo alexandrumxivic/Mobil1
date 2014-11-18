@@ -304,6 +304,14 @@ $(document).ready(function () {
 
 
 
+
+// Checking to see if the form is valid to enable the preview for the story
+    $('.submit-story input').bind('change', function(){
+        if($('.submit-story').valid()){
+            $('.submit-story .js-show-preview').addClass('active');
+        }
+    })
+
 // Misc functions
     function stopIframe(target){
         console.log('b')
