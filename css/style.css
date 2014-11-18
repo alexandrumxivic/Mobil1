@@ -45,6 +45,8 @@ li{
 .top-area--title a{
 	display: inline-block;
 	vertical-align: middle;
+	margin-right: 20px;
+	padding-bottom: 4px;
 }
 .landing-stories-wrap{
 	display: inline-block;
