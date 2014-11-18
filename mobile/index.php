@@ -349,6 +349,7 @@ function trim_story($text) {
                         <div class="cell">
                             <input type="number" placeholder="Mileage (optional)" name="mileage">
                             <input type="hidden" name="facebook_id" id="facebook_id" value="<?php echo $user_id; ?>">
+                             <input type="hidden" name="status" id="status" value="0">
                         </div>
                     </div>
 

@@ -359,6 +359,7 @@ function trim_story($text) {
                         <div class="cell">
                             <input type="number" placeholder="Mileage (optional)" name="mileage">
                             <input type="hidden" name="facebook_id" id="facebook_id" value="<?php echo $user_id; ?>">
+                            <input type="hidden" name="status" id="status" value="0">
                         </div>
                     </div>
 
@@ -384,9 +385,9 @@ function trim_story($text) {
 
                     <div class="rect-btn js-top-default">Go Back</div>
 
-                    <div class="rect-btn js-show-preview">Preview</div>
+                    <input type="submit" id="edit" class="rect-btn blue" placeholder="Submit" value="Preview">
                     
-                    <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
+                    <input type="submit" id="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
                 </form>
 
                 <div class="preview-submission">
@@ -546,7 +547,7 @@ function trim_story($text) {
                         <ul class="image-categories-list">
                             <?php foreach ($categories as $category): ?>
                                 <li>
-                                    <input id="<?php echo $category->id; ?>" type="radio" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
+                                    <input id="<?php echo $category->id; ?>" type="checkbox" name="image-category" value="<?php echo $category->name; ?>" data-category="<?php echo $category->id; ?>">
                                     <label for="<?php echo $category->id; ?>"><?php echo $category->name; ?></label>
                                 </li>
                             <?php endforeach; ?>
