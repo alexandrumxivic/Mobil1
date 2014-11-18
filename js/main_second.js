@@ -34,7 +34,7 @@ $(document).ready(function () {
                 linkedSibling.find('.active').trigger('activeElementChangedNext');
             }
 
-            if(target.parents('.videos').length){
+            if (target.parents('.videos').length) {
                 stopIframe(target.find('iframe'));
             }
 
@@ -75,7 +75,7 @@ $(document).ready(function () {
                 linkedSibling.find('.active').trigger('activeElementChangedPrev');
             }
 
-            if(target.parents('.videos').length){
+            if (target.parents('.videos').length) {
                 stopIframe(target.find('iframe'));
             }
 
@@ -110,17 +110,18 @@ $(document).ready(function () {
         $('.landing-intro').show(300);
     });
 
-    $('.js-default-submit').bind('click', function(){
+    $('.js-default-submit').bind('click', function () {
         $(this).parents('.preview-submission').fadeOut(300);
     })
 
-    $('.js-show-preview').bind('click', function(){
-        if($(this).hasClass('active')) {
+    $('.js-show-preview').bind('click', function () {
+        if ($(this).hasClass('active')) {
+            
             $('.preview-submission').fadeIn(300);
         }
-    })
+    });
 
-
+     
 // Expanding & collapsing the performance pictures/videos sections
     $('.js-expand-section').bind('click', function () {
         $(this).parents('.media-section').addClass('expanded').siblings('.media-section').addClass('collapsed');
@@ -133,7 +134,7 @@ $(document).ready(function () {
         $('.overlayed-image-gallery').removeClass('active');
 
         //Remove&Add back the video iframe if on videos
-        if($(this).parents('.videos').length) {
+        if ($(this).parents('.videos').length) {
             stopIframe($('.videos .sg-item.active iframe'));
         }
     });
@@ -198,21 +199,21 @@ $(document).ready(function () {
     });
 // Masonry
     var $masonryCont = $('.image-performance-wrap');
-    $masonryCont.imagesLoaded(function(){
+    $masonryCont.imagesLoaded(function () {
         $masonryCont.masonry({
             columnWidth: ".image-performance",
             itemSelector: ('.image-performance')
         });
     })
 
-    $('.image-categories-list li').bind('click', function(){
+    $('.image-categories-list li').bind('click', function () {
         console.log('here');
         var categID = $(this).find('input').attr('data-category');
         $('.image-performance').hide();
-        $('.image-performance[data-category="'+ categID +'"]').show();
+        $('.image-performance[data-category="' + categID + '"]').show();
         $masonryCont.masonry({
-            columnWidth: ".image-performance[data-category='"+ categID +"']",
-            itemSelector: ".image-performance[data-category='"+ categID +"']"
+            columnWidth: ".image-performance[data-category='" + categID + "']",
+            itemSelector: ".image-performance[data-category='" + categID + "']"
         })
     });
 
@@ -297,7 +298,7 @@ $(document).ready(function () {
 // Code for the toggling of the category filtering for the image gallery
 
     $('.image-categories .toggle').bind('click', function () {
-        if(!$(this).hasClass('disabled')){
+        if (!$(this).hasClass('disabled')) {
             $(this).parent().toggleClass('active');
         }
     });
@@ -306,20 +307,20 @@ $(document).ready(function () {
 
 
 // Checking to see if the form is valid to enable the preview for the story
-    $('.submit-story input').bind('change', function(){
-        if($('.submit-story').valid()){
+    $('.submit-story input').bind('change', function () {
+        if ($('.submit-story').valid()) {
             $('.submit-story .js-show-preview').addClass('active');
         }
     })
 
 // Misc functions
-    function stopIframe(target){
+    function stopIframe(target) {
         console.log('b')
         var tempSRC = target.attr('src');
         var tempW = target.attr('width');
         var tempH = target.attr('height');
 
-        target.after('<iframe frameborder="0" width="'+ tempW +'" height="'+ tempH +'" src="'+ tempSRC +'"></iframe>');
+        target.after('<iframe frameborder="0" width="' + tempW + '" height="' + tempH + '" src="' + tempSRC + '"></iframe>');
         target.remove();
     }
 });

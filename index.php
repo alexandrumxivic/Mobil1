@@ -347,7 +347,7 @@ function trim_story($text) {
                                 Upload image<br/>
                                 <span class="lowercase">(optional)</span>
                             </div>
-                            <input type="file" name="image" accept="image/*">
+                            <input type="file" name="image" accept="image/*" onchange="readURL(this);">
                         </div>
                     </div>
 
@@ -385,7 +385,7 @@ function trim_story($text) {
 
                     <div class="rect-btn js-top-default">Go Back</div>
 
-                    <input type="submit" id="edit" class="rect-btn blue" placeholder="Submit" value="Preview">
+                    <div class="rect-btn js-show-preview">Preview</div>
                     
                     <input type="submit" id="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
                 </form>
@@ -396,7 +396,7 @@ function trim_story($text) {
 
                             <div class="pic" id="submited-story-pic">
                                 <!-- submitted story pic-->
-                                <?php echo ($check->success === false) ? "<img src='" . $check->image . "' width='355' height='355'/>" : ''; ?>
+                               <img src='' width='355' id='imagePreview' height='355'/>
                             </div>
 
                             <div class="author">
@@ -751,5 +751,18 @@ function trim_story($text) {
 
         return;
     }
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imagePreview')
+                        .attr('src', e.target.result)
+                        .width(355);                        
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 </html>
