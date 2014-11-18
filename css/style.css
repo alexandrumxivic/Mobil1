@@ -429,7 +429,7 @@ footer:before{
 	width: 0;
 	content:"";
 }
-footer > div{
+footer a{
 	display: inline-block;
 	vertical-align: middle;
 	height: 15px;
@@ -441,6 +441,9 @@ footer > div{
 	line-height: 15px;
 	text-decoration: none;
 	text-transform: uppercase;
+}
+footer a + a{
+	border-left: 1px solid #fff;
 }
 .scroller{
 	position: relative;
@@ -1167,11 +1170,3 @@ sup{
 	color: #fff;
 }
 .viewStories{margin-top:7px;}
-.promo-rules{
-	position: absolute;
-	top: 74px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: rgba(0,0,0,.75);
-}
