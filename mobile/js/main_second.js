@@ -199,20 +199,62 @@ $(document).ready(function () {
     });
 // Masonry
     var $masonryCont = $('.image-performance-wrap');
-
-    $masonryCont.masonry({
-        columnWidth: ".image-performance",
-        itemSelector: ('.image-performance')
-    });
-
-    $('.image-categories-list li').bind('click', function () {
-        var categID = $(this).find('input').attr('data-category');
-        $('.image-performance').hide();
-        $('.image-performance[data-category="' + categID + '"]').show();
+    $masonryCont.imagesLoaded(function(){
         $masonryCont.masonry({
-            columnWidth: ".image-performance[data-category='" + categID + "']",
-            itemSelector: ".image-performance[data-category='" + categID + "']"
+            columnWidth: ".image-performance",
+            itemSelector: '.image-performance'
         });
+    })
+
+    $('.image-categories-list li').bind('click', function(){
+        $('.image-performance').hide();
+        var filtered = false;
+        var customSelector = '';
+        var isFirst = true;
+
+         if($(this).find('input').hasClass('default-categs')){
+            $(this).find('input').prop('checked', true);
+
+            $('.image-performance').show();
+            
+            $masonryCont.masonry('destroy');
+            $masonryCont.masonry({
+                columnWidth: ".image-performance",
+                itemSelector: ".image-performance"
+            })
+        } else {
+            $('.image-categories .default-categs').prop('checked', false)
+
+            $('.image-categories-list li input:checked').each(function(){
+                var categID = $(this).attr('data-category');
+                $('.image-performance[data-category="'+ categID +'"]').show();
+
+                if(isFirst){
+                    customSelector += '.image-performance[data-category="'+ categID +'"]';
+                } else {
+                    customSelector += ',.image-performance[data-category="'+ categID +'"]';
+                }
+
+                filtered = true;
+                isFirst = false;
+            })
+            
+            if(filtered){
+                $masonryCont.masonry('destroy');
+                $masonryCont.masonry({
+                    columnWidth: ".image-performance",
+                    itemSelector: customSelector
+                })
+            } else {
+                $('.image-performance').show();
+                
+                $masonryCont.masonry('destroy');
+                $masonryCont.masonry({
+                    columnWidth: ".image-performance",
+                    itemSelector: ".image-performance"
+                })
+            }
+        }
     });
 
 // SCroll for the image gallery

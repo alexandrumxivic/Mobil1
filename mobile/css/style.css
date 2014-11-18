@@ -1184,7 +1184,7 @@ footer a + a{
 .image-categories-list input:checked + label:before{
 	background: url('../assets/radioselected.png') no-repeat top left;
 }
-.image-categories-list input[type="radio"]{
+.image-categories-list input[type="checkbox"]{
 	display: inline-block;
 	vertical-align: middle;
 	width: 0;

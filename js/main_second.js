@@ -202,19 +202,61 @@ $(document).ready(function () {
     $masonryCont.imagesLoaded(function () {
         $masonryCont.masonry({
             columnWidth: ".image-performance",
-            itemSelector: ('.image-performance')
+            itemSelector: '.image-performance'
         });
-    })
+    });
 
-    $('.image-categories-list li').bind('click', function () {
-        console.log('here');
-        var categID = $(this).find('input').attr('data-category');
+
+    $('.image-categories-list li').bind('click', function(){
         $('.image-performance').hide();
-        $('.image-performance[data-category="' + categID + '"]').show();
-        $masonryCont.masonry({
-            columnWidth: ".image-performance[data-category='" + categID + "']",
-            itemSelector: ".image-performance[data-category='" + categID + "']"
-        })
+        var filtered = false;
+        var customSelector = '';
+        var isFirst = true;
+
+        if($(this).find('input').hasClass('default-categs')){
+            $(this).find('input').prop('checked', true);
+
+            $('.image-performance').show();
+            
+            $masonryCont.masonry('destroy');
+            $masonryCont.masonry({
+                columnWidth: ".image-performance",
+                itemSelector: ".image-performance"
+            })
+        } else {
+            $('.image-categories .default-categs').prop('checked', false)
+
+            $('.image-categories-list li input:checked').each(function(){
+                var categID = $(this).attr('data-category');
+                $('.image-performance[data-category="'+ categID +'"]').show();
+
+                if(isFirst){
+                    customSelector += '.image-performance[data-category="'+ categID +'"]';
+                } else {
+                    customSelector += ',.image-performance[data-category="'+ categID +'"]';
+                }
+
+                filtered = true;
+                isFirst = false;
+            });
+            
+            if(filtered){
+                $masonryCont.masonry('destroy');
+                $masonryCont.masonry({
+                    columnWidth: ".image-performance",
+                    itemSelector: customSelector
+                });
+            } else {
+                $('.image-performance').show();
+                
+                $masonryCont.masonry('destroy');
+                $masonryCont.masonry({
+                    columnWidth: ".image-performance",
+                    itemSelector: ".image-performance"
+                });
+            }
+        }
+
     });
 
 
@@ -315,7 +357,7 @@ $(document).ready(function () {
 
 // Misc functions
     function stopIframe(target) {
-        console.log('b')
+       
         var tempSRC = target.attr('src');
         var tempW = target.attr('width');
         var tempH = target.attr('height');
