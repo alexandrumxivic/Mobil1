@@ -141,9 +141,7 @@ function trim_story($text) {
                         first_name: "required",
                         last_name: "required",
                         email: "required",
-                        phone: {
-                            required: true
-                        },
+                       
                         story: {
                             required: true,
                             rangelength: [10, 250]
@@ -184,6 +182,7 @@ function trim_story($text) {
                                 $(".submit-story-wrap").hide();
                                 $(".thank-msg-wrap").show();
                                 $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
+                                $('#lastSubmit').attr('onclick', '');
                                 $('.js-show-submit').unbind('click');
 
                                 $('.js-show-thank').bind('click', function () {
@@ -226,6 +225,7 @@ function trim_story($text) {
                             $('#last_name').val(response.last_name);
                             $('#email').val(response.email);
                             $('#notLoggedIn').attr('onclick', '').unbind('click');
+                            $('#lastSubmit').attr('onclick', '').unbind('click');
                             $('#notLoggedIn').attr('id', 'loggedIn');
                             $('#facebook_id').val(response.id);
                             $('.js-show-submit').bind('click', function () {
@@ -384,8 +384,36 @@ function trim_story($text) {
 
                     <div class="rect-btn js-top-default">Go Back</div>
 
+                    <div class="rect-btn js-show-preview">Preview</div>
+                    
                     <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
                 </form>
+
+                <div class="preview-submission">
+                    <div class="center-container">
+                        <div class="story-preview story-box">
+
+                            <div class="pic" id="submited-story-pic">
+                                <!-- submitted story pic-->
+                                <?php echo ($check->success === false) ? "<img src='" . $check->image . "' width='355' height='355'/>" : ''; ?>
+                            </div>
+
+                            <div class="author">
+                                <?php $p = "'https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal'";?>
+                                <div class="author--pic" id="submited-story-author-pic" <?php echo ($check->success === false) ? 'style="background:url('. $p .')"': '';?>>
+                                    <!-- submitted story  author--> 
+                                    <?php // echo ($check->success === false) ? "<img src='https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal' width='80' height='80' />" : ''; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="rect-btn js-default-submit">Go Back</div>
+
+                            <div class="rect-btn blue">Submit</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="view-stories-wrap top-module">
@@ -395,7 +423,7 @@ function trim_story($text) {
                     <span class="emph">So you can keep your engine running like new.</span>
                 </div>
 
-                <div id="slider-containter">
+                <div id="slidFer-containter">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
                         <?php foreach ($stories as $key => $value) : ?>
@@ -437,7 +465,7 @@ function trim_story($text) {
                         if ($check->success === TRUE): echo 'js-show-submit';
                         else: echo 'js-show-thank';
                         endif;
-                        ?>" <?php if ($check->success === TRUE): echo "onclick='loginFacebook();'"; endif;?>>Submit your story</div>
+                        ?>" id="lastSubmit" <?php if ($check->success === TRUE): echo "onclick='loginFacebook();'"; endif;?>>Submit your story</div>
             </div>
 
             <div class="thank-msg-wrap top-module">
@@ -462,14 +490,14 @@ function trim_story($text) {
                     </div>
 
                     <div class="author">
-                    <?php $p = "'https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal'";?>
-                        <div class="author--pic" id="submited-story-author-pic" <?php echo ($check->success === false) ? 'style="background:url('. $p .')"': '';?>>
-                            <!-- submitted story  author--> 
-                            <?php // echo ($check->success === false) ? "<img src='https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal' width='80' height='80' />" : ''; ?>
+                        <?php $p = "'https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal'";?>
+                            <div class="author--pic" id="submited-story-author-pic" <?php echo ($check->success === false) ? 'style="background:url('. $p .')"': '';?>>
+                                <!-- submitted story  author--> 
+                                <?php // echo ($check->success === false) ? "<img src='https://graph.facebook.com/" . $check->facebook_id . "/picture?type=normal' width='80' height='80' />" : ''; ?>
 
 
-                        </div>
                     </div>
+                </div>
 
                     <span class="author--name" id="submited-story-author">- <!-- submitted story  author--><?php echo ($check->success === false) ? $check->name : ''; ?></span>
 

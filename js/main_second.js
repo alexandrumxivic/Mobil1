@@ -110,6 +110,16 @@ $(document).ready(function () {
         $('.landing-intro').show(300);
     });
 
+    $('.js-default-submit').bind('click', function(){
+        $(this).parents('.preview-submission').fadeOut(300);
+    })
+
+    $('.js-show-preview').bind('click', function(){
+        if($(this).hasClass('active')) {
+            $('.preview-submission').fadeIn(300);
+        }
+    })
+
 
 // Expanding & collapsing the performance pictures/videos sections
     $('.js-expand-section').bind('click', function () {

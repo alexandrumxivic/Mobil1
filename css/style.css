@@ -556,6 +556,7 @@ footer a + a{
 	display: none;
 	text-align: center;
 	padding: 30px 68px 45px;
+	position: relative;
 }
 .submit-story-wrap .emph{
 	font-size: 23px;
@@ -618,6 +619,35 @@ footer a + a{
 	vertical-align: top;
 	position: relative;
 }
+.preview-submission{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('../assets/overlayedPreviewBg.png') repeat-x top left;
+	text-align: center;
+}
+.preview-submission:before{
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 100%;
+	content:"";
+}
+.preview-submission .rect-btn{
+	margin-top: 16px;
+}
+.preview-submission .rect-btn + .rect-btn{
+	margin-left: 16px;
+}
+.preview-submission .center-container{
+	display: inline-block;
+	vertical-align: middle;
+}
+.preview-submission .story-box{
+	margin: 0;
+}
 .submit-story .cell input{
 	-moz-appearance: textfield;
 	display: block;
@@ -664,6 +694,21 @@ footer a + a{
 	height: 34px;
 	margin-left: 16px;
 	line-height: 14px
+}
+.submit-story .rect-btn + .rect-btn{
+	margin-left: 16px;
+}
+.submit-story .js-show-preview{
+	opacity: .5;
+}
+.submit-story .js-show-preview:hover {
+	border-color: #fff;
+}
+.submit-story .js-show-preview.active{
+	opacity: 1;
+}
+.submit-story .js-show-preview.active:hover{
+	border-color: #0068b0;
 }
 .custom-check{
 	font-size: 15px;
