@@ -424,8 +424,11 @@ function trim_story($text) {
                     </div>
                     <!-- end of masterslider -->
                 </div>
-
-                <div class="rect-btn js-show-submit"  <?php if($user_id == 0):  echo "onclick='loginFacebook();'"; endif;?>  >Submit your story</div>
+                <div>
+                    <div class="rect-btn js-top-default">Back</div>
+                    <div class="rect-btn js-show-submit"  <?php if($user_id == 0):  echo "onclick='loginFacebook();'"; endif;?>  >Submit your story
+                    </div>
+                </div>
             </div>
 
             <div class="thank-msg-wrap top-module ">

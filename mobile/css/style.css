@@ -993,6 +993,13 @@ footer a + a{
 	padding-bottom: 32px;
 	text-align: center;
 }
+.view-stories-wrap .rect-btn{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.view-stories-wrap .rect-btn + .rect-btn{
+	margin-left: 16px;
+}
 .view-stories-wrap .landing-msg{
 	width: 100%;
 	margin: 30px 0 35px;

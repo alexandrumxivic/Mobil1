@@ -490,14 +490,19 @@ function trim_story($text) {
                             <!-- end of masterslider -->
                         </div>
 
-                        <div  class="rect-btn go-to-form <?php
-                        if ($check->success === TRUE): echo 'js-show-submit';
-                        else: echo 'js-show-thank';
-                        endif;
-                        ?>" id="lastSubmit" <?php
-                              if ($check->success === TRUE): echo "onclick='loginFacebook();'";
-                              endif;
-                              ?>>Submit your story</div>
+                        <div>
+                            <div class="rect-btn js-top-default">Back</div>
+
+                            <div  class="rect-btn go-to-form <?php
+                            if ($check->success === TRUE): echo 'js-show-submit';
+                            else: echo 'js-show-thank';
+                            endif;
+                            ?>" id="lastSubmit" <?php
+                                  if ($check->success === TRUE): echo "onclick='loginFacebook();'";
+                                  endif;
+                                  ?>>Submit your story
+                            </div>
+                        </div>
                     </div>
 
                     <div class="thank-msg-wrap top-module">

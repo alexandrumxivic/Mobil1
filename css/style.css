@@ -978,6 +978,12 @@ footer a{
 .view-stories-wrap .landing-msg h3{
 	font-size: 22px;
 }
+.view-stories-wrap .rect-btn{
+	margin-top: 30px;
+}
+.view-stories-wrap .rect-btn + .rect-btn{
+	margin-left: 16px;
+}
 .thank-msg-wrap{
 	display: none;
 	height: 523px;
