@@ -1,0 +1,28 @@
+body{
+	color: #fff;
+	font-size: 0;
+	font-family:'EmPrint', Arial, Helvetica, sans;
+	width: 80%;
+	max-width: 810px;
+	margin: 20px auto;
+	background: #000;
+}
+h2{
+	margin: 0;
+	font-family:'EmPrintBold';
+	font-size: 37px;
+	line-height: 48px;
+}
+h3{
+	margin: 0;
+	color: #fff;
+	font-size: 24px;
+	font-family:'EmPrintBold';
+	text-transform: uppercase;
+	text-align: center;
+}
+p{
+	color: #fff;
+	font-size: 18px;
+	line-height: 25px;
+}

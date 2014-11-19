@@ -442,9 +442,6 @@ footer a{
 	text-decoration: none;
 	text-transform: uppercase;
 }
-footer a + a{
-	border-left: 1px solid #fff;
-}
 .scroller{
 	position: relative;
 	border: 5px solid #0068b0;
