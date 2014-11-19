@@ -182,6 +182,41 @@ function trim_story($text) {
                         });
                     }
                 });
+
+                $('.js-preview-submit').bind('click', function(){
+                    var formData = new FormData($("form")[0]);
+                    $.ajax({
+                        url: '<?php echo BASE_URL ?>stories/new/create',
+                        type: 'POST',
+                        data: formData,
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (returndata) {
+                            if (returndata.success === true) {
+                                $("#submited-story-author-pic").css("background", "url('https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal')");
+                                $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
+                                $("#submited-story-author").append(returndata.name);
+                                $("#submited-story").append('&#8220;' + returndata.story + '&#8221;');
+                                console.log(returndata.image_unsecured);
+                                picture_p = returndata.image_unsecured;
+                                userId_p = returndata.facebook_id;
+                                story_p = returndata.story;
+                            }
+                            $(".submit-story-wrap").hide();
+                            $(".thank-msg-wrap").show();
+                            $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
+                            $('#lastSubmit').attr('onclick', '');
+                            $('.js-show-submit').unbind('click');
+                            $('.js-show-thank').bind('click', function () {
+                                $(this).parents('.top-module').hide(300);
+                                $('.submit-story-wrap').hide();
+                                $('.thank-msg-wrap').show(300);
+                            });
+                        }
+                    });
+                })
             });
         </script>
         <script>
@@ -404,7 +439,7 @@ function trim_story($text) {
                             <div>
                                 <div class="rect-btn js-default-submit">Go Back</div>
 
-                                <div class="rect-btn blue">Submit</div>
+                                <div class="rect-btn blue js-preview-submit">Submit</div>
                             </div>
                         </div>
                     </div>
