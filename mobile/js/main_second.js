@@ -215,7 +215,7 @@ $(document).ready(function () {
         if($(this).find('input').hasClass('default-categs')){
             $('.image-categories-list li input:checked').each(function(){
                 $(this).prop('checked', false);
-            }
+            })
             $(this).find('input').prop('checked', true);
 
             $('.image-performance').show();
