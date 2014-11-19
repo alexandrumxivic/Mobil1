@@ -131,6 +131,8 @@ $(document).ready(function () {
         $(this).parents('.media-section').removeClass('expanded')
                 .siblings('.media-section').removeClass('collapsed');
 
+        $(this).parents('.media-section').find('.image-categories .toggle').removeClass('disabled');
+
         $('.overlayed-image-gallery').removeClass('active');
 
         //Remove&Add back the video iframe if on videos
@@ -142,6 +144,8 @@ $(document).ready(function () {
     $('.js-switch-section').bind('click', function () {
         $(this).parents('.media-section').removeClass('expanded').addClass('collapsed')
                 .siblings('.media-section').removeClass('collapsed').addClass('expanded');
+
+        $(this).parents('.media-section').find('.image-categories .toggle').removeClass('disabled');
 
         $('.overlayed-image-gallery').removeClass('active');
     });
