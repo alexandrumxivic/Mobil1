@@ -111,7 +111,7 @@ $(document).ready(function () {
     })
 
     $('.js-show-preview').bind('click', function () {
-        if ($(this).hasClass('active')) {
+        if ($(this).hasClass('active') && $('.submit-story').valid()) {
             
             $('.preview-submission').fadeIn(300);
         }
@@ -389,6 +389,8 @@ $(document).ready(function () {
     $('.submit-story input').bind('change', function () {
         if ($('.submit-story').valid()) {
             $('.submit-story .js-show-preview').addClass('active');
+        } else {
+            $('.submit-story .js-show-preview').removeClass('active');
         }
     })
 

@@ -788,7 +788,7 @@ function trim_story($text) {
     function populatePreview() {
             $('#authorNamePreview').empty();
             $('#storyPreview').empty();
-            $('#authorNamePreview').append($('#first_name').val() + ' ' + $('#last_name').val());
+            $('#authorNamePreview').append('- ' + $('#first_name').val() + ' ' + $('#last_name').val());
             $('#storyPreview').append('&#8220; ' + $('#story').val() + ' &#8221;');
             $('#authorPreview').css("background", "url('https://graph.facebook.com/" + $('#facebook_id').val() + "/picture?type=normal')");
         }
