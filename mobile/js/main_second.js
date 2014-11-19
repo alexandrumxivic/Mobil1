@@ -106,6 +106,17 @@ $(document).ready(function () {
         $('.landing-intro').show(300);
     });
 
+    $('.js-default-submit').bind('click', function () {
+        $(this).parents('.preview-submission').fadeOut(300);
+    })
+
+    $('.js-show-preview').bind('click', function () {
+        if ($(this).hasClass('active')) {
+            
+            $('.preview-submission').fadeIn(300);
+        }
+    });
+
 
 
 // Expanding & collapsing the performance pictures/videos sections
@@ -374,8 +385,15 @@ $(document).ready(function () {
 
 
 
+// Checking to see if the form is valid to enable the preview for the story
+    $('.submit-story input').bind('change', function () {
+        if ($('.submit-story').valid()) {
+            $('.submit-story .js-show-preview').addClass('active');
+        }
+    })
+
+
 $(window).resize(function(){
-    console.log('bla')
      $('.story-preview .pic').height($(window).width() - 60);
 
 })

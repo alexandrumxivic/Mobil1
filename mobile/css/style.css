@@ -666,6 +666,7 @@ footer a + a{
 }
 .submit-story-wrap{
 	display: none;
+	position:relative;
 	text-align: center;
 	padding: 30px 11px;
 }
@@ -786,10 +787,58 @@ footer a + a{
   -webkit-appearance: none; 
   margin: 0; 
 }
-.submit-story input.rect-btn{
-	height: 34px;
+.submit-story .rect-btn{
+	padding: 8px 15px;
+}
+.submit-story .rect-btn + .rect-btn{
 	margin-left: 16px;
-	line-height: 14px
+}
+.submit-story .js-show-preview{
+	opacity: 0.5;
+	cursor: initial;
+}
+.submit-story .js-show-preview:hover {
+	border-color: #fff;
+	cursor: initial;
+}
+.submit-story .js-show-preview.active{
+	opacity: 1;
+	cursor: pointer;
+}
+.submit-story .js-show-preview.active:hover{
+	border-color: #0068b0;
+	cursor: pointer;
+}
+.preview-submission{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.8);
+	text-align: center;
+}
+.preview-submission:before{
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 100%;
+	content:"";
+}
+.preview-submission .rect-btn{
+	margin-top: 16px;
+}
+.preview-submission .rect-btn + .rect-btn{
+	margin-left: 16px;
+}
+.preview-submission .center-container{
+	display: inline-block;
+	vertical-align: middle;
+}
+.preview-submission .story-preview{
+	width: 80vw;
+	height: 80vw;
 }
 .custom-check{
 	font-size: 15px;

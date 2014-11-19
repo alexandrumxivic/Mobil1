@@ -96,8 +96,7 @@ function trim_story($text) {
                         last_name: "required",
                         email: "required",
                         phone: {
-                            required: true,
-                            phoneUS: true
+                            required: true
                         },
                         story: {
                             required: true,
@@ -151,6 +150,41 @@ function trim_story($text) {
 
                     }
                 });
+
+                $('.js-preview-submit').bind('click', function(){
+                        var formData = new FormData($("form")[0]);
+                        $.ajax({
+                            url: '<?php echo BASE_URL ?>stories/new/create',
+                            type: 'POST',
+                            data: formData,
+                            async: false,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (returndata) {
+                                if (returndata.success === true) {
+                                    $("#submited-story-author-pic").css("background","url('https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal')");
+                                    $("#submited-story-pic").append("<img src='" + returndata.image + "' width='278' height='278'>");
+                                    $("#submited-story-author").append(returndata.name);
+                                    $("#submited-story").append('&#8220;' + returndata.story + '&#8221;');
+                                    picture_p = returndata.image_unsecured;
+                                    userId_p = returndata.facebook_id;
+                                    story_p = returndata.story;
+
+                                    $(".submit-story-wrap").hide();
+                                    $(".thank-msg-wrap").show();
+                                    $(".go-to-form").addClass("js-show-thank").removeClass("js-show-submit");
+                                    $('.js-show-submit').unbind('click');
+                                    $('.js-show-thank').bind('click', function () {
+                                        $(this).parents('.top-module').hide(300);
+                                        $('.submit-story-wrap').hide();
+                                        $('.thank-msg-wrap').show(300);
+                                    });
+                                }
+                            }
+                        });
+
+                    })
             });
         </script>
         <script>
@@ -329,7 +363,7 @@ function trim_story($text) {
 
                     <div class="row third">
                         <div class="cell">
-                            <textarea placeholder="Your story" name="story"></textarea>
+                            <textarea placeholder="Your story" name="story" id="story"></textarea>
                         </div>
 
                         <div class="story-pic">
@@ -337,7 +371,7 @@ function trim_story($text) {
                                 Upload image<br/>
                                 <span class="lowercase">(optional)</span>
                             </div>
-                            <input type="file" name="image" accept="image/*">
+                            <input type="file" name="image" accept="image/*"onchange="readURL(this);">
                         </div>
                     </div>
 
@@ -375,8 +409,46 @@ function trim_story($text) {
 
                     <div class="rect-btn js-top-default" id="back">Go Back</div>
 
+                        <div class="rect-btn js-show-preview" onclick='populatePreview();'>Preview</div>
+
                     <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
                 </form>
+
+                <div class="preview-submission">
+                    <div class="center-container">
+                        <div class="story-preview story-box">
+
+                            <div class="pic">
+                                <!-- submitted story pic-->
+                                <img src='https://performancestory-staging.fb-mobil1.com/cms/web/uploads/default.jpg' width='355' id='imagePreview' height='355'/>
+                            </div>
+
+                            <div class="author">
+
+                                <div class="author--pic" id='authorPreview'>
+                                    <!-- submitted story  author--> 
+
+                                </div>
+                            </div>
+                            <span class="author--name" id='authorNamePreview'>- <!-- submitted story  author--></span>
+
+                            <div class="content">
+                                <span class="content--title">My Performance Story:</span>
+
+                                <p class="content--text" id="storyPreview">
+
+                                    <!-- submitted story -->
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="rect-btn js-default-submit">Go Back</div>
+
+                            <div class="rect-btn blue js-preview-submit">Submit</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="view-stories-wrap top-module" style="display:none;">
@@ -711,5 +783,23 @@ function trim_story($text) {
 
         return;
     }
+    function populatePreview() {
+            $('#authorNamePreview').empty();
+            $('#storyPreview').empty();
+            $('#authorNamePreview').append($('#first_name').val() + ' ' + $('#last_name').val());
+            $('#storyPreview').append('&#8220; ' + $('#story').val() + ' &#8221;');
+            $('#authorPreview').css("background", "url('https://graph.facebook.com/" + $('#facebook_id').val() + "/picture?type=normal')");
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview')
+                            .attr('src', e.target.result)
+                            .width(355);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 </html>
