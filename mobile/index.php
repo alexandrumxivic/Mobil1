@@ -407,11 +407,13 @@ function trim_story($text) {
                         </div>
                     </div>
 
-                    <div class="rect-btn js-top-default" id="back">Go Back</div>
+                    <div class="custom-row">
+                        <div class="rect-btn js-top-default" id="back">Back</div>
 
                         <div class="rect-btn js-show-preview" onclick='populatePreview();'>Preview</div>
 
-                    <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
+                        <input type="submit" class="rect-btn blue" placeholder="Submit" value="SUBMIT">
+                    </div>
                 </form>
 
                 <div class="preview-submission">

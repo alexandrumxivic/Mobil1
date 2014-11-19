@@ -688,7 +688,7 @@ footer a + a{
 	text-align: left;
 	margin-bottom: 6px;
 }
-.submit-story > .rect-btn{
+.submit-story .custom-row > .rect-btn{
 	margin-top: 22px;
 }
 .submit-story input:not(.rect-btn),
@@ -790,8 +790,11 @@ footer a + a{
 .submit-story .rect-btn{
 	padding: 8px 15px;
 }
+.submit-story .custom-row{
+	margin: 0 -15px;
+}
 .submit-story .rect-btn + .rect-btn{
-	margin-left: 16px;
+	margin-left: 8px;
 }
 .submit-story .js-show-preview{
 	opacity: 0.5;
@@ -825,6 +828,9 @@ footer a + a{
 	width: 0;
 	height: 100%;
 	content:"";
+}
+.preview-submission .author{
+	text-align: left;
 }
 .preview-submission .rect-btn{
 	margin-top: 16px;
