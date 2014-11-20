@@ -602,11 +602,6 @@ function trim_story($text) {
                                     $i++;
                                     ?>" data-category="<?php echo $images_gal->category; ?>">
                                         <img src="<?php echo $images_gal->image_url; ?>">
-
-                                        <div class="hover-content">
-                                            <?php echo $images_gal->description; ?>
-                                            <div class="center">view</div>
-                                        </div>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
