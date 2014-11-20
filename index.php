@@ -131,6 +131,7 @@ function trim_story($text) {
                         first_name: "required",
                         last_name: "required",
                         email: "required",
+                        phone: "required",
                         story: {
                             required: true,
                             rangelength: [10, 250]
