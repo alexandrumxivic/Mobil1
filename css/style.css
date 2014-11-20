@@ -34,6 +34,7 @@ li{
 	height: 616px;
 	background: url('../assets/topBg.jpg') no-repeat top left;
 	background-size: cover;
+	overflow: hidden;
 }
 .top-area--title{
 	padding: 13px;
