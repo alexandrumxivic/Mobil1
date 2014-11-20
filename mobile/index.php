@@ -17,7 +17,7 @@ if (isset($_REQUEST['signed_request'])) {
 /* defines */
 
 $user_id = (isset($signedRequestJSON->user_id)) ? $signedRequestJSON->user_id : '0';
-define('BASE_URL', 'https://performancestory-staging.fb-mobil1.com/cms/web/');
+define('BASE_URL', 'https://performancestory.fb-mobil1.com/cms/web/');
 
 /* get required info */
 /* get Stories */
@@ -192,9 +192,9 @@ function trim_story($text) {
                 FB.ui({
                     method: 'feed',
                     title: "Mobile 1 Performance Story",
-                    link: 'https://performancestory-staging.fb-mobil1.com',
+                    link: 'https://performancestory.fb-mobil1.com',
                     name: "Mobil1 Performance Story",
-                    picture: 'https://performancestory-staging.fb-mobil1.com/cms/web/uploads/' + picture,
+                    picture: 'https://performancestory.fb-mobil1.com/cms/web/uploads/' + picture,
                     to: userId,
                     caption: story,
                     description: story,
@@ -422,7 +422,7 @@ function trim_story($text) {
 
                             <div class="pic">
                                 <!-- submitted story pic-->
-                                <img src='https://performancestory-staging.fb-mobil1.com/cms/web/uploads/default.jpg' width='355' id='imagePreview' height='355'/>
+                                <img src='https://performancestory.fb-mobil1.com/cms/web/uploads/default.jpg' width='355' id='imagePreview' height='355'/>
                             </div>
 
                             <div class="author">
@@ -803,5 +803,13 @@ function trim_story($text) {
                 reader.readAsDataURL(input.files[0]);
             }
         }
+</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-56930001-1', 'auto');
+ga('send', 'pageview');
 </script>
 </html>

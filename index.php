@@ -13,7 +13,7 @@ $meta_view = 0;
 $tabletFb = 0;
 // is on mobile device except tablet
 if ($detect->isMobile() && !$detect->isTablet()) {
-    header('Location: https://performancestory-staging.fb-mobil1.com/mobile/');
+    header('Location: https://performancestory.fb-mobil1.com/mobile/');
     die();
 }
 //is on tablet native fb app
@@ -35,8 +35,8 @@ if ($isFromFacebook && $detect->isTablet()) {
 <?php include "Facebook.php"; ?> 
 <?php
 /* defines */
-define('BASE_URL', 'https://performancestory-staging.fb-mobil1.com/cms/web/');
-define('APP_URL', 'https://performancestory-staging.fb-mobil1.com/');
+define('BASE_URL', 'https://performancestory.fb-mobil1.com/cms/web/');
+define('APP_URL', 'https://performancestory.fb-mobil1.com/');
 /* get required info */
 /* get Stories */
 $stories = file_get_contents(BASE_URL . 'stories/list');
@@ -179,6 +179,7 @@ function trim_story($text) {
                                     $('.submit-story-wrap').hide();
                                     $('.thank-msg-wrap').show(300);
                                 });
+                                //_gaq.push(['_trackEvent', 'Submit Story', 'Submit', 'Submitted Story']);
                             }
                         });
                     }
@@ -200,7 +201,7 @@ function trim_story($text) {
                                 $("#submited-story-pic").append("<img src='" + returndata.image + "' width='355' height='355'>");
                                 $("#submited-story-author").append(returndata.name);
                                 $("#submited-story").append('&#8220;' + returndata.story + '&#8221;');
-                                console.log(returndata.image_unsecured);
+                                
                                 picture_p = returndata.image_unsecured;
                                 userId_p = returndata.facebook_id;
                                 story_p = returndata.story;
@@ -215,9 +216,10 @@ function trim_story($text) {
                                 $('.submit-story-wrap').hide();
                                 $('.thank-msg-wrap').show(300);
                             });
+                         //   _gaq.push(['_trackEvent', 'Submit Preview Story', 'Submit', 'Submitted Story']);
                         }
                     });
-                })
+                });
             });
         </script>
         <script>
@@ -225,14 +227,15 @@ function trim_story($text) {
                 FB.ui({
                     method: 'feed',
                     title: "Mobile 1 Performance Story",
-                    link: 'https://performancestory-staging.fb-mobil1.com',
+                    link: 'https://performancestory.fb-mobil1.com',
                     name: "Mobil1 Performance Story",
-                    picture: 'https://performancestory-staging.fb-mobil1.com/cms/web/uploads/' + picture,
+                    picture: 'https://performancestory.fb-mobil1.com/cms/web/uploads/' + picture,
                     to: userId,
                     caption: story,
                     description: story,
                     message: story
                 });
+                _gaq.push(['_trackEvent', 'Share Web Story', 'Share', 'Share Story']);
             }
         </script>
         <script>
@@ -416,7 +419,7 @@ function trim_story($text) {
 
                                 <div class="pic">
                                     <!-- submitted story pic-->
-                                    <img src='https://performancestory-staging.fb-mobil1.com/cms/web/uploads/default.jpg' width='355' id='imagePreview' height='355'/>
+                                    <img src='https://performancestory.fb-mobil1.com/cms/web/uploads/default.jpg' width='355' id='imagePreview' height='355'/>
                                 </div>
 
                                 <div class="author">
@@ -806,4 +809,12 @@ function trim_story($text) {
             }
         }
     </script>
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-56930001-1', 'auto');
+ga('send', 'pageview');
+</script>
 </html>
