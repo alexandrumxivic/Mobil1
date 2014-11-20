@@ -355,11 +355,12 @@ $(document).ready(function () {
 
 
 // Checking to see if the form is valid to enable the preview for the story
-    $('.submit-story input').bind('change', function () {
-        if ($('.submit-story').valid()) {
+    $('.submit-story input, .submit-story textarea').bind('change', function () {
+        if ($('.submit-story').valid() && $(this).val().length > 0) {
             $('.submit-story .js-show-preview').addClass('active');
         } else {
             $('.submit-story .js-show-preview').removeClass('active');
+            $('.submit-story').validate()
         }
     })
 
