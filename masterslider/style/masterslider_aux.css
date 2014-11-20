@@ -4,17 +4,6 @@
 }
 .ms-slide {
 	overflow: hidden ;
-} 
-.ms-slide:after{
-	position: absolute;
-	z-index: 4;
-	top: 8px;
-	right: 5px;
-	width: 84px;
-	height: 18px;
-	background: url('../../assets/logo.png') no-repeat top left;
-	background-size: cover;
-	content:"";
 }
 .p {font-size: 14px;
 	color: #FFFFFF;
