@@ -1028,17 +1028,6 @@ footer a{
 	margin-left: 65px;
 	overflow: hidden;
 }
-.story-preview:after{
-	position: absolute;
-	z-index: 4;
-	top: 8px;
-	right: 5px;
-	width: 105px;
-	height: 22px;
-	background: url('../assets/logo.png') no-repeat top left;
-	background-size: cover;
-	content:"";
-}
 .story-preview .pic,
 .story-preview .pic img{
 	min-width: 100%;

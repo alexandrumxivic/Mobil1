@@ -1115,17 +1115,6 @@ footer a + a{
 	margin:36px auto 0;
 	overflow: hidden;
 }
-.story-preview:after{
-	position: absolute;
-	z-index: 4;
-	top: 8px;
-	right: 5px;
-	width: 74px;
-	height: 16px;
-	background: url('../assets/logo.png') no-repeat top left;
-	background-size: cover;
-	content:"";
-}
 .story-preview .pic,
 .story-preview .pic img{
 	min-width: 100%;
