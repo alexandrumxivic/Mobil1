@@ -1218,9 +1218,10 @@ footer a + a{
 }
 .image-categories-list li{
 	display: block;
-	text-align: center;
+	text-align: left;
 	height: 30px;
 	line-height: 30px;
+	padding: 0 20px;
 }
 .image-categories-list label{
 	font-size: 14px;
@@ -1239,11 +1240,12 @@ footer a + a{
 	background: url('../assets/radioselected.png') no-repeat top left;
 }
 .image-categories-list input[type="checkbox"]{
-	display: inline-block;
+	display: none;
 	vertical-align: middle;
 	width: 0;
 	height: 30px;
 	opacity: 0;
+	box-sizing: border-box;
 }
 #share{
 	text-decoration: none;
