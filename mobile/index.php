@@ -735,7 +735,7 @@ function trim_story($text) {
         </section>
     </main>
     <footer>
-        <a href="/rules.html" target="_blank">Rules</a>
+        <a href="/rules.html" target="_blank">Official Rules</a>
     </footer>
 </body>
 <script type="text/javascript">

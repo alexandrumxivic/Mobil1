@@ -237,6 +237,7 @@ function trim_story($text) {
         <script>
             function loginFacebook() {
                 $('.js-show-submit').unbind('click');
+                
                 FB.login(function (response) {
                     console.log(response);
                     if (response.authResponse) {
@@ -740,7 +741,7 @@ function trim_story($text) {
         </main>
         
         <footer>
-            <a href="/rules.html" target="_blank">Rules</a>
+            <a href="/rules.html" target="_blank">Official Rules</a>
         </footer>
     </body>
     <script type="text/javascript">
