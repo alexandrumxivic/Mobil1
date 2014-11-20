@@ -84,6 +84,7 @@ $(document).ready(function () {
 // Top area toggling sections
    
     $('.js-show-thank').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
 
         $(this).parents('.top-module').hide(300);
         $('.submit-story-wrap').hide();
@@ -91,26 +92,35 @@ $(document).ready(function () {
     });
 
     $('.js-show-submit').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
+
         $(this).parents('.top-module').hide(300);
         $('.submit-story-wrap').show(300);
     });
 
     $('.js-show-stories').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
 
         $(this).parents('.top-module').hide(300);
         $('.view-stories-wrap').show(300);
     });
 
     $('.js-top-default').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
+
         $(this).parents('.top-module').hide(300);
         $('.landing-intro').show(300);
     });
 
     $('.js-default-submit').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
+
         $(this).parents('.preview-submission').fadeOut(300);
     })
 
     $('.js-show-preview').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
+
         if ($(this).hasClass('active') && $('.submit-story').valid()) {
             
             $('.preview-submission').fadeIn(300);
@@ -121,6 +131,8 @@ $(document).ready(function () {
 
 // Expanding & collapsing the performance pictures/videos sections
     $('.js-expand-section').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
+
         $(this).parents('.media-section').addClass('expanded').siblings('.media-section').removeClass('expanded');
 
         $('.images').attr('style', '');
@@ -129,6 +141,8 @@ $(document).ready(function () {
     });
 
     $('.js-restore-default').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
+
         $(this).parents('.media-section').removeClass('expanded')
                 .siblings('.media-section').removeClass('collapsed');
 
@@ -142,6 +156,8 @@ $(document).ready(function () {
     });
 
     $('.js-switch-section').bind('click', function () {
+        ga('send', 'event', 'share story mobile', 'CLICK');
+
         $(this).parents('.media-section').removeClass('expanded').addClass('collapsed')
                 .siblings('.media-section').removeClass('collapsed').addClass('expanded');
 
@@ -218,6 +234,8 @@ $(document).ready(function () {
     })
 
     $('.image-categories-list li').bind('click', function(){
+        ga('send', 'event', 'share story mobile', 'CLICK');
+
         $('.image-performance').hide();
         var filtered = false;
         var customSelector = '';

@@ -75,6 +75,7 @@ function trim_story($text) {
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- Force latest IE rendering engine (even in intranet) & Chrome Frame -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8">
 
         <title>Mobile 1</title>
 
