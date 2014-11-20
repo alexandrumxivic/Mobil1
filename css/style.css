@@ -24,6 +24,9 @@ p{
 li{
 	list-style-type: none;
 }
+a.inline{
+	color: #fff;
+}
 .emph{
 	color: #eb2036;
 	font-family:'EmPrintBold';

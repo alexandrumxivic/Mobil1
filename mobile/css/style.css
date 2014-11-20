@@ -22,6 +22,9 @@ p{
 	font-size: 18px;
 	line-height: 22px;
 }
+a.inline{
+	color: #fff;
+}
 .emph{
 	color: #eb2036;
 	font-family:'EmPrintBold';

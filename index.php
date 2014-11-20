@@ -315,7 +315,7 @@ function trim_story($text) {
                         <span class="emph">What's yours?</span>
 
                         <p>
-                            Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/> You'll have a chance to win a case of Mobil 1<sup>TM</sup> synthetic motor oil or some other great Mobil 1 gear.
+                            Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/> You'll have a chance to win a case of Mobil 1<sup>TM</sup> synthetic motor oil or some other great Mobil 1 gear.<br/>For more about Mobil 1 products, click <a class="inline" href="http://www.mobil1.com/ournormal">here</a> now.
                         </p>
 
                         <div class="rect-btn go-to-form blue <?php
