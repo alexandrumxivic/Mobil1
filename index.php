@@ -225,12 +225,12 @@ function trim_story($text) {
                     method: 'feed',
                     title: "Mobile 1 Performance Story",
                     link: 'https://performancestory-staging.fb-mobil1.com',
-                    name: "My Submitted Story",
+                    name: "Mobil1 Performance Story",
                     picture: 'https://performancestory-staging.fb-mobil1.com/cms/web/uploads/' + picture,
                     to: userId,
-                    caption: '',
+                    caption: story,
                     description: story,
-                    message: 'This is my story...'
+                    message: story
                 });
             }
         </script>
