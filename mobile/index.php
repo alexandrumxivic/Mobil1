@@ -18,6 +18,7 @@ if (isset($_REQUEST['signed_request'])) {
 
 $user_id = (isset($signedRequestJSON->user_id)) ? $signedRequestJSON->user_id : '0';
 define('BASE_URL', 'https://performancestory.fb-mobil1.com/cms/web/');
+define('BASE_URL_UNSECURE', 'https://performancestory.fb-mobil1.com/cms/web/');
 
 /* get required info */
 /* get Stories */
@@ -116,6 +117,7 @@ function trim_story($text) {
                         agree_rules: " "
                     },
                     submitHandler: function () {
+                           ga('send', 'event', 'submit form mobile', 'CLICK');
                         var formData = new FormData($("form")[0]);
                         $.ajax({
                             url: '<?php echo BASE_URL ?>stories/new/create',
@@ -162,6 +164,7 @@ function trim_story($text) {
                             contentType: false,
                             processData: false,
                             success: function (returndata) {
+                                ga('send', 'event', 'submit form preview mobile', 'CLICK');
                                 if (returndata.success === true) {
                                     $("#submited-story-author-pic").css("background","url('https://graph.facebook.com/" + returndata.facebook_id + "/picture?type=normal')");
                                     $("#submited-story-pic").append("<img src='" + returndata.image + "' width='278' height='278'>");
@@ -189,6 +192,7 @@ function trim_story($text) {
         </script>
         <script>
             function share_caption(picture, userId, story) {
+                ga('send', 'event', 'share story mobile', 'CLICK');
                 FB.ui({
                     method: 'feed',
                     title: "Mobile 1 Performance Story",
@@ -204,9 +208,11 @@ function trim_story($text) {
         </script>
         <script>
             function loginFacebook() {
+                 ga('send', 'event', 'go to form mobile', 'CLICK');
                 FB.getLoginStatus(function (response) {
 
                     if (response.status !== 'connected') {
+                         
                         $('.js-show-submit').unbind('click');
                         FB.login(function (response) {
                             if (response.authResponse) {
@@ -231,10 +237,11 @@ function trim_story($text) {
 
                     } else {
                         $.ajax({
-                            url: "<?php echo BASE_URL; ?>stories/check/" + response.authResponse.userID
+                            url: "<?php echo BASE_URL_UNSECURE; ?>stories/check/" + response.authResponse.userID
                         }).done(function (data) {
 
                             if (data.success === false) {
+                               
                                 $('.js-show-submit').unbind('click');
                                 $("#submited-story-author-pic").append("<img src='https://graph.facebook.com/" + data.facebook_id + "/picture?type=normal' width='80' height='80'>");
                                 $("#submited-story-pic").append("<img src='" + data.image + "' width='278' height='278'>");
@@ -245,7 +252,7 @@ function trim_story($text) {
                                     $('.thank-msg-wrap').show(300);
                                 });
                             } else {
-                                console.log('qq');
+                               
                                 $('.landing-intro').hide(300);
                                 $('.submit-story-wrap').show(300);
                             }
@@ -266,7 +273,7 @@ function trim_story($text) {
             }
 
             $('#back').click(function () {
-                console.log('click');
+              ga('send', 'event', 'back mobile', 'CLICK');
                 $('.submit-story-wrap').hide(300);
             });
         </script>
@@ -285,7 +292,7 @@ function trim_story($text) {
                     <span class="emph">What's yours?</span>
 
                     <p>
-                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/> You'll have a chance to win a case of Mobil 1<sup>TM</sup> synthetic motor oil or some other great Mobil 1 gear.<br/>For more about Mobil 1 products, click <a class="inline" href="http://www.mobil1.com/ournormal">here</a> now.
+                        Share your Mobil 1 performance story to join the Our Normal sweepstakes.<br/> You'll have a chance to win a case of Mobil 1<sup>TM</sup> synthetic motor oil or some other great Mobil 1 gear.<br/>For more about Mobil 1 products, click <a class="inline" href="http://www.mobil1.com/ournormal" target="_blank">here</a> now.
                     </p>
 
                     <div class="rect-btn blue js-show-submit"  <?php echo ($user_id == 0) ? "id='notLoggedIn' onclick='loginFacebook();'" : "id='loggedIn' "; ?>>Share your story</div>
@@ -301,13 +308,15 @@ function trim_story($text) {
                     <ul class="landing-stories sg-content">
                         <?php $count = 1; ?>
                         <?php foreach ($stories as $key => $value) : ?>
-                            <li class="story-box landing-story sg-item <?php echo ($count == 1) ? 'active' : '' ?>" data-index="<?php
+                            <li class="story-box landing-story sg-item <?php echo ($count == 1) ? 'active' : '' ?> <?php echo ($stories[$key]->image == 'https://performancestory.fb-mobil1.com/cms/web/uploads/default.jpg')? 'empty' : '';?>" data-index="<?php
                             echo $count;
                             $count++;
                             ?>">
-                                <div class="pic">
-                                    <img src="<?php echo $stories[$key]->image; ?>" width='278' height='278'>
-                                </div>
+                               <div class="pic">
+                                                                <?php if ($stories[$key]->image != 'https://performancestory.fb-mobil1.com/cms/web/uploads/default.jpg'): ?>
+                                                                    <img src="<?php echo $stories[$key]->image; ?>" >
+                                                                    <?php endif; ?>
+                                                            </div>
 
                                 <div class="author">
                                     <div class="author--pic" style="background: url('https://graph.facebook.com/<?php echo $stories[$key]->facebook_id; ?>/picture?type=normal') no-repeat top left"></div>
@@ -487,7 +496,8 @@ function trim_story($text) {
 
                                 <!-- like button -->
                                 <div class="slide-like-button">
-                                    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fmobile1.projects-directory.com%2Fcms%2Fweb%2Fstories%2Flike%2F<?php echo $stories[$key]->id; ?>&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=597677730337203" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;width:60px;float:right;" allowTransparency="true"></iframe>  
+                                <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fperformancestory.fb-mobil1.com%2Fcms%2Fweb%2Fstories%2Flike%2F<?php echo $stories[$key]->id; ?>&amp;width&amp;layout=button&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=80&amp;appId=597677730337203" scrolling="no" frameborder="0" style="border:none;float:right; overflow:hidden; height:35px;width:65px" allowTransparency="true"></iframe>
+
                                 </div>
 
                                 <!-- slide color overlay picture -->
@@ -547,8 +557,8 @@ function trim_story($text) {
         </section>
 
         <section>
-            <div class="media-section images">
-                <div class="media-section--cover js-expand-section">
+            <div class="media-section images" data-section="photos">
+                <div class="media-section--cover js-expand-section" data-section="photos">
                     <div class="container">
                         <h3>Performance Snapshots</h3>
 
@@ -564,8 +574,8 @@ function trim_story($text) {
                     </div>
                 </div>
 
-                <div class="media-section--content">
-                    <div class="close-btn js-restore-default">
+                <div class="media-section--content" data-section="videos">
+                    <div class="close-btn js-restore-default" data-section="videos">
                         <span class="icon-close"></span>
                     </div>
 
@@ -638,17 +648,17 @@ function trim_story($text) {
                             </div>
 
                             <div>
-                                <div class="rect-btn js-close-overlay">Back</div>
+                                <div class="rect-btn js-close-overlay" data-section="back">Back</div>
 
-                                <div class="rect-btn js-switch-section">Video gallery</div>
+                                <div class="rect-btn js-switch-section" data-section="videos">Video gallery</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="media-section videos">
-                <div class="media-section--cover js-expand-section">
+            <div class="media-section videos" data-section="videos">
+                <div class="media-section--cover js-expand-section" data-section="videos">
                     <div class="container">
                         <h3>Performance Videos</h3>
 
@@ -730,7 +740,7 @@ function trim_story($text) {
         </section>
     </main>
     <footer>
-        <a href="/rules.html" target="_blank">Official Rules</a>
+        <a href="/rules.html" target="_blank" onclick="ga('send', 'event', 'go to official rules', 'CLICK');">Official Rules</a>
     </footer>
 </body>
 <script type="text/javascript">
