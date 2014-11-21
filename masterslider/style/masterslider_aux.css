@@ -116,8 +116,23 @@
 	left: -40px !important;
 	top: 113px !important;
 }
+.ms-slide-bgcont{
+	text-align: center;
+	background: black;
+}
+.ms-slide-bgcont:before{
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 100%;
+	content: "";
+}
 .ms-slide-bgcont img{
-	width: 100%!important;
-	height: 100%!important;
+	display: inline-block;
+	vertical-align: middle;
+	width: auto!important;
+	height: auto!important;
+	max-width: 100%;
+	max-height: 100%;
 	margin: 0!important;
 }
